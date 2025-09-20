@@ -131,7 +131,7 @@ export default function DashboardPage() {
         </section>
 
         {/* Services Section */}
-        <section id="services" className="py-20 md:py-28 bg-white">
+        <section id="services" className="py-20 md:py-28 bg-section-gradient">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-3xl md:text-4xl font-bold text-primary">Dịch Vụ Của Chúng Tôi</h2>
@@ -185,7 +185,7 @@ export default function DashboardPage() {
         </section>
         
         {/* Working Process Section */}
-        <section className="py-20 md:py-28 bg-muted">
+        <section className="py-20 md:py-28 bg-section-gradient">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16 animate-fade-in-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-primary">Quy Trình Làm Việc Chuyên Nghiệp</h2>
@@ -208,7 +208,7 @@ export default function DashboardPage() {
         </section>
 
         {/* Gallery Section */}
-        <section id="gallery" className="py-20 md:py-28 bg-white">
+        <section id="gallery" className="py-20 md:py-28 bg-section-gradient">
            <div className="container mx-auto px-4">
               <div className="text-center mb-16 animate-fade-in-up">
                 <h2 className="text-3xl md:text-4xl font-bold text-primary">Dự Án Tiêu Biểu</h2>
@@ -296,7 +296,7 @@ export default function DashboardPage() {
 
 
         {/* Testimonials Section */}
-        <section id="testimonials" className="py-20 md:py-28 bg-muted">
+        <section id="testimonials" className="py-20 md:py-28 bg-section-gradient">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-3xl md:text-4xl font-bold text-primary">Khách Hàng Nói Về Chúng Tôi</h2>

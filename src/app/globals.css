@@ -75,6 +75,9 @@
   .bg-gradient-footer {
      background-color: #0A190F;
   }
+   .bg-section-gradient {
+    background-image: linear-gradient(to bottom, hsl(var(--muted)) 0%, hsl(var(--background)) 100%);
+  }
 }
 
 @layer utilities {
