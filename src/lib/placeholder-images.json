@@ -4,7 +4,7 @@
     {
       "id": "hero-slide-1",
       "description": "Hero slider image 1: A beautiful, lush villa garden with a modern design.",
-      "imageUrl": "https://picsum.photos/seed/hero-slide-1/1920/1080",
+      "imageUrl": "/images/slidebanner1.png",
       "imageHint": "modern villa garden"
     },
      {
