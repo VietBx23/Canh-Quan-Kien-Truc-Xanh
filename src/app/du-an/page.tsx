@@ -6,10 +6,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { projects as allProjects } from "@/lib/data/projects";
 import { Project } from "@/lib/data/projects";
+import { getAllProjects } from "@/lib/actions/projectActions";
 
 export default async function ProjectsPage() {
+    const allProjects = await getAllProjects();
+
     const gardenProjects = allProjects.filter(p => p.category === 'Sân Vườn');
     const koiProjects = allProjects.filter(p => p.category === 'Hồ Koi');
     const otherProjects = allProjects.filter(p => p.category === 'Tiểu Cảnh');
