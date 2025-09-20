@@ -132,8 +132,18 @@
       "description": "Avatar for a testimonial.",
       "imageUrl": "https://picsum.photos/seed/avatar6/56/56",
       "imageHint": "person portrait"
+    },
+     {
+      "id": "testimonial-7",
+      "description": "Avatar for a testimonial.",
+      "imageUrl": "https://picsum.photos/seed/avatar7/56/56",
+      "imageHint": "woman portrait"
+    },
+     {
+      "id": "testimonial-8",
+      "description": "Avatar for a testimonial.",
+      "imageUrl": "https://picsum.photos/seed/avatar8/56/56",
+      "imageHint": "man portrait"
     }
   ]
 }
-
-    

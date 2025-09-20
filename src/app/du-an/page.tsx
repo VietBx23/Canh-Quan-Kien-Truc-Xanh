@@ -13,7 +13,7 @@ export default function ProjectsPage() {
     const allProjects = PlaceHolderImages.filter(p => p.id.startsWith('gallery-'));
     const gardenProjects = allProjects.filter(p => p.imageHint.includes('garden') || p.imageHint.includes('villa'));
     const koiProjects = allProjects.filter(p => p.imageHint.includes('koi') || p.imageHint.includes('pond'));
-    const otherProjects = allProjects.filter(p => !p.imageHint.includes('garden') && !p.imageHint.includes('villa') && !p.imageHint.includes('pond'));
+    const otherProjects = allProjects.filter(p => !p.imageHint.includes('garden') && !p.imageHint.includes('villa') && !p.imageHint.includes('pond') && !p.imageHint.includes('koi'));
 
     const renderProjectList = (projects: typeof allProjects) => {
       if (projects.length === 0) {
@@ -96,5 +96,3 @@ export default function ProjectsPage() {
         </div>
     );
 }
-
-    

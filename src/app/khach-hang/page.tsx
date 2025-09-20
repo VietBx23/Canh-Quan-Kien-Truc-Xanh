@@ -15,37 +15,49 @@ export default function TestimonialsPage() {
             quote: "Đội ngũ làm việc rất chuyên nghiệp và có tâm. Khu vườn nhà tôi giờ đây thật sự là một nơi thư giãn tuyệt vời sau những giờ làm việc căng thẳng. Cảm ơn Kiến Trúc Xanh!",
             author: "Anh Hoàng Minh",
             location: "Chủ biệt thự, Quận 2",
-            avatar: testimonialAvatars[0]
+            avatar: testimonialAvatars.find(p => p.id === 'testimonial-1')
         },
         {
             quote: "Hồ cá Koi đã trở thành điểm nhấn thu hút khách cho quán của tôi. Dịch vụ và chất lượng thi công vượt xa mong đợi. Chắc chắn sẽ tiếp tục hợp tác trong các dự án tương lai.",
             author: "Chị Lan Anh",
             location: "Chủ quán cafe sân vườn",
-            avatar: testimonialAvatars[1]
+            avatar: testimonialAvatars.find(p => p.id === 'testimonial-2')
         },
         {
             quote: "Thiết kế sáng tạo, độc đáo và rất tinh tế. Mọi người đến nhà đều trầm trồ khen ngợi khu vườn trên sân thượng. Tôi rất hài lòng với không gian xanh mà các bạn tạo ra.",
             author: "Anh Tuấn",
             location: "Nhà phố, Gò Vấp",
-            avatar: PlaceHolderImages.find(p => p.id === 'testimonial-3')
+            avatar: testimonialAvatars.find(p => p.id === 'testimonial-3')
         },
          {
             quote: "Rất hài lòng với dịch vụ bảo dưỡng định kỳ. Hồ cá lúc nào cũng trong veo, cây cối xanh tốt. Đội ngũ hỗ trợ rất nhiệt tình và chuyên nghiệp.",
             author: "Chú Hùng",
             location: "Biệt thự, Thảo Điền",
-            avatar: PlaceHolderImages.find(p => p.id === 'testimonial-4')
+            avatar: testimonialAvatars.find(p => p.id === 'testimonial-4')
         },
         {
             quote: "Tiểu cảnh và hòn non bộ được bố trí rất hợp phong thủy, mang lại cảm giác bình yên cho ngôi nhà. Cảm ơn sự tư vấn tận tình của đội ngũ.",
             author: "Cô Mai",
             location: "Nhà riêng, Quận 9",
-            avatar: PlaceHolderImages.find(p => p.id === 'testimonial-5')
+            avatar: testimonialAvatars.find(p => p.id === 'testimonial-5')
         },
         {
             quote: "Chất lượng công trình rất tốt, bền đẹp theo thời gian. Đây là điều tôi đánh giá cao nhất ở Cảnh Quan Kiến Trúc Xanh.",
             author: "Anh Long",
             location: "Khu đô thị, Bình Dương",
-            avatar: PlaceHolderImages.find(p => p.id === 'testimonial-6')
+            avatar: testimonialAvatars.find(p => p.id === 'testimonial-6')
+        },
+        {
+            quote: "Tôi đã sử dụng dịch vụ thiết kế sân vườn và hoàn toàn bị chinh phục bởi sự sáng tạo và chuyên nghiệp. Không gian ngoài trời của tôi giờ đây thật tuyệt vời.",
+            author: "Chị Hà",
+            location: "Penthouse, Quận 7",
+            avatar: testimonialAvatars.find(p => p.id === 'testimonial-7')
+        },
+        {
+            quote: "Hồ cá Koi của gia đình tôi được thi công rất nhanh và đẹp. Hệ thống lọc hoạt động hiệu quả, nước luôn trong vắt. Rất đáng tiền!",
+            author: "Anh Phong",
+            location: "Biệt thự, Bình Chánh",
+            avatar: testimonialAvatars.find(p => p.id === 'testimonial-8')
         }
     ]
 
@@ -108,5 +120,3 @@ export default function TestimonialsPage() {
         </div>
     );
 }
-
-    
