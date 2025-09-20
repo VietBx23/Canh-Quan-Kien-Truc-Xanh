@@ -11,9 +11,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function ProjectsPage() {
     const allProjects = PlaceHolderImages.filter(p => p.id.startsWith('gallery-'));
-    const gardenProjects = allProjects.filter(p => p.imageHint.includes('garden') || p.imageHint.includes('villa'));
-    const koiProjects = allProjects.filter(p => p.imageHint.includes('koi') || p.imageHint.includes('pond'));
-    const otherProjects = allProjects.filter(p => !p.imageHint.includes('garden') && !p.imageHint.includes('villa') && !p.imageHint.includes('pond') && !p.imageHint.includes('koi'));
+    const gardenProjects = allProjects.filter(p => p.imageHint.includes('garden') || p.imageHint.includes('villa') || p.imageHint.includes('patio') || p.imageHint.includes('resort') || p.imageHint.includes('balcony') || p.imageHint.includes('terrace') || p.imageHint.includes('entrance') || p.imageHint.includes('bbq'));
+    const koiProjects = allProjects.filter(p => p.imageHint.includes('koi'));
+    const otherProjects = allProjects.filter(p => !gardenProjects.includes(p) && !koiProjects.includes(p));
 
     const renderProjectList = (projects: typeof allProjects) => {
       if (projects.length === 0) {
@@ -21,8 +21,8 @@ export default function ProjectsPage() {
       }
       return (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.map((image, index) => (
-                  <Card key={index} className="overflow-hidden group border-none shadow-lg hover:shadow-2xl transition-all duration-300">
+              {projects.map((image) => (
+                  <Card key={image.id} className="overflow-hidden group border-none shadow-lg hover:shadow-2xl transition-all duration-300">
                       <CardContent className="p-0">
                           <div className="overflow-hidden aspect-[4/3]">
                               <Image 
@@ -35,7 +35,7 @@ export default function ProjectsPage() {
                               />
                           </div>
                           <div className="p-4 bg-white">
-                              <p className="text-xs text-accent font-semibold uppercase">{image.imageHint.includes('koi') ? 'Hồ Koi' : image.imageHint.includes('garden') ? 'Sân vườn' : 'Tiểu Cảnh'}</p>
+                              <p className="text-xs text-accent font-semibold uppercase">{image.imageHint.includes('koi') ? 'Hồ Koi' : gardenProjects.includes(image) ? 'Sân vườn' : 'Tiểu Cảnh'}</p>
                               <h3 className="font-bold text-lg text-primary capitalize mt-1">{image.imageHint.replace(/-/g, ' ')}</h3>
                               <p className="text-sm text-muted-foreground mt-1">Hoàn thành: 2023</p>
                           </div>
