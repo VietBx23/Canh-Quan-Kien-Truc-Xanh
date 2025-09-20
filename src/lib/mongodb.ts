@@ -18,14 +18,18 @@ declare global {
 let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
+const options = {
+    tls: true,
+};
+
 if (process.env.NODE_ENV === 'development') {
   if (!global._mongoClientPromise) {
-    client = new MongoClient(MONGODB_URI);
+    client = new MongoClient(MONGODB_URI, options);
     global._mongoClientPromise = client.connect();
   }
   clientPromise = global._mongoClientPromise;
 } else {
-  client = new MongoClient(MONGODB_URI);
+  client = new MongoClient(MONGODB_URI, options);
   clientPromise = client.connect();
 }
 
