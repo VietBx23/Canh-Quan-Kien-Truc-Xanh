@@ -5,6 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import Image from "next/image";
 import { Star } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function TestimonialsPage() {
     const testimonialAvatars = PlaceHolderImages.filter(p => p.id.startsWith('testimonial-'));
@@ -90,6 +92,15 @@ export default function TestimonialsPage() {
                                 </Card>
                             ))}
                         </div>
+                    </div>
+                </section>
+                 <section className="py-20 md:py-28 bg-muted">
+                    <div className="container mx-auto px-4 text-center">
+                         <h2 className="text-2xl font-bold text-primary">Bạn đã sẵn sàng để trở thành khách hàng tiếp theo?</h2>
+                        <p className="text-muted-foreground mt-2 max-w-xl mx-auto">Hãy để chúng tôi mang đến cho bạn một không gian sống xanh và đẳng cấp.</p>
+                        <Button size="lg" asChild className="mt-6">
+                            <Link href="/lien-he">Liên Hệ Tư Vấn Ngay</Link>
+                        </Button>
                     </div>
                 </section>
             </main>

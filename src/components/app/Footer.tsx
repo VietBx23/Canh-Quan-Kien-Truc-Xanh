@@ -17,6 +17,8 @@ export function Footer() {
                 <li><Link href="/gioi-thieu" className="hover:underline">Giới Thiệu</Link></li>
                 <li><Link href="/dich-vu" className="hover:underline">Dịch Vụ</Link></li>
                 <li><Link href="/du-an" className="hover:underline">Dự Án</Link></li>
+                <li><Link href="/blog" className="hover:underline">Tin Tức</Link></li>
+                <li><Link href="/faq" className="hover:underline">FAQ</Link></li>
                 <li><Link href="/lien-he" className="hover:underline">Liên Hệ</Link></li>
             </ul>
           </div>
