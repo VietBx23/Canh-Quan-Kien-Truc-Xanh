@@ -27,10 +27,13 @@ const initialAIState = {
   data: null,
 };
 
+let publishCounter = 0;
+
 export function ContentEditor({ isConnected, addActivity }: ContentEditorProps) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [date, setDate] = useState<Date | undefined>(undefined);
+  const [customPrefix, setCustomPrefix] = useState("");
   const [isPublishing, startPublishing] = useTransition();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -71,6 +74,16 @@ export function ContentEditor({ isConnected, addActivity }: ContentEditorProps) 
     }
     startPublishing(() => {
       setTimeout(() => {
+        publishCounter++;
+        const slug = [customPrefix.trim(), publishCounter]
+          .filter(Boolean)
+          .join("-")
+          .toLowerCase()
+          .replace(/[^a-z0-9-]+/g, "")
+          .replace(/^-+|-+$/g, "");
+          
+        const fakeLink = `https://sites.google.com/view/mysite/${slug || `post-${publishCounter}`}`;
+
         if (isScheduling) {
             toast({
                 title: 'Scheduled!',
@@ -78,12 +91,14 @@ export function ContentEditor({ isConnected, addActivity }: ContentEditorProps) 
             });
             addActivity(`Scheduled post: "${title}" for ${format(date!, "PPP")}`, Timer);
         } else {
-            const fakeLink = `https://sites.google.com/view/mysite/${encodeURIComponent(title.toLowerCase().replace(/\s+/g, "-"))}`;
             toast({
                 title: "Published!",
                 description: `Your post "${title}" is now live.`,
                 action: (
-                    <Button variant="outline" size="sm" onClick={() => navigator.clipboard.writeText(fakeLink)}>
+                    <Button variant="outline" size="sm" onClick={() => {
+                        navigator.clipboard.writeText(fakeLink);
+                        toast({ description: "Link copied to clipboard!" });
+                    }}>
                     Copy Link
                     </Button>
                 ),
@@ -108,9 +123,8 @@ export function ContentEditor({ isConnected, addActivity }: ContentEditorProps) 
       const reader = new FileReader();
       reader.onload = (e) => {
         const fileContent = e.target?.result as string;
-        const lines = fileContent.split('\n');
         // Use file name (without extension) as title
-        const fileName = file.name.replace(/\.md$/, '');
+        const fileName = file.name.replace(/\.(md|txt)$/i, '');
         setTitle(fileName);
         setContent(fileContent);
         toast({
@@ -158,7 +172,17 @@ export function ContentEditor({ isConnected, addActivity }: ContentEditorProps) 
               disabled={isPublishing}
             />
           </div>
-          <div className="flex gap-2">
+          <div className="grid w-full max-w-sm items-center gap-1.5">
+            <Label htmlFor="custom-prefix">Custom Prefix (Optional)</Label>
+            <Input
+              id="custom-prefix"
+              placeholder="e.g. my-awesome-post"
+              value={customPrefix}
+              onChange={(e) => setCustomPrefix(e.targe.value)}
+              disabled={isPublishing}
+            />
+          </div>
+          <div className="flex gap-2 pt-2">
             <Button variant="outline" onClick={() => fileInputRef.current?.click()} disabled={isPublishing}>
               <Upload className="mr-2 h-4 w-4" />
               Upload File
@@ -168,7 +192,7 @@ export function ContentEditor({ isConnected, addActivity }: ContentEditorProps) 
                 ref={fileInputRef}
                 onChange={handleFileChange}
                 className="hidden"
-                accept=".md"
+                accept=".md,.txt"
             />
             <form action={handleSuggestHeaders} className="contents">
                 <input type="hidden" name="articleContent" value={content} />
