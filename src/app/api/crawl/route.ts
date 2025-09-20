@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import axios from 'axios';
 
 const crawlSchema = z.object({
   url: z.string().url({ message: "Invalid URL" }),
@@ -16,17 +17,25 @@ export async function POST(req: NextRequest) {
 
     const { url } = validated.data;
 
-    // For now, we just return the URL to confirm the API is working.
-    // In the next step, we will fetch the content from this URL.
+    const response = await axios.get(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+      }
+    });
+    
     const responseData = {
-      message: `API received URL to crawl: ${url}`,
-      crawledContent: `(Placeholder for content from ${url})`
+      message: `Successfully crawled URL: ${url}`,
+      crawledContent: response.data
     };
 
     return NextResponse.json(responseData);
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Crawl API Error:', error);
-    return NextResponse.json({ error: 'An unexpected error occurred.' }, { status: 500 });
+    let errorMessage = 'An unexpected error occurred.';
+    if (axios.isAxiosError(error)) {
+      errorMessage = `Could not fetch content from URL. Status: ${error.response?.status}`;
+    }
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
