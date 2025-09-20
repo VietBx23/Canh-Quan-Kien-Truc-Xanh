@@ -186,7 +186,7 @@ export default function DuAnAdminPage() {
               </CardContent>
               <CardFooter>
                 <div className="text-xs text-muted-foreground">
-                  Hiển thị <strong>1-10</strong> trên <strong>{allProjects.length}</strong>{" "}
+                  Hiển thị <strong>1-{allProjects.length > 10 ? 10 : allProjects.length}</strong> trên <strong>{allProjects.length}</strong>{" "}
                   dự án
                 </div>
               </CardFooter>
@@ -196,4 +196,3 @@ export default function DuAnAdminPage() {
     </>
   )
 }
-
