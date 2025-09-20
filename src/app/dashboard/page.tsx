@@ -217,37 +217,23 @@ export default function DashboardPage() {
                   Nơi mỗi công trình là một tác phẩm nghệ thuật đầy tâm huyết.
                 </p>
               </div>
-              <Carousel
-                opts={{
-                  align: "start",
-                  loop: true,
-                }}
-                plugins={[Autoplay({ delay: 3000, stopOnInteraction: true })]}
-                className="w-full max-w-6xl mx-auto animate-fade-in-up animation-delay-300"
-              >
-                <CarouselContent>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 animate-fade-in-up animation-delay-300">
                   {galleryImages.map((image, index) => (
-                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                      <div className="p-1">
-                        <Card className="overflow-hidden border-none shadow-lg group">
-                          <CardContent className="flex aspect-square items-center justify-center p-0">
-                             <Image 
-                                src={image.imageUrl} 
-                                alt={`Project ${index + 1}`} 
-                                width={400} 
-                                height={400} 
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
-                                data-ai-hint={image.imageHint} 
-                              />
-                          </CardContent>
-                        </Card>
+                      <div key={index} className="group relative overflow-hidden rounded-lg shadow-lg">
+                          <Image 
+                              src={image.imageUrl} 
+                              alt={`Project ${index + 1}`} 
+                              width={400} 
+                              height={400} 
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                              data-ai-hint={image.imageHint} 
+                            />
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+                                <p className="text-white text-center font-semibold capitalize">{image.imageHint.replace(/-/g, ' ')}</p>
+                            </div>
                       </div>
-                    </CarouselItem>
                   ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-              </Carousel>
+              </div>
               <div className="text-center mt-12 animate-fade-in-up animation-delay-600">
                   <Button asChild>
                       <Link href="/du-an">Xem Tất Cả Dự Án</Link>

@@ -4,31 +4,31 @@
 
 @layer base {
   :root {
-    --background: 240 10% 99%; /* Light Gray */
+    --background: 0 0% 100%; /* Pure White */
     --foreground: 224 71.4% 4.1%;
     --card: 0 0% 100%;
     --card-foreground: 224 71.4% 4.1%;
     --popover: 0 0% 100%;
     --popover-foreground: 224 71.4% 4.1%;
-    --primary: 140 60% 25%; /* Dark Green */
+    --primary: 142 60% 30%; /* Deeper, more saturated Green */
     --primary-foreground: 0 0% 98%;
     --secondary: 220 14.3% 95.9%;
     --secondary-foreground: 220.9 39.3% 11%;
-    --muted: 220 20% 95%; /* Lighter Gray for backgrounds */
+    --muted: 220 20% 96%; /* Lighter Gray for backgrounds */
     --muted-foreground: 220 8.9% 46.1%;
-    --accent: 38 60% 50%; /* Earthy Gold */
-    --accent-foreground: 0 0% 100%;
+    --accent: 45 93% 47%; /* Brighter, more vibrant Gold */
+    --accent-foreground: 24 9.8% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 220 13% 91%;
     --input: 220 13% 85%;
-    --ring: 38 60% 50%; /* Earthy Gold for focus rings */
+    --ring: 45 93% 47%; /* Vibrant Gold for focus rings */
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 
   .dark {
@@ -38,19 +38,19 @@
     --card-foreground: 0 0% 98%;
     --popover: 220 15% 12%;
     --popover-foreground: 0 0% 98%;
-    --primary: 140 55% 40%;
+    --primary: 142 55% 45%;
     --primary-foreground: 0 0% 98%;
     --secondary: 215 27.9% 16.9%;
     --secondary-foreground: 210 20% 98%;
     --muted: 215 20% 22%;
     --muted-foreground: 217.9 10.6% 64.9%;
-    --accent: 38 65% 55%;
-    --accent-foreground: 0 0% 10%;
+    --accent: 45 93% 52%;
+    --accent-foreground: 24 9.8% 10%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 215 20% 25%;
     --input: 215 20% 25%;
-    --ring: 38 65% 55%;
+    --ring: 45 93% 52%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -73,7 +73,7 @@
     @apply relative flex-shrink-0 flex-grow-0 basis-full min-w-0;
   }
   .bg-gradient-footer {
-    background-image: linear-gradient(to bottom right, hsl(var(--primary)), hsl(140, 70%, 20%));
+    background-image: linear-gradient(to bottom right, hsl(var(--primary)), hsl(142, 70%, 20%));
   }
 }
 
@@ -100,20 +100,11 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(10, 25, 15, 0.5); /* Dark Greenish Overlay */
     z-index: 1;
   }
   .content-overlay {
     position: relative;
     z-index: 2;
-  }
-  .animation-delay-300 {
-    animation-delay: 300ms;
-  }
-  .animation-delay-600 {
-    animation-delay: 600ms;
-  }
-  .animation-delay-900 {
-    animation-delay: 900ms;
   }
 }
