@@ -70,15 +70,15 @@ export default function AboutPage() {
                         <div className="text-center mb-16">
                             <h2 className="text-3xl md:text-4xl font-bold text-primary">Quá Trình Hình Thành & Phát Triển</h2>
                         </div>
-                        <div className="relative max-w-4xl mx-auto before:absolute before:inset-0 before:ml-5 before:h-full before:w-0.5 before:bg-primary/20 md:before:mx-auto">
+                        <div className="relative max-w-4xl mx-auto before:absolute before:inset-0 before:ml-5 before:h-full before:w-0.5 before:bg-primary/20 md:before:mx-auto md:before:left-1/2 md:before:-translate-x-1/2">
                             {timeline.map((item, index) => (
                                 <div key={index} className="relative pl-8 md:pl-0">
-                                    <div className="md:flex items-center">
-                                        <div className={`flex md:w-1/2 ${index % 2 === 0 ? 'justify-start' : 'md:justify-end'}`}>
-                                           <div className="absolute left-5 top-1 h-5 w-5 rounded-full border-4 border-primary bg-white md:relative md:left-0"></div>
+                                    <div className="md:flex md:items-center md:flex-row-reverse">
+                                        <div className={`flex md:w-1/2 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} justify-start md:justify-center`}>
+                                            <div className="absolute left-5 top-1 h-5 w-5 rounded-full border-4 border-primary bg-background md:relative md:left-0 md:transform-none"></div>
                                         </div>
-                                        <div className="md:w-1/2">
-                                            <div className={`p-6 bg-white rounded-lg shadow-xl mb-8 md:max-w-sm ${index % 2 === 0 ? 'md:ml-auto' : 'md:mr-auto'}`}>
+                                        <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
+                                            <div className={`p-6 bg-white rounded-lg shadow-xl mb-8 md:max-w-sm w-full mx-auto ${index % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto'}`}>
                                                 <h3 className="text-3xl font-bold text-accent">{item.year}</h3>
                                                 <p className="mt-2 text-muted-foreground">{item.event}</p>
                                             </div>
@@ -128,5 +128,3 @@ export default function AboutPage() {
         </div>
     );
 }
-
-    
