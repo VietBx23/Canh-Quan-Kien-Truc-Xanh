@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Leaf, Fish, Sprout, Quote, Phone } from "lucide-react";
+import { Leaf, Fish, Sprout, Phone } from "lucide-react";
 import Image from "next/image";
 
 export default function DashboardPage() {
@@ -21,70 +21,70 @@ export default function DashboardPage() {
 
 
   return (
-    <div className="flex min-h-screen w-full flex-col bg-background">
+    <div className="flex min-h-screen w-full flex-col bg-background font-body">
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative h-[60vh] w-full text-white">
+        <section className="relative h-[70vh] w-full text-white">
           {heroImage && (
             <Image
               src={heroImage.imageUrl}
               alt="Beautiful garden landscape"
-              layout="fill"
+              fill
               objectFit="cover"
-              className="brightness-50"
+              className="brightness-[0.6]"
               data-ai-hint={heroImage.imageHint}
             />
           )}
           <div className="relative z-10 flex h-full flex-col items-center justify-center text-center p-4">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">Kiến Tạo Không Gian Xanh</h1>
-            <p className="mt-4 max-w-2xl text-lg md:text-xl">
-              Chuyên thiết kế, thi công sân vườn, hồ cá Koi và bảo dưỡng cảnh quan chuyên nghiệp.
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-shadow-lg">Kiến Tạo Không Gian Sống Đẳng Cấp</h1>
+            <p className="mt-4 max-w-3xl text-lg md:text-xl text-shadow">
+              Chuyên nghiệp trong từng thiết kế, tận tâm trong từng công trình sân vườn, hồ cá Koi.
             </p>
-            <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
-              Liên Hệ Tư Vấn
+            <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg">
+              Yêu Cầu Tư Vấn
             </Button>
           </div>
         </section>
 
         {/* Services Section */}
-        <section id="services" className="py-16 md:py-24 bg-muted/40">
+        <section id="services" className="py-20 md:py-28 bg-white">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold">Dịch Vụ Của Chúng Tôi</h2>
-              <p className="text-muted-foreground mt-2 max-w-xl mx-auto">
-                Cung cấp các giải pháp toàn diện để mang thiên nhiên vào không gian sống của bạn.
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary">Dịch Vụ Của Chúng Tôi</h2>
+              <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
+                Chúng tôi cung cấp các giải pháp cảnh quan toàn diện, biến ý tưởng của bạn thành hiện thực.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="overflow-hidden">
-                {serviceGarden && <Image src={serviceGarden.imageUrl} alt="Thiết kế sân vườn" width={600} height={400} className="w-full h-48 object-cover" data-ai-hint={serviceGarden.imageHint} />}
+              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 border-none">
+                {serviceGarden && <Image src={serviceGarden.imageUrl} alt="Thiết kế sân vườn" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceGarden.imageHint} />}
                 <CardHeader>
-                  <Leaf className="w-8 h-8 text-primary mb-2" />
-                  <CardTitle>Thiết kế Sân vườn</CardTitle>
+                  <Leaf className="w-10 h-10 text-primary mb-3" />
+                  <CardTitle className="text-2xl">Thiết kế Sân vườn</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">Tư vấn, thiết kế cảnh quan sân vườn biệt thự, nhà phố, quán cafe theo phong cách hiện đại và hợp phong thủy.</p>
+                  <p className="text-muted-foreground">Tư vấn, thiết kế cảnh quan sân vườn biệt thự, nhà phố, resort theo phong cách độc đáo và hợp phong thủy.</p>
                 </CardContent>
               </Card>
-              <Card className="overflow-hidden">
-                {serviceKoi && <Image src={serviceKoi.imageUrl} alt="Thi công hồ cá Koi" width={600} height={400} className="w-full h-48 object-cover" data-ai-hint={serviceKoi.imageHint} />}
+              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 border-none">
+                {serviceKoi && <Image src={serviceKoi.imageUrl} alt="Thi công hồ cá Koi" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceKoi.imageHint} />}
                 <CardHeader>
-                  <Fish className="w-8 h-8 text-primary mb-2" />
-                  <CardTitle>Thi công Hồ cá Koi</CardTitle>
+                  <Fish className="w-10 h-10 text-primary mb-3" />
+                  <CardTitle className="text-2xl">Hồ Cá Koi Chuyên Nghiệp</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">Xây dựng hồ cá Koi chuyên nghiệp, hệ thống lọc đạt chuẩn, đảm bảo môi trường sống tốt nhất cho cá.</p>
+                  <p className="text-muted-foreground">Xây dựng hồ cá Koi với hệ thống lọc chuẩn quốc tế, đảm bảo môi trường sống lý tưởng và thẩm mỹ cao.</p>
                 </CardContent>
               </Card>
-              <Card className="overflow-hidden">
-                {serviceMaintenance && <Image src={serviceMaintenance.imageUrl} alt="Bảo dưỡng cảnh quan" width={600} height={400} className="w-full h-48 object-cover" data-ai-hint={serviceMaintenance.imageHint} />}
+              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 border-none">
+                {serviceMaintenance && <Image src={serviceMaintenance.imageUrl} alt="Đá phong thủy & Tiểu cảnh" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceMaintenance.imageHint} />}
                 <CardHeader>
-                  <Sprout className="w-8 h-8 text-primary mb-2" />
-                  <CardTitle>Bảo dưỡng Cảnh quan</CardTitle>
+                  <Sprout className="w-10 h-10 text-primary mb-3" />
+                  <CardTitle className="text-2xl">Đá Phong Thủy & Tiểu Cảnh</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">Dịch vụ chăm sóc cây cối, cắt tỉa, bón phân định kỳ, giữ cho khu vườn của bạn luôn xanh tốt.</p>
+                  <p className="text-muted-foreground">Cung cấp và bài trí đá phong thủy, thác nước, non bộ, mang lại vượng khí và nét đẹp cho không gian.</p>
                 </CardContent>
               </Card>
             </div>
@@ -92,18 +92,25 @@ export default function DashboardPage() {
         </section>
         
         {/* Gallery Section */}
-        <section id="gallery" className="py-16 md:py-24">
+        <section id="gallery" className="py-20 md:py-28 bg-muted">
            <div className="container mx-auto px-4">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold">Dự Án Tiêu Biểu</h2>
-                <p className="text-muted-foreground mt-2 max-w-xl mx-auto">
-                  Những không gian xanh đầy cảm hứng mà chúng tôi đã kiến tạo.
+              <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-primary">Dự Án Tiêu Biểu</h2>
+                <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
+                  Nơi mỗi công trình là một tác phẩm nghệ thuật đầy tâm huyết.
                 </p>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {galleryImages.map((image, index) => (
-                   <div key={index} className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                      <Image src={image.imageUrl} alt={`Project ${index + 1}`} width={400} height={400} className="w-full h-full object-cover aspect-square" data-ai-hint={image.imageHint} />
+                   <div key={index} className="group overflow-hidden rounded-lg shadow-md">
+                      <Image 
+                        src={image.imageUrl} 
+                        alt={`Project ${index + 1}`} 
+                        width={400} 
+                        height={400} 
+                        className="w-full h-full object-cover aspect-square transition-transform duration-500 group-hover:scale-110" 
+                        data-ai-hint={image.imageHint} 
+                      />
                    </div>
                 ))}
               </div>
@@ -111,34 +118,37 @@ export default function DashboardPage() {
         </section>
 
         {/* Testimonials Section */}
-        <section id="testimonials" className="py-16 md:py-24 bg-muted/40">
+        <section id="testimonials" className="py-20 md:py-28 bg-white">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold">Khách Hàng Nói Về Chúng Tôi</h2>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary">Khách Hàng Nói Về Chúng Tôi</h2>
+               <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
+                  Sự hài lòng của khách hàng là minh chứng rõ nhất cho chất lượng dịch vụ.
+                </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <Card>
-                <CardHeader className="flex-row items-center gap-4">
-                  {testimonialAvatar1 && <Image src={testimonialAvatar1.imageUrl} alt="Avatar khách hàng 1" width={56} height={56} className="rounded-full" data-ai-hint={testimonialAvatar1.imageHint}/>}
-                  <div>
-                    <CardTitle>Anh Minh</CardTitle>
-                    <CardDescription>Chủ biệt thự, Quận 2</CardDescription>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              <Card className="border-none shadow-lg bg-muted">
+                <CardContent className="p-8">
+                  <p className="text-muted-foreground italic mb-6">"Đội ngũ làm việc rất chuyên nghiệp và có tâm. Khu vườn nhà tôi giờ đây thật sự là một nơi thư giãn tuyệt vời. Cảm ơn Kiến Trúc Xanh!"</p>
+                  <div className="flex items-center gap-4">
+                     {testimonialAvatar1 && <Image src={testimonialAvatar1.imageUrl} alt="Avatar khách hàng 1" width={56} height={56} className="rounded-full object-cover" data-ai-hint={testimonialAvatar1.imageHint}/>}
+                    <div>
+                      <p className="font-bold text-primary">Anh Hoàng Minh</p>
+                      <p className="text-sm text-muted-foreground">Chủ biệt thự, Quận 2</p>
+                    </div>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground italic">"Đội ngũ làm việc rất chuyên nghiệp và có tâm. Khu vườn nhà tôi giờ đây thật sự là một nơi thư giãn tuyệt vời. Cảm ơn Kiến Trúc Xanh!"</p>
                 </CardContent>
               </Card>
-              <Card>
-                <CardHeader className="flex-row items-center gap-4">
-                   {testimonialAvatar2 && <Image src={testimonialAvatar2.imageUrl} alt="Avatar khách hàng 2" width={56} height={56} className="rounded-full" data-ai-hint={testimonialAvatar2.imageHint}/>}
-                   <div>
-                    <CardTitle>Chị Lan Anh</CardTitle>
-                    <CardDescription>Chủ quán cafe</CardDescription>
+              <Card className="border-none shadow-lg bg-muted">
+                 <CardContent className="p-8">
+                  <p className="text-muted-foreground italic mb-6">"Hồ cá Koi đã trở thành điểm nhấn thu hút khách cho quán của tôi. Dịch vụ và chất lượng thi công vượt xa mong đợi của tôi. Sẽ tiếp tục hợp tác."</p>
+                  <div className="flex items-center gap-4">
+                     {testimonialAvatar2 && <Image src={testimonialAvatar2.imageUrl} alt="Avatar khách hàng 2" width={56} height={56} className="rounded-full object-cover" data-ai-hint={testimonialAvatar2.imageHint}/>}
+                     <div>
+                      <p className="font-bold text-primary">Chị Lan Anh</p>
+                      <p className="text-sm text-muted-foreground">Chủ quán cafe sân vườn</p>
+                    </div>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground italic">"Hồ cá Koi đã trở thành điểm nhấn thu hút khách cho quán của tôi. Dịch vụ và chất lượng thi công vượt xa mong đợi của tôi."</p>
                 </CardContent>
               </Card>
             </div>
@@ -146,34 +156,34 @@ export default function DashboardPage() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-16 md:py-24">
+        <section id="contact" className="py-20 md:py-28 bg-gray-800 text-white">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold">Liên Hệ Với Chúng Tôi</h2>
-                    <p className="text-muted-foreground mt-2">Để nhận tư vấn và báo giá miễn phí</p>
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl md:text-4xl font-bold">Liên Hệ Tư Vấn</h2>
+                    <p className="text-gray-300 mt-3 max-w-xl mx-auto">Để lại thông tin, chuyên gia của chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
                 </div>
-                <Card className="max-w-xl mx-auto">
-                    <CardContent className="p-6">
-                        <form className="space-y-4">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Card className="max-w-2xl mx-auto bg-gray-900 border-gray-700 shadow-2xl">
+                    <CardContent className="p-8">
+                        <form className="space-y-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <Label htmlFor="name">Họ và tên</Label>
-                                    <Input id="name" placeholder="Nguyễn Văn A" />
+                                    <Label htmlFor="name" className="text-gray-300">Họ và tên</Label>
+                                    <Input id="name" placeholder="Nguyễn Văn A" className="bg-gray-800 border-gray-600 text-white focus:ring-accent"/>
                                 </div>
                                 <div className="space-y-2">
-                                    <Label htmlFor="phone">Số điện thoại</Label>
-                                    <Input id="phone" type="tel" placeholder="09xxxxxxxx" />
+                                    <Label htmlFor="phone" className="text-gray-300">Số điện thoại</Label>
+                                    <Input id="phone" type="tel" placeholder="09xxxxxxxx" className="bg-gray-800 border-gray-600 text-white focus:ring-accent"/>
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="email">Email</Label>
-                                <Input id="email" type="email" placeholder="email@example.com" />
+                                <Label htmlFor="email" className="text-gray-300">Email (Tùy chọn)</Label>
+                                <Input id="email" type="email" placeholder="email@example.com" className="bg-gray-800 border-gray-600 text-white focus:ring-accent"/>
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="message">Nội dung yêu cầu</Label>
-                                <Textarea id="message" placeholder="Tôi cần tư vấn về thiết kế sân vườn..." />
+                                <Label htmlFor="message" className="text-gray-300">Nội dung yêu cầu</Label>
+                                <Textarea id="message" placeholder="Tôi cần tư vấn về thiết kế sân vườn cho biệt thự..." className="bg-gray-800 border-gray-600 text-white min-h-[120px] focus:ring-accent"/>
                             </div>
-                            <Button type="submit" className="w-full">Gửi Yêu Cầu</Button>
+                            <Button type="submit" className="w-full bg-accent text-accent-foreground text-base py-6 hover:bg-accent/90 transition-transform hover:scale-105">Gửi Yêu Cầu Tư Vấn</Button>
                         </form>
                     </CardContent>
                 </Card>
@@ -181,16 +191,29 @@ export default function DashboardPage() {
         </section>
 
       </main>
-      <footer className="bg-secondary text-secondary-foreground py-8">
-        <div className="container mx-auto px-4 text-center">
-          <h3 className="text-xl font-bold">Cảnh Quan Kiến Trúc Xanh</h3>
-          <p className="mt-2">Địa chỉ: 123 Đường ABC, Phường X, Quận Y, TP.HCM</p>
-          <p>Email: lienhe@kientrucxanh.com</p>
-          <div className="flex justify-center items-center gap-2 mt-2">
-            <Phone className="w-4 h-4"/>
-            <span>Hotline: 0987 654 321</span>
+      <footer className="bg-primary text-primary-foreground py-10">
+        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+          <div>
+            <h3 className="text-xl font-bold">Cảnh Quan Kiến Trúc Xanh</h3>
+            <p className="mt-2 text-sm opacity-90">Kiến tạo không gian sống đẳng cấp, hài hòa với thiên nhiên.</p>
           </div>
-          <p className="text-sm text-muted-foreground mt-4">&copy; 2024 Cảnh Quan Kiến Trúc Xanh. All rights reserved.</p>
+          <div>
+            <h4 className="font-bold text-lg">Thông tin liên hệ</h4>
+            <p className="mt-2 text-sm opacity-90">Địa chỉ: 123 Đường ABC, Phường X, Quận Y, TP.HCM</p>
+            <p className="text-sm opacity-90">Email: lienhe@kientrucxanh.com</p>
+            <div className="flex justify-center md:justify-start items-center gap-2 mt-1">
+              <Phone className="w-4 h-4"/>
+              <span className="text-sm">Hotline: 0987 654 321</span>
+            </div>
+          </div>
+           <div>
+            <h4 className="font-bold text-lg">Giờ làm việc</h4>
+            <p className="mt-2 text-sm opacity-90">Thứ 2 - Thứ 7: 8:00 - 17:00</p>
+            <p className="text-sm opacity-90">Chủ nhật: Nghỉ</p>
+          </div>
+        </div>
+        <div className="container mx-auto px-4 mt-8 border-t border-primary-foreground/20 pt-6 text-center text-xs opacity-80">
+          <p>&copy; 2024 Cảnh Quan Kiến Trúc Xanh. All Rights Reserved.</p>
         </div>
       </footer>
     </div>
