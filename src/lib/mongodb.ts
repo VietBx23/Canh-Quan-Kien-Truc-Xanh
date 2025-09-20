@@ -1,5 +1,5 @@
 
-import { MongoClient } from 'mongodb';
+import { MongoClient, MongoClientOptions } from 'mongodb';
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -18,8 +18,10 @@ declare global {
 let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
-const options = {
+const options: MongoClientOptions = {
     tls: true,
+    tlsVersion: 'TLSv1.2',
+    tlsAllowInvalidCertificates: true, // Not ideal, but helps in restricted environments
 };
 
 if (process.env.NODE_ENV === 'development') {
