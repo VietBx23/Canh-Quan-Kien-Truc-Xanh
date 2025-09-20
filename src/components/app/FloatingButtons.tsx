@@ -79,14 +79,14 @@ export function FloatingButtons() {
                 </Button>
 
                 {/* Zalo */}
-                <a href="https://zalo.me/0987654321" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+                <a href="https://zalo.me/0933741779" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
                      <Button size="icon" className="rounded-full h-12 w-12 bg-blue-500 text-white shadow-lg hover:bg-blue-600">
                         <MessageSquare className="h-6 w-6" />
                     </Button>
                 </a>
                 
                 {/* Phone */}
-                 <a href="tel:0987654321" aria-label="Gọi điện">
+                 <a href="tel:0933741779" aria-label="Gọi điện">
                     <Button size="icon" className="rounded-full h-12 w-12 bg-green-500 text-white shadow-lg hover:bg-green-600">
                         <Phone className="h-6 w-6" />
                     </Button>

@@ -60,14 +60,14 @@ export default function ContactPage() {
                                         <MapPin className="h-8 w-8 text-accent mt-1 shrink-0"/>
                                         <div>
                                             <h3 className="font-bold text-primary">Địa chỉ</h3>
-                                            <p className="text-muted-foreground group-hover:text-primary transition-colors">123 Đường ABC, Phường X, Quận Y, TP.HCM</p>
+                                            <p className="text-muted-foreground group-hover:text-primary transition-colors">69/52 Đường số 3, phường Bình Hưng Hòa, quận Bình Tân, Thành phố Hồ Chí Minh</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start gap-4 group">
                                         <Phone className="h-8 w-8 text-accent mt-1 shrink-0"/>
                                         <div>
                                             <h3 className="font-bold text-primary">Hotline</h3>
-                                            <a href="tel:0987654321" className="text-muted-foreground group-hover:text-primary transition-colors">0987 654 321</a>
+                                            <a href="tel:0933741779" className="text-muted-foreground group-hover:text-primary transition-colors">0933 741 779</a>
                                         </div>
                                     </div>
                                     <div className="flex items-start gap-4 group">
@@ -81,14 +81,14 @@ export default function ContactPage() {
                                         <MessageSquare className="h-8 w-8 text-accent mt-1 shrink-0"/>
                                         <div>
                                             <h3 className="font-bold text-primary">Zalo</h3>
-                                            <a href="https://zalo.me/0987654321" target="_blank" className="text-muted-foreground group-hover:text-primary transition-colors">0987 654 321</a>
+                                            <a href="https://zalo.me/0933741779" target="_blank" className="text-muted-foreground group-hover:text-primary transition-colors">0933 741 779</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                              <div className="mt-8 rounded-lg overflow-hidden shadow-2xl">
                                 <iframe 
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.447176473017!2d106.69748801474939!3d10.77698699232101!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f3a393e3e33%3A0x28a8a56f30a4e4b6!2sB%E1%BA%A3o%20t%C3%A0ng%20Ch%E1%BB%A9ng%20t%C3%ADch%20Chi%E1%BA%BFn%20tranh!5e0!3m2!1svi!2s!4v1626255146985!5m2!1svi!2s" 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1345437887323!2d106.60636827588327!3d10.800938458739126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752be3d891487b%3A0x9334a601569c760!2zNjkvNTIgxJDGsOG7nW5nIFPhu5EgMywgQsOsbmggSMawbmcgSMOyYSwgQsOsbmggVMOibiwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1721894982635!5m2!1svi!2s" 
                                     width="100%" 
                                     height="300" 
                                     style={{border:0}} 

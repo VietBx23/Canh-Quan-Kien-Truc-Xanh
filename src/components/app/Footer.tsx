@@ -65,7 +65,7 @@ export function Footer() {
               <ul className="space-y-4 text-sm">
                   <li className="flex items-start gap-3">
                       <MapPin className="w-5 h-5 mt-1 shrink-0 text-accent"/>
-                      <span className="text-primary-foreground/70">123 Đường ABC, Phường X, Quận Y, TP.HCM</span>
+                      <span className="text-primary-foreground/70">69/52 Đường số 3, phường Bình Hưng Hòa, quận Bình Tân, Thành phố Hồ Chí Minh</span>
                   </li>
                   <li className="flex items-start gap-3">
                       <Mail className="w-5 h-5 mt-1 shrink-0 text-accent"/>
@@ -73,7 +73,7 @@ export function Footer() {
                   </li>
                   <li className="flex items-start gap-3">
                       <Phone className="w-5 h-5 mt-1 shrink-0 text-accent"/>
-                      <a href="tel:0987654321" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">Hotline: 0987 654 321</a>
+                      <a href="tel:0933741779" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">Hotline: 0933 741 779</a>
                   </li>
               </ul>
             </div>

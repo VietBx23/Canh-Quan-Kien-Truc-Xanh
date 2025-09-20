@@ -34,13 +34,13 @@ export function Header() {
       </nav>
       <div className="hidden lg:flex items-center gap-2">
           <Button variant="ghost" size="sm" asChild>
-            <a href="tel:0987654321" className="flex items-center gap-2">
+            <a href="tel:0933741779" className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-primary"/>
-                <span>0987 654 321</span>
+                <span>0933 741 779</span>
             </a>
           </Button>
            <Button asChild>
-            <a href="https://zalo.me/0987654321" target="_blank" className="flex items-center gap-2">
+            <a href="https://zalo.me/0933741779" target="_blank" className="flex items-center gap-2">
                 <MessageSquare className="h-4 w-4"/>
                 <span>Tư Vấn Zalo</span>
             </a>
@@ -71,13 +71,13 @@ export function Header() {
               ))}
                <div className="border-t pt-4 mt-4 space-y-2">
                     <Button variant="ghost" size="sm" asChild className="w-full justify-start">
-                        <a href="tel:0987654321" className="flex items-center gap-2 text-base">
+                        <a href="tel:0933741779" className="flex items-center gap-2 text-base">
                             <Phone className="h-5 w-5"/>
-                            <span>0987 654 321</span>
+                            <span>0933 741 779</span>
                         </a>
                     </Button>
                     <Button variant="ghost" size="sm" asChild className="w-full justify-start">
-                        <a href="https://zalo.me/0987654321" target="_blank" className="flex items-center gap-2 text-base">
+                        <a href="https://zalo.me/0933741779" target="_blank" className="flex items-center gap-2 text-base">
                             <MessageSquare className="h-5 w-5"/>
                             <span>Chat với Zalo</span>
                         </a>
