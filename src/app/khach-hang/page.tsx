@@ -51,7 +51,7 @@ export default async function TestimonialsPage() {
             author: data?.author || "Khách hàng",
             location: data?.location || "Việt Nam"
         };
-    });
+    }).sort((a, b) => parseInt(a.id.split('-')[1]) - parseInt(b.id.split('-')[1]));
 
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
@@ -112,4 +112,3 @@ export default async function TestimonialsPage() {
         </div>
     );
 }
-
