@@ -1,59 +1,85 @@
-import { Phone, Mail, MapPin, MessageSquare } from "lucide-react";
+import { Phone, Mail, MapPin, MessageSquare, Briefcase, Bot } from "lucide-react";
 import Link from "next/link";
 import { Mountain } from 'lucide-react';
+import { Button } from "@/components/ui/button";
 
 export function Footer() {
+  const socialLinks = [
+    { name: "Facebook", href: "#" },
+    { name: "Instagram", href: "#" },
+    { name: "Youtube", href: "#" },
+    { name: "Tiktok", href: "#" },
+  ]
   return (
-    <footer className="bg-gradient-footer text-primary-foreground">
+    <footer className="bg-gradient-footer text-primary-foreground border-t-4 border-accent">
         <div className="container mx-auto px-4 pt-16 pb-12">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-            <div className="md:col-span-5 lg:col-span-6">
-              <Link href="/" className="flex items-center gap-2 mb-4">
-                <Mountain className="h-7 w-7" />
-                <span className="font-bold text-xl">Cảnh Quan Kiến Trúc Xanh</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
+            
+            {/* Logo & Description */}
+            <div className="lg:col-span-4">
+              <Link href="/" className="flex items-center gap-3 mb-4">
+                <Mountain className="h-8 w-8 text-accent" />
+                <span className="font-bold text-2xl">Kiến Trúc Xanh</span>
               </Link>
-              <p className="mt-4 text-sm opacity-80 max-w-md leading-relaxed">
-                Kiến tạo không gian sống đẳng cấp, hài hòa với thiên nhiên. Chuyên thiết kế sân vườn, thi công hồ cá Koi và cung cấp các giải pháp cảnh quan toàn diện, bền vững.
+              <p className="text-sm text-primary-foreground/70 leading-relaxed">
+                Kiến tạo không gian sống đẳng cấp, hài hòa với thiên nhiên. Chuyên thiết kế sân vườn, thi công hồ cá Koi và các giải pháp cảnh quan toàn diện.
               </p>
+              <div className="mt-6 flex gap-2">
+                {socialLinks.map(link => (
+                  <Button key={link.name} variant="outline" size="icon" className="bg-transparent border-primary-foreground/20 hover:bg-accent hover:text-accent-foreground hover:border-accent transition-colors duration-300">
+                    <span className="sr-only">{link.name}</span>
+                    <Bot className="w-5 h-5"/>
+                  </Button>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div className="lg:col-span-2">
+              <h4 className="font-bold text-lg tracking-wider uppercase mb-4">Menu</h4>
+              <ul className="space-y-3 text-sm">
+                  <li><Link href="/gioi-thieu" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">Giới Thiệu</Link></li>
+                  <li><Link href="/dich-vu" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">Dịch Vụ</Link></li>
+                  <li><Link href="/du-an" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">Dự Án</Link></li>
+                  <li><Link href="/blog" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">Tin Tức</Link></li>
+                  <li><Link href="/lien-he" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">Liên Hệ</Link></li>
+              </ul>
             </div>
             
-            <div className="md:col-span-3 lg:col-span-3">
-              <h4 className="font-bold text-lg tracking-wider uppercase">Menu</h4>
-              <ul className="mt-4 space-y-2 text-sm opacity-90">
-                  <li><Link href="/gioi-thieu" className="hover:text-accent transition-colors duration-300">Giới Thiệu</Link></li>
-                  <li><Link href="/dich-vu" className="hover:text-accent transition-colors duration-300">Dịch Vụ</Link></li>
-                  <li><Link href="/du-an" className="hover:text-accent transition-colors duration-300">Dự Án</Link></li>
-                  <li><Link href="/blog" className="hover:text-accent transition-colors duration-300">Tin Tức</Link></li>
-                  <li><Link href="/faq" className="hover:text-accent transition-colors duration-300">FAQ</Link></li>
-                  <li><Link href="/lien-he" className="hover:text-accent transition-colors duration-300">Liên Hệ</Link></li>
+            {/* Main Services */}
+            <div className="lg:col-span-3">
+              <h4 className="font-bold text-lg tracking-wider uppercase mb-4">Dịch vụ chính</h4>
+              <ul className="space-y-3 text-sm">
+                  <li><Link href="/dich-vu" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300 flex items-center gap-2"><Briefcase className="w-4 h-4 text-accent"/>Thiết kế Sân vườn Biệt thự</Link></li>
+                  <li><Link href="/dich-vu" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300 flex items-center gap-2"><Briefcase className="w-4 h-4 text-accent"/>Thi công Hồ Cá Koi</Link></li>
+                  <li><Link href="/dich-vu" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300 flex items-center gap-2"><Briefcase className="w-4 h-4 text-accent"/>Cung cấp Đá Phong Thủy</Link></li>
+                  <li><Link href="/dich-vu" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300 flex items-center gap-2"><Briefcase className="w-4 h-4 text-accent"/>Bảo trì, chăm sóc cảnh quan</Link></li>
               </ul>
             </div>
 
-            <div className="md:col-span-4 lg:col-span-3">
-              <h4 className="font-bold text-lg tracking-wider uppercase">Thông tin liên hệ</h4>
-              <ul className="mt-4 space-y-3 text-sm opacity-90">
+            {/* Contact Info */}
+            <div className="lg:col-span-3">
+               <h4 className="font-bold text-lg tracking-wider uppercase mb-4">Thông tin liên hệ</h4>
+              <ul className="space-y-4 text-sm">
                   <li className="flex items-start gap-3">
                       <MapPin className="w-5 h-5 mt-0.5 shrink-0 text-accent"/>
-                      <span>123 Đường ABC, Phường X, Quận Y, TP.HCM</span>
+                      <span className="text-primary-foreground/70">123 Đường ABC, Phường X, Quận Y, TP.HCM</span>
                   </li>
                   <li className="flex items-start gap-3">
                       <Mail className="w-5 h-5 mt-0.5 shrink-0 text-accent"/>
-                      <a href="mailto:lienhe@kientrucxanh.com" className="hover:text-accent transition-colors duration-300">lienhe@kientrucxanh.com</a>
+                      <a href="mailto:lienhe@kientrucxanh.com" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">lienhe@kientrucxanh.com</a>
                   </li>
                   <li className="flex items-start gap-3">
                       <Phone className="w-5 h-5 mt-0.5 shrink-0 text-accent"/>
-                      <a href="tel:0987654321" className="hover:text-accent transition-colors duration-300">Hotline: 0987 654 321</a>
-                  </li>
-                   <li className="flex items-start gap-3">
-                      <MessageSquare className="w-5 h-5 mt-0.5 shrink-0 text-accent"/>
-                       <a href="https://zalo.me/0987654321" target="_blank" className="hover:text-accent transition-colors duration-300">Zalo: 0987 654 321</a>
+                      <a href="tel:0987654321" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">Hotline: 0987 654 321</a>
                   </li>
               </ul>
             </div>
+
           </div>
         </div>
-        <div className="border-t border-primary-foreground/10">
-            <div className="container mx-auto px-4 py-6 text-center text-xs opacity-70">
+        <div className="border-t border-primary-foreground/10 mt-8">
+            <div className="container mx-auto px-4 py-6 text-center text-xs text-primary-foreground/60">
                 <p>&copy; {new Date().getFullYear()} Cảnh Quan Kiến Trúc Xanh. All Rights Reserved. Designed with passion.</p>
             </div>
         </div>

@@ -73,7 +73,8 @@
     @apply relative flex-shrink-0 flex-grow-0 basis-full min-w-0;
   }
   .bg-gradient-footer {
-    background-image: linear-gradient(to bottom right, hsl(var(--primary)), hsl(142, 70%, 20%));
+     background-color: hsl(var(--primary) / 0.9);
+     background-image: linear-gradient(to bottom right, hsl(var(--primary)), hsl(142, 70%, 20%));
   }
 }
 
