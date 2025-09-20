@@ -1,4 +1,5 @@
-import { PlaceHolderImages, ImagePlaceholder } from "@/lib/placeholder-images";
+
+import { PlaceHolderImages, type ImagePlaceholder } from "@/lib/placeholder-images";
 
 export type Project = {
     id: string;
@@ -42,7 +43,6 @@ function mapPlaceholderToProject(p: ImagePlaceholder, index: number): Project {
     };
 }
 
-// Keep this export for other parts of the app that might still use it temporarily
 export const projects: Project[] = PlaceHolderImages
     .filter(p => p.id.startsWith('gallery-'))
     .map(mapPlaceholderToProject);

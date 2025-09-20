@@ -1,5 +1,5 @@
 
-import { MongoClient, MongoClientOptions } from 'mongodb';
+import { MongoClient, MongoClientOptions, ServerApiVersion } from 'mongodb';
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -19,7 +19,11 @@ let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
 const options: MongoClientOptions = {
-    // No specific TLS options here by default, let the driver handle it initially.
+    serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+    },
 };
 
 if (process.env.NODE_ENV === 'development') {

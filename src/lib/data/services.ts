@@ -1,3 +1,4 @@
+
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Leaf, Fish, Sprout, CheckCircle, Wind, Droplets, Sun, Sparkles, Truck, Home, ShoppingCart, Trees, ArrowRight, DollarSign, ListChecks, Eye, ShieldCheck, Star } from "lucide-react";
 
