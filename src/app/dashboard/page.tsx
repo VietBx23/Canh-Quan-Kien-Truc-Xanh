@@ -185,22 +185,23 @@ export default function DashboardPage() {
         </section>
         
         {/* Working Process Section */}
-        <section className="py-20 md:py-28 bg-section-gradient">
+        <section className="py-20 md:py-28 bg-white">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16 animate-fade-in-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-primary">Quy Trình Làm Việc Chuyên Nghiệp</h2>
                     <p className="text-muted-foreground mt-3 max-w-xl mx-auto">Minh bạch trong từng bước để mang lại sự an tâm và hài lòng tuyệt đối cho khách hàng.</p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
                     {workingProcess.map((item, index) => (
-                         <div key={index} className="animate-fade-in-up" style={{animationDelay: `${index * 200}ms`}}>
-                            <Card className="bg-white shadow-lg text-center p-6 transform transition-transform hover:-translate-y-2 relative h-full pt-12">
-                               <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-xl shadow-lg">
-                                 {item.step}
-                               </div>
-                               <h4 className="text-xl font-bold text-primary mb-2">{item.title}</h4>
-                               <p className="text-muted-foreground text-sm">{item.description}</p>
-                            </Card>
+                         <div key={index} className="relative animate-fade-in-up" style={{animationDelay: `${index * 200}ms`}}>
+                            <div className="flex items-center gap-6">
+                                <div className="text-8xl font-bold text-primary/10 select-none">{item.step}</div>
+                                <div className="flex-1">
+                                   <div className="border-t-4 border-accent w-12 mb-3"></div>
+                                   <h4 className="text-xl font-bold text-primary mb-2">{item.title}</h4>
+                                   <p className="text-muted-foreground text-sm">{item.description}</p>
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -358,3 +359,6 @@ export default function DashboardPage() {
 
     
 
+
+
+    
