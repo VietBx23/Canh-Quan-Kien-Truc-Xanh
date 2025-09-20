@@ -2,10 +2,22 @@
 {
   "placeholderImages": [
     {
-      "id": "hero-garden",
-      "description": "A beautiful, lush villa garden with a modern design to be used in the hero section.",
-      "imageUrl": "https://picsum.photos/seed/hero-villa/1200/800",
+      "id": "hero-slide-1",
+      "description": "Hero slider image 1: A beautiful, lush villa garden with a modern design.",
+      "imageUrl": "https://picsum.photos/seed/slide-villa/1920/1080",
       "imageHint": "modern villa garden"
+    },
+     {
+      "id": "hero-slide-2",
+      "description": "Hero slider image 2: A stunning Koi pond with crystal clear water and vibrant fish.",
+      "imageUrl": "https://picsum.photos/seed/slide-koi/1920/1080",
+      "imageHint": "crystal koi pond"
+    },
+     {
+      "id": "hero-slide-3",
+      "description": "Hero slider image 3: An artistic and creative garden landscape design.",
+      "imageUrl": "https://picsum.photos/seed/slide-art/1920/1080",
+      "imageHint": "artistic garden"
     },
     {
       "id": "service-garden",

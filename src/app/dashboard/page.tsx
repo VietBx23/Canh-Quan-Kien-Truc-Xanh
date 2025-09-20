@@ -16,6 +16,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import Autoplay from "embla-carousel-autoplay"
 
 export default function DashboardPage() {
   const serviceGarden = PlaceHolderImages.find(p => p.id === 'service-garden');
@@ -26,6 +27,33 @@ export default function DashboardPage() {
   const testimonialAvatar2 = PlaceHolderImages.find(p => p.id === 'testimonial-2');
   const statsBgImage = PlaceHolderImages.find(p => p.id === 'stats-background');
   const ctaBgImage = PlaceHolderImages.find(p => p.id === 'cta-background');
+  
+  const heroSlides = [
+    {
+      id: 'hero-1',
+      title: 'Kiến Tạo Không Gian Sống Đẳng Cấp',
+      description: 'Chuyên nghiệp trong từng thiết kế, tận tâm trong từng công trình sân vườn, hồ cá Koi.',
+      buttonText: 'Nhận Báo Giá Miễn Phí',
+      buttonLink: '/lien-he',
+      image: PlaceHolderImages.find(p => p.id === 'hero-slide-1')
+    },
+    {
+      id: 'hero-2',
+      title: 'Hồ Cá Koi - Đỉnh Cao Nghệ Thuật Sân Vườn',
+      description: 'Mang lại vượng khí và vẻ đẹp độc đáo cho không gian sống của bạn với hồ Koi đạt chuẩn quốc tế.',
+      buttonText: 'Khám Phá Dịch Vụ',
+      buttonLink: '/dich-vu',
+      image: PlaceHolderImages.find(p => p.id === 'hero-slide-2')
+    },
+    {
+      id: 'hero-3',
+      title: ' biến Sân Vườn Thành Tác Phẩm Nghệ Thuật',
+      description: 'Mỗi công trình là một câu chuyện, một dấu ấn riêng biệt, kết hợp hài hòa giữa thiên nhiên và phong cách của gia chủ.',
+      buttonText: 'Xem Dự Án Tiêu Biểu',
+      buttonLink: '/du-an',
+      image: PlaceHolderImages.find(p => p.id === 'hero-slide-3')
+    }
+  ];
 
 
   const workingProcess = [
@@ -49,25 +77,44 @@ export default function DashboardPage() {
     <div className="flex min-h-screen w-full flex-col bg-white font-body">
       <Header />
       <main className="flex-1">
-        {/* Hero Section with Video */}
-        <section className="relative h-[70vh] w-full text-white overflow-hidden">
-            <video
-              src="https://videos.pexels.com/video-files/3253443/3253443-hd_1920_1080_25fps.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute top-1/2 left-1/2 w-full h-full min-w-full min-h-full object-cover transform -translate-x-1/2 -translate-y-1/2 brightness-[0.5]"
-            />
-          <div className="relative z-10 flex h-full flex-col items-center justify-center text-center p-4">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-shadow-lg animate-fade-in-up">Kiến Tạo Không Gian Sống Đẳng Cấp</h1>
-            <p className="mt-4 max-w-3xl text-lg md:text-xl text-shadow animate-fade-in-up animation-delay-300">
-              Chuyên nghiệp trong từng thiết kế, tận tâm trong từng công trình sân vườn, hồ cá Koi.
-            </p>
-            <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg animate-fade-in-up animation-delay-600" asChild>
-              <Link href="/lien-he">Nhận Báo Giá Miễn Phí</Link>
-            </Button>
-          </div>
+        {/* Hero Slider Section */}
+        <section className="relative h-[80vh] w-full text-white overflow-hidden">
+          <Carousel
+            plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
+            className="w-full h-full"
+            opts={{ loop: true }}
+          >
+            <CarouselContent className="h-full">
+              {heroSlides.map((slide) => (
+                <CarouselItem key={slide.id} className="h-full">
+                  <div className="relative w-full h-full">
+                    {slide.image && (
+                      <Image
+                        src={slide.image.imageUrl}
+                        alt={slide.title}
+                        fill
+                        className="object-cover brightness-[0.5]"
+                        priority={slide.id === 'hero-1'}
+                        data-ai-hint={slide.image.imageHint}
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-black/40" />
+                    <div className="relative z-10 flex h-full flex-col items-center justify-center text-center p-4">
+                      <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-shadow-lg animate-fade-in-up">{slide.title}</h1>
+                      <p className="mt-4 max-w-3xl text-lg md:text-xl text-shadow animate-fade-in-up animation-delay-300">
+                        {slide.description}
+                      </p>
+                      <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg animate-fade-in-up animation-delay-600" asChild>
+                        <Link href={slide.buttonLink}>{slide.buttonText}</Link>
+                      </Button>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-12 md:w-12 bg-white/20 hover:bg-white/40 border-white/50 text-white" />
+            <CarouselNext className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-12 md:w-12 bg-white/20 hover:bg-white/40 border-white/50 text-white" />
+          </Carousel>
         </section>
 
         {/* Services Section */}
