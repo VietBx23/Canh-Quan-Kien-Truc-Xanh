@@ -12,7 +12,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { usePathname, useRouter } from "next/navigation";
 import { i18n, type Locale } from "../../../i18n-config";
 
-export function Header({ lang }: { lang?: Locale }) {
+export function Header({ lang, dictionary }: { lang: Locale, dictionary: any }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -22,7 +22,7 @@ export function Header({ lang }: { lang?: Locale }) {
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      const searchPath = `/${lang ?? i18n.defaultLocale}/search?q=${encodeURIComponent(searchQuery.trim())}`;
+      const searchPath = `/${lang}/search?q=${encodeURIComponent(searchQuery.trim())}`;
       router.push(searchPath);
     }
   };
@@ -35,14 +35,14 @@ export function Header({ lang }: { lang?: Locale }) {
   };
 
   const navItems = [
-    { name: "Trang Chủ", name_en: "Home", href: "/dashboard" },
-    { name: "Giới Thiệu", name_en: "About", href: "/gioi-thieu" },
-    { name: "Dịch Vụ", name_en: "Services", href: "/dich-vu" },
-    { name: "Dự Án", name_en: "Projects", href: "/du-an" },
-    { name: "Khách Hàng", name_en: "Clients", href: "/khach-hang" },
-    { name: "Tin Tức", name_en: "Blog", href: "/blog" },
-    { name: "FAQ", name_en: "FAQ", href: "/faq" },
-    { name: "Liên Hệ", name_en: "Contact", href: "/lien-he" },
+    { name: dictionary.header.home, href: "/dashboard" },
+    { name: dictionary.header.about, href: "/gioi-thieu" },
+    { name: dictionary.header.services, href: "/dich-vu" },
+    { name: dictionary.header.projects, href: "/du-an" },
+    { name: dictionary.header.clients, href: "/khach-hang" },
+    { name: dictionary.header.blog, href: "/blog" },
+    { name: dictionary.header.faq, href: "/faq" },
+    { name: dictionary.header.contact, href: "/lien-he" },
   ];
 
   useEffect(() => {
@@ -53,8 +53,7 @@ export function Header({ lang }: { lang?: Locale }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const currentLang = lang ?? i18n.defaultLocale;
-  const isVietnamese = currentLang === 'vi';
+  const currentLang = lang;
 
   return (
     <header className={cn(
@@ -74,7 +73,7 @@ export function Header({ lang }: { lang?: Locale }) {
             href={`/${currentLang}${item.href}`}
             className="text-foreground/80 transition-colors hover:text-primary font-medium"
           >
-            {isVietnamese ? item.name : item.name_en}
+            {item.name}
           </Link>
         ))}
       </nav>
@@ -84,7 +83,7 @@ export function Header({ lang }: { lang?: Locale }) {
         <form onSubmit={handleSearchSubmit} className="w-full">
           <Input 
             type="search" 
-            placeholder={isVietnamese ? "Tìm kiếm dịch vụ, dự án, bài viết..." : "Search services, projects, articles..."} 
+            placeholder={dictionary.header.search_placeholder} 
             className="pr-10"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -98,13 +97,13 @@ export function Header({ lang }: { lang?: Locale }) {
       <div className="hidden lg:flex items-center gap-1">
           <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(!isSearchOpen)}>
             <Search className="h-5 w-5"/>
-            <span className="sr-only">{isVietnamese ? "Tìm kiếm" : "Search"}</span>
+            <span className="sr-only">{dictionary.header.search_button}</span>
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon">
                 <Globe className="h-5 w-5"/>
-                <span className="sr-only">{isVietnamese ? "Ngôn ngữ" : "Language"}</span>
+                <span className="sr-only">{dictionary.header.language_button}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -119,7 +118,7 @@ export function Header({ lang }: { lang?: Locale }) {
            <Button asChild>
             <a href="https://zalo.me/0933741779" target="_blank" className="flex items-center gap-2">
                 <MessageSquare className="h-4 w-4"/>
-                <span>{isVietnamese ? "Tư Vấn Zalo" : "Zalo Chat"}</span>
+                <span>{dictionary.header.zalo_chat}</span>
             </a>
           </Button>
       </div>
@@ -130,7 +129,7 @@ export function Header({ lang }: { lang?: Locale }) {
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon">
               <Menu className="h-6 w-6" />
-              <span className="sr-only">{isVietnamese ? "Mở menu" : "Open menu"}</span>
+              <span className="sr-only">{dictionary.header.open_menu}</span>
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-[85%] max-w-sm">
@@ -144,7 +143,7 @@ export function Header({ lang }: { lang?: Locale }) {
                     <div className="relative">
                         <Input 
                           type="search" 
-                          placeholder={isVietnamese ? "Tìm kiếm..." : "Search..."}
+                          placeholder={dictionary.header.search_placeholder_mobile}
                           className="pr-10" 
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
@@ -160,7 +159,7 @@ export function Header({ lang }: { lang?: Locale }) {
                     href={`/${currentLang}${item.href}`}
                     className="block text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
                   >
-                    {isVietnamese ? item.name : item.name_en}
+                    {item.name}
                   </Link>
                 ))}
               </div>
@@ -174,7 +173,7 @@ export function Header({ lang }: { lang?: Locale }) {
                     <Button variant="ghost" size="sm" asChild className="w-full justify-start">
                         <a href="https://zalo.me/0933741779" target="_blank" className="flex items-center gap-2 text-base">
                             <MessageSquare className="h-5 w-5 text-primary"/>
-                            <span>{isVietnamese ? "Chat với Zalo" : "Chat on Zalo"}</span>
+                            <span>{dictionary.header.zalo_chat}</span>
                         </a>
                     </Button>
                 </div>
