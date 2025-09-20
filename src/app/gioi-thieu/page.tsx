@@ -6,8 +6,11 @@ import { Award, Target, Users, Leaf, ShieldCheck, Star, Lightbulb, Briefcase, Bu
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { getDictionary } from "@/get-dictionary";
+import { Locale } from "i18n-config";
 
-export default function AboutPage() {
+export default async function AboutPage({ params: { lang } }: { params: { lang: Locale }}) {
+    const dictionary = await getDictionary(lang);
     const teamImage = PlaceHolderImages.find(p => p.id === 'gallery-4');
 
     const timeline = [
@@ -26,7 +29,7 @@ export default function AboutPage() {
 
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
-            <Header />
+            <Header lang={lang} dictionary={dictionary} />
             <main className="flex-1">
                 <section className="py-20 md:py-28 bg-muted">
                     <div className="container mx-auto px-4 text-center animate-fade-in-up">
@@ -119,12 +122,12 @@ export default function AboutPage() {
                         <h2 className="text-3xl md:text-4xl font-bold animate-fade-in-up">Hãy Cùng Chúng Tôi Kiến Tạo Nên Tác Phẩm Của Riêng Bạn</h2>
                         <p className="mt-4 max-w-2xl mx-auto text-white/80 animate-fade-in-up animation-delay-300">Chúng tôi tin rằng mỗi không gian đều có thể trở thành một tác phẩm nghệ thuật. Liên hệ ngay để bắt đầu hành trình biến ước mơ của bạn thành hiện thực.</p>
                         <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 animate-fade-in-up animation-delay-600" asChild>
-                            <Link href="/lien-he">Bắt đầu dự án</Link>
+                            <Link href={`/${lang}/lien-he`}>Bắt đầu dự án</Link>
                         </Button>
                     </div>
                 </section>
             </main>
-            <Footer />
+            <Footer lang={lang} dictionary={dictionary} />
         </div>
     );
 }

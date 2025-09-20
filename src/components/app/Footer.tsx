@@ -2,8 +2,10 @@ import { Phone, Mail, MapPin, Briefcase } from "lucide-react";
 import Link from "next/link";
 import { Mountain, Facebook, Youtube, Instagram, Linkedin } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { getDictionary } from "@/get-dictionary";
+import { Locale } from "i18n-config";
 
-export function Footer({ dictionary }: { dictionary: any }) {
+export function Footer({ dictionary, lang }: { dictionary: Awaited<ReturnType<typeof getDictionary>>, lang: Locale }) {
   const socialLinks = [
     { name: "Facebook", href: "#", icon: Facebook },
     { name: "Instagram", href: "#", icon: Instagram },
@@ -17,7 +19,7 @@ export function Footer({ dictionary }: { dictionary: any }) {
             
             {/* Logo & Description */}
             <div className="lg:col-span-4">
-              <Link href="/" className="flex items-center gap-3 mb-4">
+              <Link href={`/${lang}/dashboard`} className="flex items-center gap-3 mb-4">
                 <Mountain className="h-8 w-8 text-accent" />
                 <span className="font-bold text-2xl text-white">Kiến Trúc Xanh</span>
               </Link>
@@ -40,11 +42,11 @@ export function Footer({ dictionary }: { dictionary: any }) {
             <div className="lg:col-span-2">
               <h4 className="font-bold text-lg tracking-wider uppercase text-white mb-4">{dictionary.footer.menu}</h4>
               <ul className="space-y-3 text-sm">
-                  <li><Link href="/gioi-thieu" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">{dictionary.header.about}</Link></li>
-                  <li><Link href="/dich-vu" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">{dictionary.header.services}</Link></li>
-                  <li><Link href="/du-an" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">{dictionary.header.projects}</Link></li>
-                  <li><Link href="/blog" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">{dictionary.header.blog}</Link></li>
-                  <li><Link href="/lien-he" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">{dictionary.header.contact}</Link></li>
+                  <li><Link href={`/${lang}/gioi-thieu`} className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">{dictionary.header.about}</Link></li>
+                  <li><Link href={`/${lang}/dich-vu`} className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">{dictionary.header.services}</Link></li>
+                  <li><Link href={`/${lang}/du-an`} className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">{dictionary.header.projects}</Link></li>
+                  <li><Link href={`/${lang}/blog`} className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">{dictionary.header.blog}</Link></li>
+                  <li><Link href={`/${lang}/lien-he`} className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">{dictionary.header.contact}</Link></li>
               </ul>
             </div>
             
@@ -52,10 +54,10 @@ export function Footer({ dictionary }: { dictionary: any }) {
             <div className="lg:col-span-3">
               <h4 className="font-bold text-lg tracking-wider uppercase text-white mb-4">{dictionary.footer.main_services}</h4>
               <ul className="space-y-3 text-sm">
-                  <li><Link href="/dich-vu" className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors duration-300"><Briefcase className="w-4 h-4 text-accent/80"/>{dictionary.footer.service_villa}</Link></li>
-                  <li><Link href="/dich-vu" className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors duration-300"><Briefcase className="w-4 h-4 text-accent/80"/>{dictionary.footer.service_koi}</Link></li>
-                  <li><Link href="/dich-vu" className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors duration-300"><Briefcase className="w-4 h-4 text-accent/80"/>{dictionary.footer.service_fengshui}</Link></li>
-                  <li><Link href="/dich-vu" className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors duration-300"><Briefcase className="w-4 h-4 text-accent/80"/>{dictionary.footer.service_maintenance}</Link></li>
+                  <li><Link href={`/${lang}/dich-vu`} className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors duration-300"><Briefcase className="w-4 h-4 text-accent/80"/>{dictionary.footer.service_villa}</Link></li>
+                  <li><Link href={`/${lang}/dich-vu`} className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors duration-300"><Briefcase className="w-4 h-4 text-accent/80"/>{dictionary.footer.service_koi}</Link></li>
+                  <li><Link href={`/${lang}/dich-vu`} className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors duration-300"><Briefcase className="w-4 h-4 text-accent/80"/>{dictionary.footer.service_fengshui}</Link></li>
+                  <li><Link href={`/${lang}/dich-vu`} className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors duration-300"><Briefcase className="w-4 h-4 text-accent/80"/>{dictionary.footer.service_maintenance}</Link></li>
               </ul>
             </div>
 

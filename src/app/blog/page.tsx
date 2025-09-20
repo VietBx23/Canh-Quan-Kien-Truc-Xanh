@@ -7,8 +7,11 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Calendar, User } from "lucide-react";
+import { getDictionary } from "@/get-dictionary";
+import { Locale } from "i18n-config";
 
-export default function BlogPage() {
+export default async function BlogPage({ params: { lang } }: { params: { lang: Locale }}) {
+    const dictionary = await getDictionary(lang);
     const blogPosts = [
         {
             id: 1,
@@ -50,7 +53,7 @@ export default function BlogPage() {
 
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
-            <Header />
+            <Header lang={lang} dictionary={dictionary} />
             <main className="flex-1">
                 <section className="py-20 md:py-28 bg-muted">
                     <div className="container mx-auto px-4 text-center animate-fade-in-up">
@@ -94,7 +97,7 @@ export default function BlogPage() {
                                             </div>
                                             <p className="text-muted-foreground mb-6">{post.excerpt}</p>
                                             <Button variant="link" asChild className="p-0 font-semibold mt-auto">
-                                                <Link href={`/blog/${post.id}`}>Đọc thêm <ArrowRight className="ml-2 h-4 w-4"/></Link>
+                                                <Link href={`/${lang}/blog/${post.id}`}>Đọc thêm <ArrowRight className="ml-2 h-4 w-4"/></Link>
                                             </Button>
                                         </CardContent>
                                     </Card>
@@ -104,7 +107,7 @@ export default function BlogPage() {
                     </div>
                 </section>
             </main>
-            <Footer />
+            <Footer lang={lang} dictionary={dictionary} />
         </div>
     );
 }

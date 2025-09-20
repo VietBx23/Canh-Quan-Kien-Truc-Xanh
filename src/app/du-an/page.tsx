@@ -7,9 +7,12 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import Image from "next/image";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { getDictionary } from "@/get-dictionary";
+import { Locale } from "i18n-config";
 
 
-export default function ProjectsPage() {
+export default async function ProjectsPage({ params: { lang } }: { params: { lang: Locale }}) {
+    const dictionary = await getDictionary(lang);
     const allProjects = PlaceHolderImages.filter(p => p.id.startsWith('gallery-'));
     const gardenProjects = allProjects.filter(p => p.imageHint.includes('garden') || p.imageHint.includes('villa') || p.imageHint.includes('patio') || p.imageHint.includes('resort') || p.imageHint.includes('balcony') || p.imageHint.includes('terrace') || p.imageHint.includes('entrance') || p.imageHint.includes('bbq'));
     const koiProjects = allProjects.filter(p => p.imageHint.includes('koi'));
@@ -25,7 +28,7 @@ export default function ProjectsPage() {
                   <Card key={image.id} className="overflow-hidden group border-none shadow-lg hover:shadow-2xl transition-all duration-300">
                       <CardContent className="p-0">
                           <div className="overflow-hidden aspect-[4/3]">
-                              <Link href={`/du-an/${image.id}`}>
+                              <Link href={`/${lang}/du-an/${image.id}`}>
                                 <Image 
                                     src={image.imageUrl} 
                                     alt={`Dự án ${image.id}`} 
@@ -39,7 +42,7 @@ export default function ProjectsPage() {
                           <div className="p-4 bg-white">
                               <p className="text-xs text-accent font-semibold uppercase">{image.imageHint.includes('koi') ? 'Hồ Koi' : gardenProjects.includes(image) ? 'Sân vườn' : 'Tiểu Cảnh'}</p>
                               <h3 className="font-bold text-lg text-primary capitalize mt-1">
-                                <Link href={`/du-an/${image.id}`}>{image.imageHint.replace(/-/g, ' ')}</Link>
+                                <Link href={`/${lang}/du-an/${image.id}`}>{image.imageHint.replace(/-/g, ' ')}</Link>
                                </h3>
                               <p className="text-sm text-muted-foreground mt-1">Hoàn thành: 2024</p>
                           </div>
@@ -52,7 +55,7 @@ export default function ProjectsPage() {
 
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
-            <Header />
+            <Header lang={lang} dictionary={dictionary} />
             <main className="flex-1">
                  <section className="py-20 md:py-28 bg-muted">
                     <div className="container mx-auto px-4 text-center">
@@ -90,13 +93,13 @@ export default function ProjectsPage() {
                             <h2 className="text-2xl font-bold text-primary">Bạn muốn có một không gian như thế này?</h2>
                             <p className="text-muted-foreground mt-2 max-w-xl mx-auto">Hãy để các chuyên gia của chúng tôi giúp bạn hiện thực hóa ước mơ.</p>
                             <Button size="lg" asChild className="mt-6">
-                                <Link href="/lien-he">Bắt Đầu Dự Án Của Bạn</Link>
+                                <Link href={`/${lang}/lien-he`}>Bắt Đầu Dự Án Của Bạn</Link>
                             </Button>
                         </div>
                     </div>
                 </section>
             </main>
-            <Footer />
+            <Footer lang={lang} dictionary={dictionary} />
         </div>
     );
 }

@@ -2,7 +2,7 @@
 
 'use client'
 
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { Header } from "@/components/app/Header";
 import { Footer } from "@/components/app/Footer";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,11 @@ import { Leaf, Fish, Sprout, CheckCircle, Wind, Droplets, Sun, Sparkles, Truck, 
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { getDictionary } from '@/get-dictionary';
+import { Locale } from 'i18n-config';
+import { useEffect, useState } from 'react';
+
+type Dictionary = Awaited<ReturnType<typeof getDictionary>>
 
 const servicesData = [
     {
@@ -97,23 +102,38 @@ const relatedProjects = PlaceHolderImages.filter(p => p.id.startsWith('gallery-'
 
 export default function ServiceDetailPage() {
     const params = useParams();
+    const router = useRouter();
+    const lang = params.lang as Locale;
     const slug = params.slug as string;
     const service = servicesData.find(s => s.slug === slug);
+    const [dictionary, setDictionary] = useState<Dictionary | null>(null);
+
+    useEffect(() => {
+        const fetchDict = async () => {
+            const dict = await getDictionary(lang);
+            setDictionary(dict);
+        };
+        fetchDict();
+    }, [lang]);
+
+    if (!dictionary) {
+        return <div>Loading...</div>; // Or a proper loading skeleton
+    }
 
     if (!service) {
         return (
              <div className="flex min-h-screen w-full flex-col bg-background font-body">
-                <Header />
+                <Header lang={lang} dictionary={dictionary} />
                 <main className="flex-1 flex items-center justify-center text-center">
                     <div>
                         <h1 className="text-4xl font-bold text-primary">Dịch vụ không tồn tại</h1>
                         <p className="mt-4 text-lg text-muted-foreground">Dịch vụ bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.</p>
                         <Button asChild className="mt-8">
-                            <Link href="/dich-vu">Quay lại trang dịch vụ</Link>
+                            <Link href={`/${lang}/dich-vu`}>Quay lại trang dịch vụ</Link>
                         </Button>
                     </div>
                 </main>
-                <Footer />
+                <Footer lang={lang} dictionary={dictionary} />
             </div>
         );
     }
@@ -122,7 +142,7 @@ export default function ServiceDetailPage() {
 
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
-            <Header />
+            <Header lang={lang} dictionary={dictionary} />
             <main className="flex-1">
                 <section className="relative py-32 md:py-48 text-white bg-black">
                      {service.image && (
@@ -161,7 +181,7 @@ export default function ServiceDetailPage() {
                             </div>
                              <div className="mt-12">
                                 <Button size="lg" asChild>
-                                    <Link href="/lien-he">Nhận Tư Vấn Miễn Phí</Link>
+                                    <Link href={`/${lang}/lien-he`}>Nhận Tư Vấn Miễn Phí</Link>
                                 </Button>
                             </div>
                         </div>
@@ -171,7 +191,7 @@ export default function ServiceDetailPage() {
                                 <h3 className="text-2xl font-bold text-primary mb-6">Dịch vụ khác</h3>
                                 <div className="space-y-6">
                                     {otherServices.map(other => (
-                                        <Link key={other.slug} href={`/dich-vu/${other.slug}`} className="group flex items-center gap-4 p-4 rounded-lg bg-muted hover:bg-primary hover:text-white transition-colors duration-300">
+                                        <Link key={other.slug} href={`/${lang}/dich-vu/${other.slug}`} className="group flex items-center gap-4 p-4 rounded-lg bg-muted hover:bg-primary hover:text-white transition-colors duration-300">
                                              {other.image && <Image src={other.image.imageUrl} alt={other.title} width={80} height={60} className="rounded-md object-cover" data-ai-hint={other.image.imageHint}/>}
                                             <span className="font-semibold text-primary group-hover:text-white">{other.title}</span>
                                         </Link>
@@ -190,7 +210,7 @@ export default function ServiceDetailPage() {
                                 <Card key={project.id} className="overflow-hidden group border-none shadow-lg hover:shadow-2xl transition-all duration-300">
                                     <CardContent className="p-0">
                                         <div className="overflow-hidden aspect-[4/3]">
-                                            <Link href={`/du-an/${project.id}`}>
+                                            <Link href={`/${lang}/du-an/${project.id}`}>
                                                 <Image 
                                                     src={project.imageUrl} 
                                                     alt={`Dự án ${project.id}`} 
@@ -203,7 +223,7 @@ export default function ServiceDetailPage() {
                                         </div>
                                         <div className="p-4 bg-white">
                                             <h3 className="font-bold text-lg text-primary capitalize mt-1">
-                                                <Link href={`/du-an/${project.id}`}>{project.imageHint.replace(/-/g, ' ')}</Link>
+                                                <Link href={`/${lang}/du-an/${project.id}`}>{project.imageHint.replace(/-/g, ' ')}</Link>
                                             </h3>
                                         </div>
                                     </CardContent>
@@ -212,13 +232,13 @@ export default function ServiceDetailPage() {
                         </div>
                         <div className="text-center mt-12">
                             <Button asChild>
-                                <Link href="/du-an">Xem Thêm Dự Án</Link>
+                                <Link href={`/${lang}/du-an`}>Xem Thêm Dự Án</Link>
                             </Button>
                         </div>
                     </div>
                 </section>
             </main>
-            <Footer />
+            <Footer lang={lang} dictionary={dictionary} />
         </div>
     );
 }

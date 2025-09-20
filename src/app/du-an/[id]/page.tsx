@@ -2,7 +2,7 @@
 
 'use client'
 
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { Header } from "@/components/app/Header";
 import { Footer } from "@/components/app/Footer";
 import { Button } from "@/components/ui/button";
@@ -11,26 +11,44 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar, Tag, Home, ArrowLeft } from "lucide-react";
 import { Card, CardContent } from '@/components/ui/card';
+import { getDictionary } from '@/get-dictionary';
+import { Locale } from 'i18n-config';
+import { useEffect, useState } from 'react';
+
+type Dictionary = Awaited<ReturnType<typeof getDictionary>>
 
 export default function ProjectDetailPage() {
     const params = useParams();
+    const router = useRouter();
+    const lang = params.lang as Locale;
     const id = params.id as string;
     const project = PlaceHolderImages.find(p => p.id === id);
+    const [dictionary, setDictionary] = useState<Dictionary | null>(null);
+
+    useEffect(() => {
+        const fetchDict = async () => {
+            const dict = await getDictionary(lang);
+            setDictionary(dict);
+        };
+        fetchDict();
+    }, [lang]);
 
     if (!project) {
+        // We need to wait for dictionary to be loaded before rendering 404
+        if (!dictionary) return <div>Loading...</div>;
         return (
             <div className="flex min-h-screen w-full flex-col bg-background font-body">
-                <Header />
+                <Header lang={lang} dictionary={dictionary} />
                 <main className="flex-1 flex items-center justify-center text-center">
                     <div>
                         <h1 className="text-4xl font-bold text-primary">Dự án không tồn tại</h1>
                         <p className="mt-4 text-lg text-muted-foreground">Dự án bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.</p>
                         <Button asChild className="mt-8">
-                            <Link href="/du-an">Quay lại trang dự án</Link>
+                            <Link href={`/${lang}/du-an`}>Quay lại trang dự án</Link>
                         </Button>
                     </div>
                 </main>
-                <Footer />
+                <Footer lang={lang} dictionary={dictionary} />
             </div>
         );
     }
@@ -38,14 +56,16 @@ export default function ProjectDetailPage() {
     // Select some other projects as related
     const relatedProjects = PlaceHolderImages.filter(p => p.id.startsWith('gallery-') && p.id !== id).slice(0, 4);
 
+    if (!dictionary) return <div>Loading...</div>;
+
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
-            <Header />
+            <Header lang={lang} dictionary={dictionary} />
             <main className="flex-1">
                 <section className="py-20 md:py-28 bg-muted">
                     <div className="container mx-auto px-4 text-center animate-fade-in-up">
                         <Button variant="ghost" asChild className="mb-4">
-                            <Link href="/du-an" className="text-sm text-muted-foreground"><ArrowLeft className="mr-2 h-4 w-4"/> Quay lại danh sách dự án</Link>
+                            <Link href={`/${lang}/du-an`} className="text-sm text-muted-foreground"><ArrowLeft className="mr-2 h-4 w-4"/> Quay lại danh sách dự án</Link>
                         </Button>
                         <h1 className="text-4xl md:text-5xl font-bold text-primary capitalize">{project.imageHint.replace(/-/g, ' ')}</h1>
                     </div>
@@ -90,7 +110,7 @@ export default function ProjectDetailPage() {
                                     </CardContent>
                                 </Card>
                                 <Button asChild size="lg" className="w-full mt-8">
-                                    <Link href="/lien-he">Yêu Cầu Báo Giá</Link>
+                                    <Link href={`/${lang}/lien-he`}>Yêu Cầu Báo Giá</Link>
                                 </Button>
                             </div>
                         </div>
@@ -112,7 +132,7 @@ export default function ProjectDetailPage() {
                                     <Card className="overflow-hidden group border-none shadow-lg hover:shadow-2xl transition-all duration-300">
                                         <CardContent className="p-0">
                                             <div className="overflow-hidden aspect-[4/3]">
-                                                <Link href={`/du-an/${p.id}`}>
+                                                <Link href={`/${lang}/du-an/${p.id}`}>
                                                     <Image 
                                                         src={p.imageUrl} 
                                                         alt={`Dự án ${p.id}`} 
@@ -125,7 +145,7 @@ export default function ProjectDetailPage() {
                                             </div>
                                             <div className="p-4 bg-white">
                                                 <h3 className="font-bold text-lg text-primary capitalize mt-1">
-                                                    <Link href={`/du-an/${p.id}`}>{p.imageHint.replace(/-/g, ' ')}</Link>
+                                                    <Link href={`/${lang}/du-an/${p.id}`}>{p.imageHint.replace(/-/g, ' ')}</Link>
                                                 </h3>
                                             </div>
                                         </CardContent>
@@ -137,7 +157,7 @@ export default function ProjectDetailPage() {
                 </section>
 
             </main>
-            <Footer />
+            <Footer lang={lang} dictionary={dictionary} />
         </div>
     );
 }

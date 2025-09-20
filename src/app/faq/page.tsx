@@ -10,9 +10,11 @@ import {
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Mail } from "lucide-react";
+import { getDictionary } from "@/get-dictionary";
+import { Locale } from "i18n-config";
 
-export default function FAQPage() {
-
+export default async function FAQPage({ params: { lang } }: { params: { lang: Locale }}) {
+    const dictionary = await getDictionary(lang);
     const faqs = [
         {
             question: "Thời gian thi công một hồ cá Koi tiêu chuẩn mất bao lâu?",
@@ -43,7 +45,7 @@ export default function FAQPage() {
 
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
-            <Header />
+            <Header lang={lang} dictionary={dictionary} />
             <main className="flex-1">
                 <section className="py-20 md:py-28 bg-muted">
                     <div className="container mx-auto px-4 text-center">
@@ -70,7 +72,7 @@ export default function FAQPage() {
                             <h3 className="text-2xl font-bold text-primary">Bạn vẫn còn câu hỏi?</h3>
                             <p className="text-muted-foreground mt-2 mb-6 max-w-xl mx-auto">Đừng ngần ngại liên hệ trực tiếp với đội ngũ chuyên gia của chúng tôi để được tư vấn miễn phí và giải đáp mọi thắc mắc của bạn.</p>
                             <Button asChild size="lg">
-                                <Link href="/lien-he">
+                                <Link href={`/${lang}/lien-he`}>
                                     <Mail className="mr-2 h-5 w-5"/>
                                     Liên Hệ Với Chúng Tôi
                                 </Link>
@@ -79,7 +81,7 @@ export default function FAQPage() {
                     </div>
                 </section>
             </main>
-            <Footer />
+            <Footer lang={lang} dictionary={dictionary} />
         </div>
     );
 }

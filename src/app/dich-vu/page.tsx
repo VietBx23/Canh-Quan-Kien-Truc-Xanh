@@ -6,11 +6,14 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Leaf, Fish, Sprout, CheckCircle, Wind, Droplets, Sun, Sparkles, Truck, Home, ShoppingCart, Trees } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { getDictionary } from "@/get-dictionary";
+import { Locale } from "i18n-config";
 
-export default function ServicesPage() {
-    
+export default async function ServicesPage({ params: { lang } }: { params: { lang: Locale }}) {
+    const dictionary = await getDictionary(lang);
     const services = [
         {
+            slug: "thiet-ke-san-vuon",
             title: "Thiết kế & Thi công Sân vườn",
             description: "Chúng tôi cung cấp dịch vụ trọn gói từ khâu lên ý tưởng, thiết kế 3D đến thi công hoàn thiện sân vườn cho biệt thự, nhà phố, khu đô thị, resort. Mỗi thiết kế đều là độc bản, kết hợp giữa yếu tố thẩm mỹ, công năng và phong thủy.",
             icon: Leaf,
@@ -23,6 +26,7 @@ export default function ServicesPage() {
             ]
         },
         {
+            slug: "ho-ca-koi",
             title: "Hồ Cá Koi Chuyên Nghiệp",
             description: "Sở hữu một hồ cá Koi không chỉ làm đẹp cảnh quan mà còn mang lại may mắn, tài lộc. Chúng tôi chuyên thi công hồ cá Koi đạt chuẩn với hệ thống lọc vi sinh tiên tiến, đảm bảo nước luôn trong và cá luôn khỏe.",
             icon: Fish,
@@ -35,6 +39,7 @@ export default function ServicesPage() {
             ]
         },
         {
+            slug: "da-phong-thuy",
             title: "Đá Phong Thủy & Tiểu Cảnh",
             description: "Mang năng lượng của đất trời vào không gian sống của bạn với các sản phẩm đá phong thủy tự nhiên, non bộ, thác nước. Chúng tôi giúp bạn lựa chọn và bài trí để tăng vượng khí, tạo điểm nhấn độc đáo cho cảnh quan.",
             icon: Wind,
@@ -47,6 +52,7 @@ export default function ServicesPage() {
             ]
         },
         {
+            slug: "cai-tao-nang-cap",
             title: "Cải Tạo & Nâng Cấp Cảnh Quan",
             description: "Làm mới không gian sân vườn cũ, thay đổi phong cách, hoặc khắc phục các vấn đề tồn tại. Chúng tôi giúp 'thay áo mới' cho khu vườn của bạn, mang lại sức sống và vẻ đẹp đương đại.",
             icon: Sparkles,
@@ -59,6 +65,7 @@ export default function ServicesPage() {
             ]
         },
         {
+            slug: "vuon-san-thuong",
             title: "Vườn Trên Sân Thượng",
             description: "Biến không gian sân thượng tưởng chừng bỏ đi thành một khu vườn xanh mát, một nơi thư giãn lý tưởng hoặc một nông trại mini ngay tại nhà. Giải pháp chống thấm và chọn cây chuyên nghiệp.",
             icon: Home,
@@ -71,6 +78,7 @@ export default function ServicesPage() {
             ]
         },
         {
+            slug: "tuong-cay-xanh",
             title: "Tường Cây Xanh Nghệ Thuật",
             description: "Giải pháp tối ưu cho không gian nhỏ hoặc tạo điểm nhấn ấn tượng cho các mảng tường lớn. Chúng tôi thi công tường cây thật với hệ thống tưới nhỏ giọt tự động, dễ dàng chăm sóc.",
             icon: Trees,
@@ -83,6 +91,7 @@ export default function ServicesPage() {
             ]
         },
         {
+            slug: "he-thong-tuoi-tu-dong",
             title: "Hệ Thống Tưới Tự Động",
             description: "Giải pháp chăm sóc sân vườn thông minh, tiết kiệm thời gian và nước. Chúng tôi lắp đặt hệ thống tưới tự động từ các thương hiệu uy tín, có thể điều khiển qua điện thoại.",
             icon: Droplets,
@@ -95,6 +104,7 @@ export default function ServicesPage() {
             ]
         },
         {
+            slug: "chieu-sang-canh-quan",
             title: "Chiếu Sáng Cảnh Quan",
             description: "Thắp sáng khu vườn của bạn về đêm, tạo nên một không gian lung linh, huyền ảo và an toàn. Chúng tôi tư vấn và lắp đặt hệ thống đèn chiếu sáng chuyên dụng cho sân vườn.",
             icon: Sun,
@@ -107,6 +117,7 @@ export default function ServicesPage() {
             ]
         },
         {
+            slug: "san-choi-tre-em",
             title: "Sân Chơi Trẻ Em Trong Vườn",
             description: "Kết hợp khu vui chơi an toàn và sáng tạo cho trẻ em ngay trong không gian sân vườn của gia đình. Vật liệu thân thiện, thiết kế kích thích sự vận động và khám phá của trẻ.",
             icon: Sparkles,
@@ -119,6 +130,7 @@ export default function ServicesPage() {
             ]
         },
         {
+            slug: "canh-quan-quan-cafe",
             title: "Cảnh Quan Quán Cafe, Nhà Hàng",
             description: "Thiết kế và thi công không gian xanh độc đáo, tạo lợi thế cạnh tranh và thu hút khách hàng cho các mô hình kinh doanh F&B. Tối ưu hóa không gian và trải nghiệm của khách hàng.",
             icon: ShoppingCart,
@@ -131,6 +143,7 @@ export default function ServicesPage() {
             ]
         },
         {
+            slug: "bao-tri-canh-quan",
             title: "Bảo Trì, Chăm Sóc Cảnh Quan",
             description: "Để khu vườn và hồ cá của bạn luôn ở trạng thái tốt nhất. Chúng tôi cung cấp các gói dịch vụ bảo trì, chăm sóc định kỳ hoặc theo yêu cầu, thực hiện bởi đội ngũ nghệ nhân chuyên nghiệp.",
             icon: Sprout,
@@ -143,6 +156,7 @@ export default function ServicesPage() {
             ]
         },
         {
+            slug: "vuon-rau-tai-gia",
             title: "Vườn Rau Tại Gia",
             description: "Mang nguồn thực phẩm sạch, an toàn đến cho gia đình bạn với mô hình vườn rau hữu cơ tại nhà. Chúng tôi cung cấp giải pháp trọn gói từ giàn trồng, đất, hạt giống đến hướng dẫn chăm sóc.",
             icon: Leaf,
@@ -155,6 +169,7 @@ export default function ServicesPage() {
             ]
         },
         {
+            slug: "cung-cap-cay-canh",
             title: "Cung Cấp Cây Cảnh & Bonsai",
             description: "Chúng tôi sở hữu vườn ươm đa dạng với nhiều loại cây cảnh, cây công trình, bonsai nghệ thuật. Cung cấp và vận chuyển cây tận nơi, kèm theo dịch vụ trồng và tư vấn chăm sóc.",
             icon: Truck,
@@ -171,7 +186,7 @@ export default function ServicesPage() {
 
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
-            <Header />
+            <Header lang={lang} dictionary={dictionary} />
             <main className="flex-1">
                 <section className="py-20 md:py-28 bg-muted">
                     <div className="container mx-auto px-4 text-center">
@@ -211,7 +226,7 @@ export default function ServicesPage() {
                                         ))}
                                     </ul>
                                     <Button asChild size="lg">
-                                        <Link href="/lien-he">Yêu Cầu Tư Vấn</Link>
+                                        <Link href={`/${lang}/dich-vu/${service.slug}`}>Xem Chi Tiết</Link>
                                     </Button>
                                 </div>
                             </div>
@@ -219,7 +234,7 @@ export default function ServicesPage() {
                     </div>
                 </section>
             </main>
-            <Footer />
+            <Footer lang={lang} dictionary={dictionary} />
         </div>
     );
 }
