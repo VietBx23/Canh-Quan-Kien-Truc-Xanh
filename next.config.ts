@@ -29,13 +29,6 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    // This is to allow the Next.js dev server to be accessed from the
-    // cloud workstation's domain.
-    allowedDevOrigins: [
-      'https://6000-firebase-studio-1758355567505.cluster-nle52mxuvfhlkrzyrq6g2cwb52.cloudworkstations.dev',
-    ],
-  },
 };
 
 export default nextConfig;
