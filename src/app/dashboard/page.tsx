@@ -1,14 +1,14 @@
+
 "use client";
 
 import { Header } from "@/components/app/Header";
+import { Footer } from "@/components/app/Footer";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Leaf, Fish, Sprout, Phone } from "lucide-react";
+import { Leaf, Fish, Sprout, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Carousel,
   CarouselContent,
@@ -22,7 +22,7 @@ export default function DashboardPage() {
   const serviceGarden = PlaceHolderImages.find(p => p.id === 'service-garden');
   const serviceKoi = PlaceHolderImages.find(p => p.id === 'service-koi');
   const serviceMaintenance = PlaceHolderImages.find(p => p.id === 'service-maintenance');
-  const galleryImages = PlaceHolderImages.filter(p => p.id.startsWith('gallery-'));
+  const galleryImages = PlaceHolderImages.filter(p => p.id.startsWith('gallery-')).slice(0, 5); // Show first 5 projects
   const testimonialAvatar1 = PlaceHolderImages.find(p => p.id === 'testimonial-1');
   const testimonialAvatar2 = PlaceHolderImages.find(p => p.id === 'testimonial-2');
 
@@ -48,14 +48,27 @@ export default function DashboardPage() {
             <p className="mt-4 max-w-3xl text-lg md:text-xl text-shadow animate-fade-in-up animation-delay-300">
               Chuyên nghiệp trong từng thiết kế, tận tâm trong từng công trình sân vườn, hồ cá Koi.
             </p>
-            <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg animate-fade-in-up animation-delay-600">
-              Yêu Cầu Tư Vấn
+            <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg animate-fade-in-up animation-delay-600" asChild>
+              <Link href="/lien-he">Yêu Cầu Tư Vấn</Link>
             </Button>
           </div>
         </section>
 
+        {/* About Us Section */}
+        <section className="py-20 md:py-28 text-center">
+          <div className="container mx-auto px-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary">Về Chúng Tôi</h2>
+              <p className="text-muted-foreground mt-4 max-w-3xl mx-auto">
+                Với hơn 10 năm kinh nghiệm trong lĩnh vực thiết kế và thi công cảnh quan, Cảnh Quan Kiến Trúc Xanh tự hào là đơn vị tiên phong mang đến những giải pháp không gian sống xanh, đẳng cấp, và hài hòa với thiên nhiên. Sứ mệnh của chúng tôi là biến mỗi ngôi nhà thành một tác phẩm nghệ thuật sống động, nơi con người và thiên nhiên giao hòa.
+              </p>
+              <Button variant="outline" className="mt-8" asChild>
+                  <Link href="/gioi-thieu">Tìm Hiểu Thêm <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
+          </div>
+        </section>
+
         {/* Services Section */}
-        <section id="services" className="py-20 md:py-28 bg-white">
+        <section id="services" className="py-20 md:py-28 bg-muted">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-primary">Dịch Vụ Của Chúng Tôi</h2>
@@ -71,7 +84,8 @@ export default function DashboardPage() {
                   <CardTitle className="text-2xl">Thiết kế Sân vườn</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">Tư vấn, thiết kế cảnh quan sân vườn biệt thự, nhà phố, resort theo phong cách độc đáo và hợp phong thủy.</p>
+                  <p className="text-muted-foreground mb-4">Tư vấn, thiết kế cảnh quan sân vườn biệt thự, nhà phố, resort theo phong cách độc đáo và hợp phong thủy.</p>
+                   <Button variant="link" className="p-0" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
                 </CardContent>
               </Card>
               <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2">
@@ -81,7 +95,8 @@ export default function DashboardPage() {
                   <CardTitle className="text-2xl">Hồ Cá Koi Chuyên Nghiệp</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">Xây dựng hồ cá Koi với hệ thống lọc chuẩn quốc tế, đảm bảo môi trường sống lý tưởng và thẩm mỹ cao.</p>
+                  <p className="text-muted-foreground mb-4">Xây dựng hồ cá Koi với hệ thống lọc chuẩn quốc tế, đảm bảo môi trường sống lý tưởng và thẩm mỹ cao.</p>
+                   <Button variant="link" className="p-0" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
                 </CardContent>
               </Card>
               <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2">
@@ -91,7 +106,8 @@ export default function DashboardPage() {
                   <CardTitle className="text-2xl">Đá Phong Thủy & Tiểu Cảnh</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">Cung cấp và bài trí đá phong thủy, thác nước, non bộ, mang lại vượng khí và nét đẹp cho không gian.</p>
+                  <p className="text-muted-foreground mb-4">Cung cấp và bài trí đá phong thủy, thác nước, non bộ, mang lại vượng khí và nét đẹp cho không gian.</p>
+                  <Button variant="link" className="p-0" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
                 </CardContent>
               </Card>
             </div>
@@ -99,7 +115,7 @@ export default function DashboardPage() {
         </section>
         
         {/* Gallery Section */}
-        <section id="gallery" className="py-20 md:py-28 bg-muted">
+        <section id="gallery" className="py-20 md:py-28 bg-white">
            <div className="container mx-auto px-4">
               <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-4xl font-bold text-primary">Dự Án Tiêu Biểu</h2>
@@ -137,11 +153,16 @@ export default function DashboardPage() {
                 <CarouselPrevious />
                 <CarouselNext />
               </Carousel>
+              <div className="text-center mt-12">
+                  <Button asChild>
+                      <Link href="/du-an">Xem Tất Cả Dự Án</Link>
+                  </Button>
+              </div>
            </div>
         </section>
 
         {/* Testimonials Section */}
-        <section id="testimonials" className="py-20 md:py-28 bg-white">
+        <section id="testimonials" className="py-20 md:py-28 bg-muted">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-primary">Khách Hàng Nói Về Chúng Tôi</h2>
@@ -150,7 +171,7 @@ export default function DashboardPage() {
                 </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              <Card className="border-none shadow-lg bg-muted transform transition-all hover:scale-105">
+              <Card className="border-none shadow-lg bg-white transform transition-all hover:scale-105">
                 <CardContent className="p-8">
                   <p className="text-muted-foreground italic mb-6">"Đội ngũ làm việc rất chuyên nghiệp và có tâm. Khu vườn nhà tôi giờ đây thật sự là một nơi thư giãn tuyệt vời. Cảm ơn Kiến Trúc Xanh!"</p>
                   <div className="flex items-center gap-4">
@@ -162,7 +183,7 @@ export default function DashboardPage() {
                   </div>
                 </CardContent>
               </Card>
-              <Card className="border-none shadow-lg bg-muted transform transition-all hover:scale-105">
+              <Card className="border-none shadow-lg bg-white transform transition-all hover:scale-105">
                  <CardContent className="p-8">
                   <p className="text-muted-foreground italic mb-6">"Hồ cá Koi đã trở thành điểm nhấn thu hút khách cho quán của tôi. Dịch vụ và chất lượng thi công vượt xa mong đợi của tôi. Sẽ tiếp tục hợp tác."</p>
                   <div className="flex items-center gap-4">
@@ -178,69 +199,19 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section id="contact" className="py-20 md:py-28 bg-gray-800 text-white">
+        {/* Call to Action Section */}
+        <section className="py-20 md:py-28 bg-gray-800 text-white text-center">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold">Liên Hệ Tư Vấn</h2>
-                    <p className="text-gray-300 mt-3 max-w-xl mx-auto">Để lại thông tin, chuyên gia của chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
-                </div>
-                <Card className="max-w-2xl mx-auto bg-gray-900/80 backdrop-blur-sm border-gray-700 shadow-2xl">
-                    <CardContent className="p-8">
-                        <form className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <Label htmlFor="name" className="text-gray-300">Họ và tên</Label>
-                                    <Input id="name" placeholder="Nguyễn Văn A" className="bg-gray-800 border-gray-600 text-white focus:ring-accent"/>
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="phone" className="text-gray-300">Số điện thoại</Label>
-                                    <Input id="phone" type="tel" placeholder="09xxxxxxxx" className="bg-gray-800 border-gray-600 text-white focus:ring-accent"/>
-                                </div>
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="email" className="text-gray-300">Email (Tùy chọn)</Label>
-                                <Input id="email" type="email" placeholder="email@example.com" className="bg-gray-800 border-gray-600 text-white focus:ring-accent"/>
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="message" className="text-gray-300">Nội dung yêu cầu</Label>
-                                <Textarea id="message" placeholder="Tôi cần tư vấn về thiết kế sân vườn cho biệt thự..." className="bg-gray-800 border-gray-600 text-white min-h-[120px] focus:ring-accent"/>
-                            </div>
-                            <Button type="submit" className="w-full bg-accent text-accent-foreground text-base py-6 hover:bg-accent/90 transition-transform hover:scale-105">Gửi Yêu Cầu Tư Vấn</Button>
-                        </form>
-                    </CardContent>
-                </Card>
+                <h2 className="text-3xl md:text-4xl font-bold">Sẵn Sàng Biến Ước Mơ Về Một Không Gian Xanh Thành Hiện Thực?</h2>
+                <p className="text-gray-300 mt-4 max-w-2xl mx-auto">Đừng ngần ngại liên hệ với chúng tôi. Các chuyên gia của Cảnh Quan Kiến Trúc Xanh luôn sẵn lòng lắng nghe và tư vấn giải pháp tốt nhất cho bạn.</p>
+                <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg" asChild>
+                    <Link href="/lien-he">Liên Hệ Ngay</Link>
+                </Button>
             </div>
         </section>
       </main>
 
-      <footer className="bg-primary text-primary-foreground py-10">
-        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-          <div>
-            <h3 className="text-xl font-bold">Cảnh Quan Kiến Trúc Xanh</h3>
-            <p className="mt-2 text-sm opacity-90">Kiến tạo không gian sống đẳng cấp, hài hòa với thiên nhiên.</p>
-          </div>
-          <div>
-            <h4 className="font-bold text-lg">Thông tin liên hệ</h4>
-            <ul className="mt-2 space-y-1 text-sm opacity-90">
-                <li>Địa chỉ: 123 Đường ABC, Phường X, Quận Y, TP.HCM</li>
-                <li>Email: lienhe@kientrucxanh.com</li>
-                <li className="flex items-center justify-center md:justify-start gap-2">
-                    <Phone className="w-4 h-4"/>
-                    <span>Hotline: 0987 654 321</span>
-                </li>
-            </ul>
-          </div>
-           <div>
-            <h4 className="font-bold text-lg">Giờ làm việc</h4>
-            <p className="mt-2 text-sm opacity-90">Thứ 2 - Thứ 7: 8:00 - 17:00</p>
-            <p className="text-sm opacity-90">Chủ nhật: Nghỉ</p>
-          </div>
-        </div>
-        <div className="container mx-auto px-4 mt-8 border-t border-primary-foreground/20 pt-6 text-center text-xs opacity-80">
-          <p>&copy; 2024 Cảnh Quan Kiến Trúc Xanh. All Rights Reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
