@@ -45,11 +45,10 @@ git commit -m "Initial commit from Firebase Studio"
 
 **Bước 4: Kết nối với kho chứa trên GitHub**
 
-Sử dụng URL kho chứa GitHub của bạn. Thay thế `YOUR_GITHUB_URL` bằng URL của bạn.
+Chạy lệnh dưới đây. URL kho chứa của bạn đã được điền sẵn.
 
 ```bash
-# Ví dụ URL: https://github.com/VietBx23/Canh-Quan-Kien-Truc-Xanh.git
-git remote add origin YOUR_GITHUB_URL
+git remote add origin https://github.com/VietBx23/Canh-Quan-Kien-Truc-Xanh.git
 ```
 
 **Bước 5: Đẩy (Push) mã nguồn**
@@ -57,11 +56,11 @@ git remote add origin YOUR_GITHUB_URL
 Lệnh này sẽ tải toàn bộ mã nguồn từ máy bạn lên GitHub.
 
 ```bash
-# Nếu nhánh chính của bạn tên là 'master'
-git push -u origin master
-
-# Hoặc, nếu nhánh chính của bạn tên là 'main'
+# Nếu nhánh chính của bạn tên là 'main' (thường là mặc định mới)
 git push -u origin main
+
+# Hoặc, nếu nhánh chính của bạn tên là 'master' (thường là mặc định cũ)
+git push -u origin master
 ```
 
 ---
