@@ -6,7 +6,7 @@ import { Footer } from "@/components/app/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Leaf, Fish, Sprout, ArrowRight } from "lucide-react";
+import { Leaf, Fish, Sprout, ArrowRight, Building, Award, ShieldCheck, Star, Users, Briefcase, Smile } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -22,9 +22,25 @@ export default function DashboardPage() {
   const serviceGarden = PlaceHolderImages.find(p => p.id === 'service-garden');
   const serviceKoi = PlaceHolderImages.find(p => p.id === 'service-koi');
   const serviceMaintenance = PlaceHolderImages.find(p => p.id === 'service-maintenance');
-  const galleryImages = PlaceHolderImages.filter(p => p.id.startsWith('gallery-')).slice(0, 5); // Show first 5 projects
+  const galleryImages = PlaceHolderImages.filter(p => p.id.startsWith('gallery-')).slice(0, 5);
   const testimonialAvatar1 = PlaceHolderImages.find(p => p.id === 'testimonial-1');
   const testimonialAvatar2 = PlaceHolderImages.find(p => p.id === 'testimonial-2');
+
+  const workingProcess = [
+    { step: "01", title: "Tư Vấn & Khảo Sát", description: "Lắng nghe yêu cầu, khảo sát thực tế và đưa ra tư vấn sơ bộ miễn phí." },
+    { step: "02", title: "Thiết Kế 3D & Báo Giá", description: "Lên ý tưởng, dựng phối cảnh 3D và gửi báo giá chi tiết cho khách hàng." },
+    { step: "03", title: "Ký Hợp Đồng", description: "Thống nhất phương án thiết kế, chi phí và ký kết hợp đồng." },
+    { step: "04", title: "Thi Công Chuyên Nghiệp", description: "Tiến hành thi công theo đúng bản vẽ, đảm bảo chất lượng và tiến độ." },
+    { step: "05", title: "Nghiệm Thu & Bàn Giao", description: "Nghiệm thu công trình cùng khách hàng và bàn giao sản phẩm hoàn thiện." },
+    { step: "06", title: "Bảo Hành & Bảo Trì", description: "Thực hiện bảo hành dài hạn và cung cấp dịch vụ bảo trì định kỳ." },
+  ];
+
+  const coreValues = [
+    { icon: Award, title: "Chất Lượng Vượt Trội", description: "Sử dụng vật liệu tốt nhất, thi công tỉ mỉ trong từng chi tiết." },
+    { icon: Leaf, title: "Bền Vững & Tự Nhiên", description: "Giải pháp thiết kế hài hòa, tôn trọng và gần gũi với thiên nhiên." },
+    { icon: Star, title: "Thiết Kế Độc Quyền", description: "Mỗi công trình là một tác phẩm nghệ thuật duy nhất, đậm dấu ấn gia chủ." },
+    { icon: ShieldCheck, title: "Bảo Hành Dài Hạn", description: "Cam kết đồng hành cùng khách hàng với chính sách bảo hành rõ ràng." },
+  ];
 
 
   return (
@@ -49,26 +65,13 @@ export default function DashboardPage() {
               Chuyên nghiệp trong từng thiết kế, tận tâm trong từng công trình sân vườn, hồ cá Koi.
             </p>
             <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg animate-fade-in-up animation-delay-600" asChild>
-              <Link href="/lien-he">Yêu Cầu Tư Vấn</Link>
+              <Link href="/lien-he">Nhận Báo Giá Miễn Phí</Link>
             </Button>
           </div>
         </section>
 
-        {/* About Us Section */}
-        <section className="py-20 md:py-28 text-center bg-white">
-          <div className="container mx-auto px-4">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary">Về Chúng Tôi</h2>
-              <p className="text-muted-foreground mt-4 max-w-3xl mx-auto">
-                Với hơn 10 năm kinh nghiệm trong lĩnh vực thiết kế và thi công cảnh quan, Cảnh Quan Kiến Trúc Xanh tự hào là đơn vị tiên phong mang đến những giải pháp không gian sống xanh, đẳng cấp, và hài hòa với thiên nhiên. Sứ mệnh của chúng tôi là biến mỗi ngôi nhà thành một tác phẩm nghệ thuật sống động, nơi con người và thiên nhiên giao hòa.
-              </p>
-              <Button variant="outline" className="mt-8" asChild>
-                  <Link href="/gioi-thieu">Tìm Hiểu Thêm <ArrowRight className="ml-2 h-4 w-4" /></Link>
-              </Button>
-          </div>
-        </section>
-
         {/* Services Section */}
-        <section id="services" className="py-20 md:py-28 bg-muted">
+        <section id="services" className="py-20 md:py-28 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-primary">Dịch Vụ Của Chúng Tôi</h2>
@@ -114,6 +117,25 @@ export default function DashboardPage() {
           </div>
         </section>
         
+        {/* Working Process Section */}
+        <section className="py-20 md:py-28 bg-muted">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl md:text-4xl font-bold text-primary">Quy Trình Làm Việc Chuyên Nghiệp</h2>
+                    <p className="text-muted-foreground mt-3 max-w-xl mx-auto">Minh bạch trong từng bước để mang lại sự an tâm và hài lòng tuyệt đối cho khách hàng.</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {workingProcess.map((item, index) => (
+                        <Card key={index} className="bg-white border-t-4 border-accent shadow-lg text-center p-6 transform transition-transform hover:-translate-y-2">
+                            <h3 className="text-5xl font-bold text-accent opacity-50 mb-2">{item.step}</h3>
+                            <h4 className="text-xl font-bold text-primary mb-2">{item.title}</h4>
+                            <p className="text-muted-foreground text-sm">{item.description}</p>
+                        </Card>
+                    ))}
+                </div>
+            </div>
+        </section>
+
         {/* Gallery Section */}
         <section id="gallery" className="py-20 md:py-28 bg-white">
            <div className="container mx-auto px-4">
@@ -161,6 +183,54 @@ export default function DashboardPage() {
            </div>
         </section>
 
+        {/* Stats Section */}
+        <section className="py-20 bg-primary text-primary-foreground">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              <div className="flex flex-col items-center">
+                <Users className="w-10 h-10 mb-2 text-accent"/>
+                <p className="text-4xl font-bold">10+</p>
+                <p className="text-sm uppercase tracking-wider">Năm Kinh Nghiệm</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Briefcase className="w-10 h-10 mb-2 text-accent"/>
+                <p className="text-4xl font-bold">500+</p>
+                <p className="text-sm uppercase tracking-wider">Công Trình Hoàn Thiện</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Building className="w-10 h-10 mb-2 text-accent"/>
+                <p className="text-4xl font-bold">100+</p>
+                <p className="text-sm uppercase tracking-wider">Khách Hàng Doanh Nghiệp</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Smile className="w-10 h-10 mb-2 text-accent"/>
+                <p className="text-4xl font-bold">95%</p>
+                <p className="text-sm uppercase tracking-wider">Khách Hàng Hài Lòng</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us Section */}
+        <section className="py-20 md:py-28 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary">Tại Sao Chọn Kiến Trúc Xanh?</h2>
+              <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">Chúng tôi không chỉ xây dựng cảnh quan, chúng tôi kiến tạo không gian sống và mang lại giá trị bền vững.</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {coreValues.map((value, index) => (
+                <div key={index} className="text-center p-6 border-l-4 border-accent bg-muted rounded-r-lg">
+                  <value.icon className="h-10 w-10 text-primary mb-4 mx-auto"/>
+                  <h3 className="font-bold text-xl mb-2 text-primary">{value.title}</h3>
+                  <p className="text-sm text-muted-foreground">{value.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+
         {/* Testimonials Section */}
         <section id="testimonials" className="py-20 md:py-28 bg-muted">
           <div className="container mx-auto px-4">
@@ -200,12 +270,12 @@ export default function DashboardPage() {
         </section>
 
         {/* Call to Action Section */}
-        <section className="py-20 md:py-28 bg-primary/90 text-white text-center">
+        <section className="py-20 md:py-28 bg-primary/95 text-white text-center">
             <div className="container mx-auto px-4">
-                <h2 className="text-3xl md:text-4xl font-bold">Sẵn Sàng Biến Ước Mơ Về Một Không Gian Xanh Thành Hiện Thực?</h2>
-                <p className="text-white/80 mt-4 max-w-2xl mx-auto">Đừng ngần ngại liên hệ với chúng tôi. Các chuyên gia của Cảnh Quan Kiến Trúc Xanh luôn sẵn lòng lắng nghe và tư vấn giải pháp tốt nhất cho bạn.</p>
+                <h2 className="text-3xl md:text-4xl font-bold">Sẵn Sàng Biến Ước Mơ Cảnh Quan Của Bạn Thành Hiện Thực?</h2>
+                <p className="text-white/80 mt-4 max-w-2xl mx-auto">Chỉ một bước nữa để sở hữu không gian sống đẳng cấp. Hãy để lại thông tin, chuyên gia của chúng tôi sẽ liên hệ với bạn ngay!</p>
                 <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg" asChild>
-                    <Link href="/lien-he">Liên Hệ Ngay</Link>
+                    <Link href="/lien-he">Yêu Cầu Tư Vấn Ngay</Link>
                 </Button>
             </div>
         </section>
