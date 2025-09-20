@@ -22,6 +22,19 @@ export default function DashboardPage() {
   const serviceGarden = PlaceHolderImages.find(p => p.id === 'service-garden');
   const serviceKoi = PlaceHolderImages.find(p => p.id === 'service-koi');
   const serviceMaintenance = PlaceHolderImages.find(p => p.id === 'service-maintenance');
+  const serviceRenovation = PlaceHolderImages.find(p => p.id === 'service-renovation');
+  const serviceRooftop = PlaceHolderImages.find(p => p.id === 'service-rooftop');
+  const serviceVerticalGarden = PlaceHolderImages.find(p => p.id === 'service-vertical-garden');
+  
+  const services = [
+    { title: "Thiết kế Sân vườn", icon: Leaf, image: serviceGarden, link: "/dich-vu" },
+    { title: "Hồ Cá Koi Chuyên Nghiệp", icon: Fish, image: serviceKoi, link: "/dich-vu" },
+    { title: "Đá Phong Thủy & Tiểu Cảnh", icon: Sprout, image: serviceMaintenance, link: "/dich-vu" },
+    { title: "Cải Tạo & Nâng Cấp", icon: Lightbulb, image: serviceRenovation, link: "/dich-vu" },
+    { title: "Vườn Trên Sân Thượng", icon: Building, image: serviceRooftop, link: "/dich-vu" },
+    { title: "Tường Cây Xanh", icon: Leaf, image: serviceVerticalGarden, link: "/dich-vu" },
+  ];
+
   const galleryImages = PlaceHolderImages.filter(p => p.id.startsWith('gallery-')).slice(0, 5);
   const testimonialAvatar1 = PlaceHolderImages.find(p => p.id === 'testimonial-1');
   const testimonialAvatar2 = PlaceHolderImages.find(p => p.id === 'testimonial-2');
@@ -47,7 +60,7 @@ export default function DashboardPage() {
     },
     {
       id: 'hero-3',
-      title: ' biến Sân Vườn Thành Tác Phẩm Nghệ Thuật',
+      title: 'Biến Sân Vườn Thành Tác Phẩm Nghệ Thuật',
       description: 'Mỗi công trình là một câu chuyện, một dấu ấn riêng biệt, kết hợp hài hòa giữa thiên nhiên và phong cách của gia chủ.',
       buttonText: 'Xem Dự Án Tiêu Biểu',
       buttonLink: '/du-an',
@@ -78,7 +91,7 @@ export default function DashboardPage() {
       <Header />
       <main className="flex-1">
         {/* Hero Slider Section */}
-        <section className="relative h-[80vh] w-full text-white overflow-hidden">
+        <section className="relative h-[90vh] w-full text-white overflow-hidden">
           <Carousel
             plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
             className="w-full h-full"
@@ -93,12 +106,12 @@ export default function DashboardPage() {
                         src={slide.image.imageUrl}
                         alt={slide.title}
                         fill
-                        className="object-cover brightness-[0.5]"
+                        className="object-cover brightness-[0.6]"
                         priority={slide.id === 'hero-1'}
                         data-ai-hint={slide.image.imageHint}
                       />
                     )}
-                    <div className="absolute inset-0 bg-black/40" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                     <div className="relative z-10 flex h-full flex-col items-center justify-center text-center p-4">
                       <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-shadow-lg animate-fade-in-up">{slide.title}</h1>
                       <p className="mt-4 max-w-3xl text-lg md:text-xl text-shadow animate-fade-in-up animation-delay-300">
@@ -126,46 +139,48 @@ export default function DashboardPage() {
                 Chúng tôi cung cấp các giải pháp cảnh quan toàn diện, biến ý tưởng của bạn thành hiện thực.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="animate-fade-in-up animation-delay-300">
-                <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2 bg-white">
-                  {serviceGarden && <Image src={serviceGarden.imageUrl} alt="Thiết kế sân vườn" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceGarden.imageHint} />}
-                  <CardHeader>
-                    <Leaf className="w-10 h-10 text-primary mb-3" />
-                    <CardTitle className="text-xl font-bold">Thiết kế Sân vườn</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4 text-sm">Tư vấn, thiết kế cảnh quan sân vườn biệt thự, nhà phố, resort theo phong cách độc đáo và hợp phong thủy.</p>
-                     <Button variant="link" className="p-0 text-sm" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
-                  </CardContent>
-                </Card>
-              </div>
-              <div className="animate-fade-in-up animation-delay-600">
-                <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2 bg-white">
-                  {serviceKoi && <Image src={serviceKoi.imageUrl} alt="Thi công hồ cá Koi" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceKoi.imageHint} />}
-                  <CardHeader>
-                    <Fish className="w-10 h-10 text-primary mb-3" />
-                    <CardTitle className="text-xl font-bold">Hồ Cá Koi Chuyên Nghiệp</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4 text-sm">Xây dựng hồ cá Koi với hệ thống lọc chuẩn quốc tế, đảm bảo môi trường sống lý tưởng và thẩm mỹ cao.</p>
-                     <Button variant="link" className="p-0 text-sm" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
-                  </CardContent>
-                </Card>
-              </div>
-              <div className="animate-fade-in-up animation-delay-900">
-                <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2 bg-white">
-                  {serviceMaintenance && <Image src={serviceMaintenance.imageUrl} alt="Đá phong thủy & Tiểu cảnh" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceMaintenance.imageHint} />}
-                  <CardHeader>
-                    <Sprout className="w-10 h-10 text-primary mb-3" />
-                    <CardTitle className="text-xl font-bold">Đá Phong Thủy & Tiểu Cảnh</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4 text-sm">Cung cấp và bài trí đá phong thủy, thác nước, non bộ, mang lại vượng khí và nét đẹp cho không gian.</p>
-                    <Button variant="link" className="p-0 text-sm" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
-                  </CardContent>
-                </Card>
-              </div>
+            <Carousel
+              opts={{ align: "start", loop: true }}
+              className="w-full max-w-7xl mx-auto animate-fade-in-up animation-delay-300"
+            >
+              <CarouselContent>
+                {services.map((service, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="p-2">
+                       <Card className="overflow-hidden group border-none shadow-lg hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
+                          {service.image && (
+                              <div className="overflow-hidden aspect-video">
+                                  <Image 
+                                      src={service.image.imageUrl} 
+                                      alt={service.title}
+                                      width={600}
+                                      height={400}
+                                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                      data-ai-hint={service.image.imageHint} 
+                                  />
+                              </div>
+                          )}
+                          <CardHeader className="flex-shrink-0">
+                              <service.icon className="w-10 h-10 text-primary mb-2" />
+                              <CardTitle className="text-xl font-bold">{service.title}</CardTitle>
+                          </CardHeader>
+                          <CardContent className="flex-grow flex flex-col justify-end">
+                              <Button variant="link" asChild className="p-0 font-semibold mt-auto">
+                                  <Link href={service.link}>Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link>
+                              </Button>
+                          </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="-left-4 md:-left-8" />
+              <CarouselNext className="-right-4 md:-right-8" />
+            </Carousel>
+            <div className="text-center mt-12 animate-fade-in-up animation-delay-600">
+                <Button size="lg" asChild>
+                    <Link href="/dich-vu">Xem Tất Cả Dịch Vụ</Link>
+                </Button>
             </div>
           </div>
         </section>
@@ -207,20 +222,21 @@ export default function DashboardPage() {
                   align: "start",
                   loop: true,
                 }}
+                plugins={[Autoplay({ delay: 3000, stopOnInteraction: true })]}
                 className="w-full max-w-6xl mx-auto animate-fade-in-up animation-delay-300"
               >
                 <CarouselContent>
                   {galleryImages.map((image, index) => (
                     <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                       <div className="p-1">
-                        <Card className="overflow-hidden border-none shadow-lg">
+                        <Card className="overflow-hidden border-none shadow-lg group">
                           <CardContent className="flex aspect-square items-center justify-center p-0">
                              <Image 
                                 src={image.imageUrl} 
                                 alt={`Project ${index + 1}`} 
                                 width={400} 
                                 height={400} 
-                                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" 
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
                                 data-ai-hint={image.imageHint} 
                               />
                           </CardContent>
@@ -354,3 +370,5 @@ export default function DashboardPage() {
     </div>
   );
 }
+
+    
