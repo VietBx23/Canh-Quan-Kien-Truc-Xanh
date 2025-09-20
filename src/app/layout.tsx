@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'SitePost',
-  description: 'Post articles to your Google Site',
+  title: 'Cảnh Quan Kiến Trúc Xanh',
+  description: 'Chuyên thiết kế, thi công sân vườn, hồ cá Koi và bảo dưỡng cảnh quan chuyên nghiệp.',
 };
 
 export default function RootLayout({

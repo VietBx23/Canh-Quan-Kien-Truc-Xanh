@@ -1,10 +1,88 @@
 {
   "placeholderImages": [
     {
-      "id": "user-avatar",
-      "description": "User avatar for the header",
-      "imageUrl": "https://picsum.photos/seed/user-avatar/40/40",
-      "imageHint": "user avatar"
+      "id": "hero-garden",
+      "description": "A beautiful, lush garden with a stone path to be used in the hero section.",
+      "imageUrl": "https://picsum.photos/seed/hero-garden/1200/800",
+      "imageHint": "lush garden"
+    },
+    {
+      "id": "service-garden",
+      "description": "Image for the garden design service.",
+      "imageUrl": "https://picsum.photos/seed/service-garden/600/400",
+      "imageHint": "garden design"
+    },
+    {
+      "id": "service-koi",
+      "description": "Image for the Koi pond construction service.",
+      "imageUrl": "https://picsum.photos/seed/service-koi/600/400",
+      "imageHint": "koi pond"
+    },
+    {
+      "id": "service-maintenance",
+      "description": "Image for the landscape maintenance service.",
+      "imageUrl": "https://picsum.photos/seed/service-maintenance/600/400",
+      "imageHint": "gardening tools"
+    },
+    {
+      "id": "gallery-1",
+      "description": "Project gallery image 1.",
+      "imageUrl": "https://picsum.photos/seed/gallery1/400/400",
+      "imageHint": "modern backyard"
+    },
+    {
+      "id": "gallery-2",
+      "description": "Project gallery image 2.",
+      "imageUrl": "https://picsum.photos/seed/gallery2/400/400",
+      "imageHint": "koi fish"
+    },
+    {
+      "id": "gallery-3",
+      "description": "Project gallery image 3.",
+      "imageUrl": "https://picsum.photos/seed/gallery3/400/400",
+      "imageHint": "zen garden"
+    },
+    {
+      "id": "gallery-4",
+      "description": "Project gallery image 4.",
+      "imageUrl": "https://picsum.photos/seed/gallery4/400/400",
+      "imageHint": "rooftop garden"
+    },
+    {
+      "id": "gallery-5",
+      "description": "Project gallery image 5.",
+      "imageUrl": "https://picsum.photos/seed/gallery5/400/400",
+      "imageHint": "stone pathway"
+    },
+    {
+      "id": "gallery-6",
+      "description": "Project gallery image 6.",
+      "imageUrl": "https://picsum.photos/seed/gallery6/400/400",
+      "imageHint": "small waterfall"
+    },
+    {
+      "id": "gallery-7",
+      "description": "Project gallery image 7.",
+      "imageUrl": "https://picsum.photos/seed/gallery7/400/400",
+      "imageHint": "patio plants"
+    },
+    {
+      "id": "gallery-8",
+      "description": "Project gallery image 8.",
+      "imageUrl": "https://picsum.photos/seed/gallery8/400/400",
+      "imageHint": "night garden"
+    },
+    {
+      "id": "testimonial-1",
+      "description": "Avatar for the first testimonial.",
+      "imageUrl": "https://picsum.photos/seed/avatar1/56/56",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "testimonial-2",
+      "description": "Avatar for the second testimonial.",
+      "imageUrl": "https://picsum.photos/seed/avatar2/56/56",
+      "imageHint": "woman portrait"
     }
   ]
 }
