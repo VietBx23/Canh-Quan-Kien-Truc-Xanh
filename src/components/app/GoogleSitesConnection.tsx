@@ -27,10 +27,10 @@ export function GoogleSitesConnection({
 
   const handleConnect = () => {
     setIsConnected(true);
-    addActivity("Connected to Google Sites account.", PlugZap);
+    addActivity("Simulated connection to Google Sites account.", PlugZap);
     toast({
-      title: "Success",
-      description: "Successfully connected to Google Sites.",
+      title: "Success (Simulated)",
+      description: "Successfully connected to Google Sites (mock connection).",
     });
   };
 
@@ -49,7 +49,7 @@ export function GoogleSitesConnection({
       <CardHeader>
         <CardTitle>Google Sites Connection</CardTitle>
         <CardDescription>
-          Connect your account to publish posts.
+          Connect your account to publish posts. (This is a mock connection for development)
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -57,7 +57,7 @@ export function GoogleSitesConnection({
           <div className="flex items-center justify-between rounded-lg bg-green-50 dark:bg-green-950 p-4">
             <div className="flex items-center gap-2 text-green-700 dark:text-green-300">
               <PlugZap className="h-5 w-5" />
-              <p className="font-medium">Connected</p>
+              <p className="font-medium">Connected (Simulated)</p>
             </div>
             <Button variant="ghost" className="text-green-700 dark:text-green-300 hover:bg-green-100 dark:hover:bg-green-900 hover:text-green-800 dark:hover:text-green-200" size="sm" onClick={handleDisconnect}>
               Disconnect

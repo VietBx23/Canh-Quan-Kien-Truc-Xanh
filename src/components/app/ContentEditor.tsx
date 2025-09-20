@@ -86,24 +86,24 @@ export function ContentEditor({ isConnected, addActivity }: ContentEditorProps) 
 
         if (isScheduling) {
             toast({
-                title: 'Scheduled!',
-                description: `Your post "${title}" will be published on ${format(date!, "PPP")}.`
+                title: 'Scheduled! (Simulated)',
+                description: `Your post "${title}" is set to be "published" on ${format(date!, "PPP")}.`
             });
             addActivity(`Scheduled post: "${title}" for ${format(date!, "PPP")}`, Timer);
         } else {
             toast({
-                title: "Published!",
-                description: `Your post "${title}" is now live.`,
+                title: "Published! (Simulated)",
+                description: `Your post "${title}" has been "published".`,
                 action: (
                     <Button variant="outline" size="sm" onClick={() => {
                         navigator.clipboard.writeText(fakeLink);
-                        toast({ description: "Link copied to clipboard!" });
+                        toast({ description: "Mock link copied to clipboard!" });
                     }}>
-                    Copy Link
+                    Copy Mock Link
                     </Button>
                 ),
             });
-            addActivity(`Published post: "${title}"`, Send);
+            addActivity(`"Published" post: "${title}"`, Send);
         }
         setTitle("");
         setContent("");
