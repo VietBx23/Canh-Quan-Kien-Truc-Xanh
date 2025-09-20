@@ -1,3 +1,4 @@
+
 import Link from "next/link"
 import {
   Bell,
@@ -12,6 +13,10 @@ import {
   Users,
   Newspaper,
   PenSquare,
+  LayoutTemplate,
+  Star,
+  Settings,
+  Image as ImageIcon,
 } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
@@ -41,10 +46,13 @@ export default function AdminLayout({
 }) {
   const navItems = [
       { href: "/dashboard/admin", icon: Home, label: "Tổng quan" },
-      { href: "#", icon: PenSquare, label: "Dự án", badge: "12" },
+      { href: "#", icon: ImageIcon, label: "Slide Banner" },
+      { href: "#", icon: LayoutTemplate, label: "Dịch vụ" },
+      { href: "/dashboard/admin/du-an", icon: PenSquare, label: "Dự án" },
       { href: "#", icon: Newspaper, label: "Bài viết" },
-      { href: "#", icon: Users, label: "Khách hàng" },
+      { href: "#", icon: Star, label: "Khách hàng" },
       { href: "#", icon: LineChart, label: "Thống kê" },
+      { href: "#", icon: Settings, label: "Cài đặt" },
   ];
   
   return (
