@@ -16,7 +16,7 @@ export function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 flex h-20 items-center justify-between border-b bg-background/95 px-4 backdrop-blur-sm md:px-8">
+    <header className="sticky top-0 z-50 flex h-20 items-center justify-between border-b bg-background/80 px-4 backdrop-blur-sm transition-all duration-300 md:px-8">
       <Link href="/" className="flex items-center gap-2">
         <Mountain className="h-6 w-6 text-primary" />
         <span className="font-bold text-lg">Kiến Trúc Xanh</span>
@@ -26,23 +26,23 @@ export function Header() {
           <Link
             key={item.name}
             href={item.href}
-            className="text-foreground/80 transition-colors hover:text-foreground"
+            className="text-foreground/80 transition-colors hover:text-primary font-medium"
           >
             {item.name}
           </Link>
         ))}
       </nav>
-      <div className="hidden lg:flex items-center gap-4">
+      <div className="hidden lg:flex items-center gap-2">
           <Button variant="ghost" size="sm" asChild>
             <a href="tel:0987654321" className="flex items-center gap-2">
-                <Phone className="h-4 w-4"/>
+                <Phone className="h-4 w-4 text-primary"/>
                 <span>0987 654 321</span>
             </a>
           </Button>
-           <Button variant="ghost" size="sm" asChild>
+           <Button asChild>
             <a href="https://zalo.me/0987654321" target="_blank" className="flex items-center gap-2">
                 <MessageSquare className="h-4 w-4"/>
-                <span>Zalo</span>
+                <span>Tư Vấn Zalo</span>
             </a>
           </Button>
       </div>
@@ -64,7 +64,7 @@ export function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block text-lg font-medium text-foreground/80 transition-colors hover:text-foreground"
+                  className="block text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
                 >
                   {item.name}
                 </Link>
@@ -90,5 +90,3 @@ export function Header() {
     </header>
   );
 }
-
-    

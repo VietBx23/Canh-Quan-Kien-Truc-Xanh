@@ -35,7 +35,7 @@ export default function DashboardPage() {
     { title: "Tường Cây Xanh", icon: Leaf, image: serviceVerticalGarden, link: "/dich-vu" },
   ];
 
-  const galleryImages = PlaceHolderImages.filter(p => p.id.startsWith('gallery-')).slice(0, 5);
+  const galleryImages = PlaceHolderImages.filter(p => p.id.startsWith('gallery-')).slice(0, 8);
   const testimonialAvatar1 = PlaceHolderImages.find(p => p.id === 'testimonial-1');
   const testimonialAvatar2 = PlaceHolderImages.find(p => p.id === 'testimonial-2');
   const statsBgImage = PlaceHolderImages.find(p => p.id === 'stats-background');
@@ -87,7 +87,7 @@ export default function DashboardPage() {
 
 
   return (
-    <div className="flex min-h-screen w-full flex-col bg-white font-body">
+    <div className="flex min-h-screen w-full flex-col bg-background font-body">
       <Header />
       <main className="flex-1">
         {/* Hero Slider Section */}
@@ -100,7 +100,7 @@ export default function DashboardPage() {
             <CarouselContent>
               {heroSlides.map((slide) => (
                 <CarouselItem key={slide.id}>
-                  <div className="relative aspect-video md:aspect-[16/7] w-full h-[90vh]">
+                  <div className="relative h-[90vh] w-full">
                     {slide.image && (
                       <Image
                         src={slide.image.imageUrl}
@@ -160,11 +160,10 @@ export default function DashboardPage() {
                                   />
                               </div>
                           )}
-                          <CardHeader className="flex-shrink-0">
-                              <service.icon className="w-10 h-10 text-primary mb-2" />
-                              <CardTitle className="text-xl font-bold">{service.title}</CardTitle>
+                          <CardHeader>
+                              <CardTitle className="text-xl font-bold text-primary">{service.title}</CardTitle>
                           </CardHeader>
-                          <CardContent className="flex-grow flex flex-col justify-end">
+                          <CardContent className="flex-grow flex items-end">
                               <Button variant="link" asChild className="p-0 font-semibold mt-auto">
                                   <Link href={service.link}>Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link>
                               </Button>
@@ -248,22 +247,22 @@ export default function DashboardPage() {
             <div className="container mx-auto px-4 content-overlay">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div className="flex flex-col items-center animate-fade-in-up">
-                  <Users className="w-10 h-10 mb-2 text-accent"/>
+                  <Users className="w-12 h-12 mb-3 text-accent transition-transform duration-300 hover:scale-125"/>
                   <p className="text-4xl font-bold">10+</p>
                   <p className="text-sm uppercase tracking-wider">Năm Kinh Nghiệm</p>
                 </div>
                 <div className="flex flex-col items-center animate-fade-in-up animation-delay-300">
-                  <Briefcase className="w-10 h-10 mb-2 text-accent"/>
+                  <Briefcase className="w-12 h-12 mb-3 text-accent transition-transform duration-300 hover:scale-125"/>
                   <p className="text-4xl font-bold">500+</p>
                   <p className="text-sm uppercase tracking-wider">Công Trình Hoàn Thiện</p>
                 </div>
                 <div className="flex flex-col items-center animate-fade-in-up animation-delay-600">
-                  <Building className="w-10 h-10 mb-2 text-accent"/>
+                  <Building className="w-12 h-12 mb-3 text-accent transition-transform duration-300 hover:scale-125"/>
                   <p className="text-4xl font-bold">100+</p>
                   <p className="text-sm uppercase tracking-wider">Khách Hàng Doanh Nghiệp</p>
                 </div>
                 <div className="flex flex-col items-center animate-fade-in-up animation-delay-900">
-                  <Smile className="w-10 h-10 mb-2 text-accent"/>
+                  <Smile className="w-12 h-12 mb-3 text-accent transition-transform duration-300 hover:scale-125"/>
                   <p className="text-4xl font-bold">95%</p>
                   <p className="text-sm uppercase tracking-wider">Khách Hàng Hài Lòng</p>
                 </div>
@@ -284,7 +283,7 @@ export default function DashboardPage() {
                  <div key={index} className="animate-fade-in-up" style={{animationDelay: `${index * 200}ms`}}>
                     <div className="text-center p-6 bg-muted rounded-lg transition-transform hover:-translate-y-2 hover:shadow-xl h-full">
                       <div className="inline-block p-4 bg-primary/10 rounded-full mb-4">
-                        <value.icon className="h-8 w-8 text-primary"/>
+                        <value.icon className="h-8 w-8 text-primary transition-transform duration-300 group-hover:scale-125"/>
                       </div>
                       <h3 className="font-bold text-xl mb-2 text-primary">{value.title}</h3>
                       <p className="text-sm text-muted-foreground">{value.description}</p>
