@@ -9,6 +9,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Leaf, Fish, Sprout, Phone } from "lucide-react";
 import Image from "next/image";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
 export default function DashboardPage() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero-garden');
@@ -31,17 +38,17 @@ export default function DashboardPage() {
               src={heroImage.imageUrl}
               alt="Beautiful garden landscape"
               fill
-              objectFit="cover"
-              className="brightness-[0.6]"
+              className="object-cover brightness-[0.6]"
               data-ai-hint={heroImage.imageHint}
+              priority
             />
           )}
           <div className="relative z-10 flex h-full flex-col items-center justify-center text-center p-4">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-shadow-lg">Kiến Tạo Không Gian Sống Đẳng Cấp</h1>
-            <p className="mt-4 max-w-3xl text-lg md:text-xl text-shadow">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-shadow-lg animate-fade-in-up">Kiến Tạo Không Gian Sống Đẳng Cấp</h1>
+            <p className="mt-4 max-w-3xl text-lg md:text-xl text-shadow animate-fade-in-up animation-delay-300">
               Chuyên nghiệp trong từng thiết kế, tận tâm trong từng công trình sân vườn, hồ cá Koi.
             </p>
-            <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg">
+            <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg animate-fade-in-up animation-delay-600">
               Yêu Cầu Tư Vấn
             </Button>
           </div>
@@ -57,7 +64,7 @@ export default function DashboardPage() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 border-none">
+              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2">
                 {serviceGarden && <Image src={serviceGarden.imageUrl} alt="Thiết kế sân vườn" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceGarden.imageHint} />}
                 <CardHeader>
                   <Leaf className="w-10 h-10 text-primary mb-3" />
@@ -67,7 +74,7 @@ export default function DashboardPage() {
                   <p className="text-muted-foreground">Tư vấn, thiết kế cảnh quan sân vườn biệt thự, nhà phố, resort theo phong cách độc đáo và hợp phong thủy.</p>
                 </CardContent>
               </Card>
-              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 border-none">
+              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2">
                 {serviceKoi && <Image src={serviceKoi.imageUrl} alt="Thi công hồ cá Koi" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceKoi.imageHint} />}
                 <CardHeader>
                   <Fish className="w-10 h-10 text-primary mb-3" />
@@ -77,7 +84,7 @@ export default function DashboardPage() {
                   <p className="text-muted-foreground">Xây dựng hồ cá Koi với hệ thống lọc chuẩn quốc tế, đảm bảo môi trường sống lý tưởng và thẩm mỹ cao.</p>
                 </CardContent>
               </Card>
-              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 border-none">
+              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2">
                 {serviceMaintenance && <Image src={serviceMaintenance.imageUrl} alt="Đá phong thủy & Tiểu cảnh" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceMaintenance.imageHint} />}
                 <CardHeader>
                   <Sprout className="w-10 h-10 text-primary mb-3" />
@@ -100,20 +107,36 @@ export default function DashboardPage() {
                   Nơi mỗi công trình là một tác phẩm nghệ thuật đầy tâm huyết.
                 </p>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {galleryImages.map((image, index) => (
-                   <div key={index} className="group overflow-hidden rounded-lg shadow-md">
-                      <Image 
-                        src={image.imageUrl} 
-                        alt={`Project ${index + 1}`} 
-                        width={400} 
-                        height={400} 
-                        className="w-full h-full object-cover aspect-square transition-transform duration-500 group-hover:scale-110" 
-                        data-ai-hint={image.imageHint} 
-                      />
-                   </div>
-                ))}
-              </div>
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full max-w-6xl mx-auto"
+              >
+                <CarouselContent>
+                  {galleryImages.map((image, index) => (
+                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                      <div className="p-1">
+                        <Card className="overflow-hidden">
+                          <CardContent className="flex aspect-square items-center justify-center p-0">
+                             <Image 
+                                src={image.imageUrl} 
+                                alt={`Project ${index + 1}`} 
+                                width={400} 
+                                height={400} 
+                                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" 
+                                data-ai-hint={image.imageHint} 
+                              />
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
            </div>
         </section>
 
@@ -127,7 +150,7 @@ export default function DashboardPage() {
                 </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              <Card className="border-none shadow-lg bg-muted">
+              <Card className="border-none shadow-lg bg-muted transform transition-all hover:scale-105">
                 <CardContent className="p-8">
                   <p className="text-muted-foreground italic mb-6">"Đội ngũ làm việc rất chuyên nghiệp và có tâm. Khu vườn nhà tôi giờ đây thật sự là một nơi thư giãn tuyệt vời. Cảm ơn Kiến Trúc Xanh!"</p>
                   <div className="flex items-center gap-4">
@@ -139,7 +162,7 @@ export default function DashboardPage() {
                   </div>
                 </CardContent>
               </Card>
-              <Card className="border-none shadow-lg bg-muted">
+              <Card className="border-none shadow-lg bg-muted transform transition-all hover:scale-105">
                  <CardContent className="p-8">
                   <p className="text-muted-foreground italic mb-6">"Hồ cá Koi đã trở thành điểm nhấn thu hút khách cho quán của tôi. Dịch vụ và chất lượng thi công vượt xa mong đợi của tôi. Sẽ tiếp tục hợp tác."</p>
                   <div className="flex items-center gap-4">
@@ -162,7 +185,7 @@ export default function DashboardPage() {
                     <h2 className="text-3xl md:text-4xl font-bold">Liên Hệ Tư Vấn</h2>
                     <p className="text-gray-300 mt-3 max-w-xl mx-auto">Để lại thông tin, chuyên gia của chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
                 </div>
-                <Card className="max-w-2xl mx-auto bg-gray-900 border-gray-700 shadow-2xl">
+                <Card className="max-w-2xl mx-auto bg-gray-900/80 backdrop-blur-sm border-gray-700 shadow-2xl">
                     <CardContent className="p-8">
                         <form className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -189,8 +212,8 @@ export default function DashboardPage() {
                 </Card>
             </div>
         </section>
-
       </main>
+
       <footer className="bg-primary text-primary-foreground py-10">
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
           <div>
@@ -199,12 +222,14 @@ export default function DashboardPage() {
           </div>
           <div>
             <h4 className="font-bold text-lg">Thông tin liên hệ</h4>
-            <p className="mt-2 text-sm opacity-90">Địa chỉ: 123 Đường ABC, Phường X, Quận Y, TP.HCM</p>
-            <p className="text-sm opacity-90">Email: lienhe@kientrucxanh.com</p>
-            <div className="flex justify-center md:justify-start items-center gap-2 mt-1">
-              <Phone className="w-4 h-4"/>
-              <span className="text-sm">Hotline: 0987 654 321</span>
-            </div>
+            <ul className="mt-2 space-y-1 text-sm opacity-90">
+                <li>Địa chỉ: 123 Đường ABC, Phường X, Quận Y, TP.HCM</li>
+                <li>Email: lienhe@kientrucxanh.com</li>
+                <li className="flex items-center justify-center md:justify-start gap-2">
+                    <Phone className="w-4 h-4"/>
+                    <span>Hotline: 0987 654 321</span>
+                </li>
+            </ul>
           </div>
            <div>
             <h4 className="font-bold text-lg">Giờ làm việc</h4>
