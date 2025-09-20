@@ -5,8 +5,7 @@ import { Header } from "@/components/app/Header";
 import { Footer } from "@/components/app/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Leaf, Fish, Sprout, ArrowRight, Building, Award, ShieldCheck, Star, Users, Briefcase, Smile, Lightbulb } from "lucide-react";
+import { ArrowRight, Star, Award, ShieldCheck, Leaf, Lightbulb, Users, Briefcase, Building, Smile } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -19,48 +18,20 @@ import {
 } from "@/components/ui/carousel"
 import { HeroSlider } from "@/components/app/HeroSlider";
 import Autoplay from "embla-carousel-autoplay"
+import { services } from "@/lib/data/services";
+import { projects } from "@/lib/data/projects";
+import { testimonials } from "@/lib/data/testimonials";
+import { workingProcess, coreValues, stats } from "@/lib/data/about";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 
 export default function DashboardPage() {
-  const serviceGarden = PlaceHolderImages.find(p => p.id === 'service-garden');
-  const serviceKoi = PlaceHolderImages.find(p => p.id === 'service-koi');
-  const serviceMaintenance = PlaceHolderImages.find(p => p.id === 'service-maintenance');
-  const serviceRenovation = PlaceHolderImages.find(p => p.id === 'service-renovation');
-  const serviceRooftop = PlaceHolderImages.find(p => p.id === 'service-rooftop');
-  const serviceVerticalGarden = PlaceHolderImages.find(p => p.id === 'service-vertical-garden');
-  
-  const services = [
-    { title: "Thiết kế Sân vườn", icon: Leaf, image: serviceGarden, link: "/dich-vu/thiet-ke-san-vuon" },
-    { title: "Hồ Cá Koi Chuyên Nghiệp", icon: Fish, image: serviceKoi, link: "/dich-vu/ho-ca-koi" },
-    { title: "Đá Phong Thủy & Tiểu Cảnh", icon: Sprout, image: serviceMaintenance, link: "/dich-vu/da-phong-thuy" },
-    { title: "Cải Tạo & Nâng Cấp", icon: Lightbulb, image: serviceRenovation, link: "/dich-vu/cai-tao-nang-cap" },
-    { title: "Vườn Trên Sân Thượng", icon: Building, image: serviceRooftop, link: "/dich-vu/vuon-san-thuong" },
-    { title: "Tường Cây Xanh", icon: Leaf, image: serviceVerticalGarden, link: "/dich-vu/tuong-cay-xanh" },
-  ];
-
-  const galleryImages = PlaceHolderImages.filter(p => p.id.startsWith('gallery-')).slice(0, 12);
+  const galleryImages = projects.slice(0, 12);
   const testimonialAvatar1 = PlaceHolderImages.find(p => p.id === 'testimonial-1');
   const testimonialAvatar2 = PlaceHolderImages.find(p => p.id === 'testimonial-2');
   const statsBgImage = PlaceHolderImages.find(p => p.id === 'stats-background');
   const ctaBgImage = PlaceHolderImages.find(p => p.id === 'cta-background');
   
-  const workingProcess = [
-    { step: "01", title: "Tư Vấn & Khảo Sát", description: "Lắng nghe yêu cầu, khảo sát thực tế và đưa ra tư vấn sơ bộ miễn phí." },
-    { step: "02", title: "Thiết Kế 3D & Báo Giá", description: "Lên ý tưởng, dựng phối cảnh 3D và gửi báo giá chi tiết cho khách hàng." },
-    { step: "03", title: "Ký Hợp Đồng", description: "Thống nhất phương án thiết kế, chi phí và ký kết hợp đồng." },
-    { step: "04", title: "Thi Công Chuyên Nghiệp", description: "Tiến hành thi công theo đúng bản vẽ, đảm bảo chất lượng và tiến độ." },
-    { step: "05", title: "Nghiệm Thu & Bàn Giao", description: "Nghiệm thu công trình cùng khách hàng và bàn giao sản phẩm hoàn thiện." },
-    { step: "06", title: "Bảo Hành & Bảo Trì", description: "Thực hiện bảo hành dài hạn và cung cấp dịch vụ bảo trì định kỳ." },
-  ];
-
-  const coreValues = [
-    { icon: Award, title: "Chất Lượng Vượt Trội", description: "Sử dụng vật liệu tốt nhất, thi công tỉ mỉ trong từng chi tiết." },
-    { icon: Leaf, title: "Bền Vững & Tự Nhiên", description: "Giải pháp thiết kế hài hòa, tôn trọng và gần gũi với thiên nhiên." },
-    { icon: Lightbulb, title: "Thiết Kế Sáng Tạo", description: "Mỗi công trình là một tác phẩm nghệ thuật duy nhất, đậm dấu ấn gia chủ." },
-    { icon: ShieldCheck, title: "Bảo Hành Dài Hạn", description: "Cam kết đồng hành cùng khách hàng với chính sách bảo hành rõ ràng." },
-  ];
-
-
   return (
     <div className="flex min-h-screen w-full flex-col bg-background font-body">
       <Header />
@@ -83,7 +54,7 @@ export default function DashboardPage() {
               className="w-full max-w-7xl mx-auto animate-fade-in-up animation-delay-300"
             >
               <CarouselContent>
-                {services.map((service, index) => (
+                {services.slice(0,6).map((service, index) => (
                   <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                     <div className="p-2">
                        <Card className="overflow-hidden group border-none shadow-lg hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
@@ -104,7 +75,7 @@ export default function DashboardPage() {
                           </CardHeader>
                           <CardContent className="flex-grow flex items-end">
                               <Button variant="link" asChild className="p-0 font-semibold mt-auto">
-                                  <Link href={service.link}>Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link>
+                                  <Link href={`/dich-vu/${service.slug}`}>Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link>
                               </Button>
                           </CardContent>
                       </Card>
@@ -175,7 +146,7 @@ export default function DashboardPage() {
                                       data-ai-hint={image.imageHint} 
                                     />
                                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-4">
-                                        <p className="text-white text-lg font-semibold capitalize text-shadow">{image.imageHint.replace(/-/g, ' ')}</p>
+                                        <p className="text-white text-lg font-semibold capitalize text-shadow">{image.title}</p>
                                     </div>
                                 </Link>
                               </div>
@@ -199,26 +170,13 @@ export default function DashboardPage() {
           <section className="py-20 bg-parallax bg-overlay text-primary-foreground" style={{backgroundImage: `url(${statsBgImage.imageUrl})`}}>
             <div className="container mx-auto px-4 content-overlay">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div className="flex flex-col items-center animate-fade-in-up">
-                  <Users className="w-12 h-12 mb-3 text-accent transition-transform duration-300 hover:scale-125"/>
-                  <p className="text-4xl font-bold">10+</p>
-                  <p className="text-sm uppercase tracking-wider">Năm Kinh Nghiệm</p>
-                </div>
-                <div className="flex flex-col items-center animate-fade-in-up animation-delay-300">
-                  <Briefcase className="w-12 h-12 mb-3 text-accent transition-transform duration-300 hover:scale-125"/>
-                  <p className="text-4xl font-bold">500+</p>
-                  <p className="text-sm uppercase tracking-wider">Công Trình Hoàn Thiện</p>
-                </div>
-                <div className="flex flex-col items-center animate-fade-in-up animation-delay-600">
-                  <Building className="w-12 h-12 mb-3 text-accent transition-transform duration-300 hover:scale-125"/>
-                  <p className="text-4xl font-bold">100+</p>
-                  <p className="text-sm uppercase tracking-wider">Khách Hàng Doanh Nghiệp</p>
-                </div>
-                <div className="flex flex-col items-center animate-fade-in-up animation-delay-900">
-                  <Smile className="w-12 h-12 mb-3 text-accent transition-transform duration-300 hover:scale-125"/>
-                  <p className="text-4xl font-bold">95%</p>
-                  <p className="text-sm uppercase tracking-wider">Khách Hàng Hài Lòng</p>
-                </div>
+                {stats.map((stat, index) => (
+                    <div key={index} className="flex flex-col items-center animate-fade-in-up" style={{animationDelay: `${index * 300}ms`}}>
+                        <stat.icon className="w-12 h-12 mb-3 text-accent transition-transform duration-300 hover:scale-125"/>
+                        <p className="text-4xl font-bold">{stat.value}</p>
+                        <p className="text-sm uppercase tracking-wider">{stat.label}</p>
+                    </div>
+                ))}
               </div>
             </div>
           </section>
@@ -258,34 +216,22 @@ export default function DashboardPage() {
                 </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              <div className="animate-fade-in-up animation-delay-300">
-                <Card className="border-none shadow-lg bg-white transform transition-all hover:scale-[1.02] h-full">
-                  <CardContent className="p-8">
-                    <p className="text-muted-foreground italic mb-6">"Đội ngũ làm việc rất chuyên nghiệp và có tâm. Khu vườn nhà tôi giờ đây thật sự là một nơi thư giãn tuyệt vời. Cảm ơn Kiến Trúc Xanh!"</p>
-                    <div className="flex items-center gap-4">
-                       {testimonialAvatar1 && <Image src={testimonialAvatar1.imageUrl} alt="Avatar khách hàng 1" width={56} height={56} className="rounded-full object-cover" data-ai-hint={testimonialAvatar1.imageHint}/>}
-                      <div>
-                        <p className="font-bold text-primary">Anh Hoàng Minh</p>
-                        <p className="text-sm text-muted-foreground">Chủ biệt thự, Quận 2</p>
-                      </div>
+                {testimonials.slice(0, 2).map((testimonial, index) => (
+                    <div key={testimonial.id} className="animate-fade-in-up" style={{animationDelay: `${index * 300}ms`}}>
+                        <Card className="border-none shadow-lg bg-white transform transition-all hover:scale-[1.02] h-full">
+                            <CardContent className="p-8">
+                                <p className="text-muted-foreground italic mb-6">"{testimonial.quote}"</p>
+                                <div className="flex items-center gap-4">
+                                {testimonial.image && <Image src={testimonial.image.imageUrl} alt={`Avatar ${testimonial.author}`} width={56} height={56} className="rounded-full object-cover" data-ai-hint={testimonial.image.imageHint}/>}
+                                <div>
+                                    <p className="font-bold text-primary">{testimonial.author}</p>
+                                    <p className="text-sm text-muted-foreground">{testimonial.location}</p>
+                                </div>
+                                </div>
+                            </CardContent>
+                        </Card>
                     </div>
-                  </CardContent>
-                </Card>
-              </div>
-              <div className="animate-fade-in-up animation-delay-600">
-                <Card className="border-none shadow-lg bg-white transform transition-all hover:scale-[1.02] h-full">
-                   <CardContent className="p-8">
-                    <p className="text-muted-foreground italic mb-6">"Hồ cá Koi đã trở thành điểm nhấn thu hút khách cho quán của tôi. Dịch vụ và chất lượng thi công vượt xa mong đợi của tôi. Sẽ tiếp tục hợp tác."</p>
-                    <div className="flex items-center gap-4">
-                       {testimonialAvatar2 && <Image src={testimonialAvatar2.imageUrl} alt="Avatar khách hàng 2" width={56} height={56} className="rounded-full object-cover" data-ai-hint={testimonialAvatar2.imageHint}/>}
-                       <div>
-                        <p className="font-bold text-primary">Chị Lan Anh</p>
-                        <p className="text-sm text-muted-foreground">Chủ quán cafe sân vườn</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+                ))}
             </div>
           </div>
         </section>
@@ -308,5 +254,3 @@ export default function DashboardPage() {
     </div>
   );
 }
-
-    

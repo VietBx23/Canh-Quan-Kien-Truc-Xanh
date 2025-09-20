@@ -2,28 +2,17 @@
 import { Header } from "@/components/app/Header";
 import { Footer } from "@/components/app/Footer";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Award, Target, Users, Leaf, ShieldCheck, Star, Lightbulb, Briefcase, Building, Smile, Eye } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { coreValues, missionVision, stats, aboutStory } from "@/lib/data/about";
+import { Target, Eye } from "lucide-react";
+
 
 export default async function AboutPage() {
     const teamImage = PlaceHolderImages.find(p => p.id === 'gallery-15');
     const ctaBgImage = PlaceHolderImages.find(p => p.id === 'cta-background');
-
-    const stats = [
-        { icon: Users, value: "10+", label: "Năm Kinh Nghiệm" },
-        { icon: Briefcase, value: "500+", label: "Công Trình Hoàn Thiện" },
-        { icon: Smile, value: "95%", label: "Khách Hàng Hài Lòng" },
-    ];
-    
-    const coreValues = [
-        { icon: Users, title: "Tận tâm & Chuyên nghiệp", description: "Đội ngũ kiến trúc sư, kỹ sư và nghệ nhân dày dặn kinh nghiệm, luôn đặt lợi ích của khách hàng lên hàng đầu." },
-        { icon: Lightbulb, title: "Sáng tạo & Độc bản", description: "Mỗi thiết kế là một tác phẩm nghệ thuật riêng biệt, không ngừng cập nhật xu hướng và vật liệu mới." },
-        { icon: Star, title: "Chất lượng & Bền vững", description: "Chỉ sử dụng vật liệu loại 1, cây trồng khỏe mạnh và thi công tỉ mỉ để đảm bảo công trình bền đẹp với thời gian." },
-        { icon: ShieldCheck, title: "Minh bạch & Uy tín", description: "Quy trình làm việc rõ ràng, báo giá chi tiết, hợp đồng minh bạch và chính sách bảo hành dài hạn." },
-    ];
 
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
@@ -56,14 +45,9 @@ export default async function AboutPage() {
                                 )}
                             </div>
                              <div className="animate-fade-in-up animation-delay-300">
-                                <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">Câu Chuyện <span className="text-accent">Kiến Trúc Xanh</span></h2>
+                                <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">{aboutStory.title}</h2>
                                 <div className="prose prose-lg max-w-none text-muted-foreground">
-                                    <p>
-                                        Thành lập từ năm 2015, <strong>Cảnh Quan Kiến Trúc Xanh</strong> khởi đầu với một sứ mệnh đơn giản nhưng đầy tâm huyết: mang màu xanh vào từng không gian sống, biến những ngôi nhà không chỉ là nơi để ở mà còn là nơi để chữa lành và tái tạo năng lượng.
-                                    </p>
-                                    <p>
-                                        Trải qua gần một thập kỷ, chúng tôi tự hào đã kiến tạo hàng trăm không gian sống đẳng cấp, từ những sân vườn biệt thự tinh tế, hồ cá Koi đạt chuẩn quốc tế đến các công trình cảnh quan thương mại quy mô.
-                                    </p>
+                                   {aboutStory.paragraphs.map((p,i) => <p key={i}>{p}</p>)}
                                 </div>
                                 <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
                                     {stats.map((stat, index) => (
@@ -96,7 +80,7 @@ export default async function AboutPage() {
                                         <CardTitle className="text-2xl text-primary">Sứ Mệnh</CardTitle>
                                     </CardHeader>
                                     <CardContent className="p-8 pt-0 text-muted-foreground">
-                                        "Kiến tạo những không gian cảnh quan độc đáo, chất lượng, mang lại giá trị bền vững về thẩm mỹ, sức khỏe và tinh thần cho khách hàng, góp phần xây dựng một môi trường sống xanh và trong lành hơn."
+                                        "{missionVision.mission}"
                                     </CardContent>
                                 </Card>
                             </div>
@@ -109,7 +93,7 @@ export default async function AboutPage() {
                                         <CardTitle className="text-2xl text-primary">Tầm Nhìn 2030</CardTitle>
                                     </CardHeader>
                                     <CardContent className="p-8 pt-0 text-muted-foreground">
-                                        "Trở thành công ty thiết kế và thi công cảnh quan hàng đầu tại Việt Nam, là biểu tượng của sự sáng tạo, chuyên nghiệp và uy tín, tiên phong trong việc ứng dụng các giải pháp xanh và công nghệ hiện đại."
+                                        "{missionVision.vision}"
                                     </CardContent>
                                 </Card>
                             </div>
@@ -157,4 +141,3 @@ export default async function AboutPage() {
         </div>
     );
 }
-

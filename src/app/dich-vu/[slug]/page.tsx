@@ -3,8 +3,7 @@
 import { Header } from "@/components/app/Header";
 import { Footer } from "@/components/app/Footer";
 import { Button } from "@/components/ui/button";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Leaf, Fish, Sprout, CheckCircle, Wind, Droplets, Sun, Sparkles, Truck, Home, ShoppingCart, Trees, ArrowRight, DollarSign, ListChecks, Eye, ShieldCheck, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -17,113 +16,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { services as servicesData } from "@/lib/data/services";
+import { projects } from "@/lib/data/projects";
 
-const servicesData = [
-    {
-        slug: "thiet-ke-san-vuon",
-        title: "Thiết kế & Thi công Sân vườn",
-        description: "Chúng tôi biến những khoảng không gian thô sơ thành những khu vườn đầy sức sống, là nơi để thư giãn và tận hưởng cuộc sống. Dịch vụ thiết kế sân vườn của Kiến Trúc Xanh là sự kết hợp giữa nghệ thuật, khoa học và sự am hiểu sâu sắc về mong muốn của gia chủ.",
-        icon: Leaf,
-        image: PlaceHolderImages.find(p => p.id === 'service-garden'),
-        benefits: [
-            { icon: Eye, title: "Tăng giá trị thẩm mỹ", description: "Một khu vườn được thiết kế chuyên nghiệp sẽ là điểm nhấn nâng tầm đẳng cấp cho ngôi nhà của bạn." },
-            { icon: ShieldCheck, title: "Nâng cao sức khỏe", description: "Không gian xanh giúp thanh lọc không khí, giảm stress và khuyến khích các hoạt động ngoài trời." },
-            { icon: Star, title: "Dấu ấn cá nhân", description: "Thiết kế độc bản, phản ánh phong cách và cá tính riêng của gia chủ, không bị trùng lặp." },
-        ],
-        process: [
-             { title: "Khảo sát & Tư vấn", description: "Lắng nghe ý tưởng, khảo sát hiện trạng và tư vấn các giải pháp phù hợp nhất." },
-            { title: "Thiết kế 3D", description: "Kiến trúc sư của chúng tôi sẽ hiện thực hóa ý tưởng bằng bản vẽ 3D trực quan, sinh động." },
-            { title: "Báo giá chi tiết", description: "Cung cấp bảng báo giá rõ ràng cho từng hạng mục thi công và vật tư." },
-            { title: "Thi công & Giám sát", description: "Đội ngũ kỹ sư và nghệ nhân tiến hành thi công dưới sự giám sát chặt chẽ." },
-            { title: "Nghiệm thu & Bàn giao", description: "Bàn giao công trình hoàn thiện và hướng dẫn khách hàng chăm sóc." },
-        ],
-        pricing: [
-            { item: "Gói thiết kế cơ bản (Bản vẽ 2D, 3D)", price: "Từ 150.000đ/m²" },
-            { item: "Gói thi công phần thô", price: "Liên hệ báo giá" },
-            { item: "Gói thi công trọn gói (Thiết kế + Thi công)", price: "Từ 1.200.000đ/m²" },
-        ]
-    },
-    {
-        slug: "ho-ca-koi",
-        title: "Hồ Cá Koi Chuyên Nghiệp",
-        description: "Một hồ cá Koi không chỉ là công trình cảnh quan mà còn là một tác phẩm nghệ thuật động, mang lại sinh khí và tài lộc cho gia chủ. Chúng tôi tự hào là đơn vị tiên phong trong việc thi công hồ cá Koi đạt chuẩn với công nghệ lọc vi sinh hàng đầu.",
-        icon: Fish,
-        image: PlaceHolderImages.find(p => p.id === 'service-koi'),
-        benefits: [
-            { icon: Fish, title: "Hệ lọc chuẩn quốc tế", description: "Đảm bảo nước luôn trong vắt, không mùi tanh, cá khỏe mạnh, hạn chế tối đa rêu tảo." },
-            { icon: Wind, title: "Yếu tố phong thủy", description: "Tư vấn vị trí, hướng và hình dáng hồ để mang lại may mắn, vượng khí cho gia đình." },
-            { icon: ShieldCheck, title: "Bảo hành dài hạn", description: "Bảo hành chống thấm cho kết cấu hồ lên đến 10 năm, bảo hành hệ thống lọc 2 năm." },
-        ],
-        process: [
-            { title: "Tư vấn phong thủy", description: "Xác định vị trí, hình dáng, kích thước hồ hợp với tuổi và mệnh của gia chủ." },
-            { title: "Lên bản vẽ kỹ thuật", description: "Thiết kế chi tiết hệ thống lọc, hệ thống hút mặt, hút đáy, đường ống kỹ thuật." },
-            { title: "Thi công phần thô", description: "Đào đất, đổ bê tông cốt thép, đi ống và chống thấm nhiều lớp." },
-            { title: "Lắp đặt hệ lọc", description: "Sắp xếp vật liệu lọc, lắp đặt máy bơm, máy sục khí, đèn UV diệt khuẩn." },
-            { title: "Xử lý nước & Thả cá", description: "Vận hành hệ thống, khử trùng, ổn định vi sinh và hướng dẫn thả cá an toàn." },
-        ],
-        pricing: [
-            { item: "Hồ cá Koi (Bao gồm hệ lọc, chưa bao gồm đá trang trí)", price: "Từ 4.000.000đ/m³" },
-            { item: "Đá trang trí thành hồ", price: "Từ 800.000đ/m tới" },
-            { item: "Thác nước, suối tự nhiên", price: "Liên hệ báo giá" },
-        ]
-    },
-    {
-        slug: "da-phong-thuy",
-        title: "Đá Phong Thủy & Tiểu Cảnh",
-        description: "Mang năng lượng thuần khiết của tự nhiên vào không gian sống thông qua những khối đá và tiểu cảnh được bài trí tinh tế. Dịch vụ của chúng tôi giúp bạn tạo ra những điểm nhấn độc đáo, hài hòa về mặt thẩm mỹ và giàu ý nghĩa phong thủy.",
-        icon: Wind,
-        image: PlaceHolderImages.find(p => p.id === 'service-maintenance'),
-        benefits: [
-            { icon: Wind, title: "Cân bằng năng lượng", description: "Đá và nước giúp điều hòa âm dương, mang lại sự bình yên và thư thái." },
-            { icon: DollarSign, title: "Thu hút tài lộc", description: "Bài trí đúng cách giúp kích hoạt cung tài lộc, mang lại may mắn trong kinh doanh." },
-            { icon: Eye, title: "Điểm nhấn nghệ thuật", description: "Tiểu cảnh, non bộ, thác nước là những tác phẩm điêu khắc tự nhiên độc đáo." },
-        ],
-        process: [
-            { title: "Tư vấn mệnh và hướng", description: "Phân tích tuổi, mệnh của gia chủ để chọn loại đá và hướng đặt phù hợp." },
-            { title: "Lựa chọn đá tại vườn", description: "Khách hàng có thể trực tiếp lựa chọn những khối đá tự nhiên ưng ý tại vườn của chúng tôi." },
-            { title: "Thiết kế phối cảnh", description: "Dựng mô hình 3D để khách hàng hình dung rõ nhất về tiểu cảnh trong không gian thực tế." },
-            { title: "Vận chuyển & Lắp đặt", description: "Sử dụng xe cẩu chuyên dụng để vận chuyển và đặt đá vào đúng vị trí an toàn, chính xác." },
-        ],
-        pricing: [
-            { item: "Tiểu cảnh khô, vườn Zen", price: "Từ 2.000.000đ/m²" },
-            { item: "Tiểu cảnh nước, thác nước tường", price: "Từ 3.500.000đ/m²" },
-            { item: "Hòn non bộ (Tùy kích thước và độ phức tạp)", price: "Liên hệ báo giá" },
-        ]
-    },
-    // Add other services with detailed content here...
-     {
-        slug: "cai-tao-nang-cap",
-        title: "Cải Tạo & Nâng Cấp Cảnh Quan",
-        description: "Làm mới không gian sân vườn cũ, thay đổi phong cách, hoặc khắc phục các vấn đề tồn tại. Chúng tôi giúp 'thay áo mới' cho khu vườn của bạn, mang lại sức sống và vẻ đẹp đương đại.",
-        icon: Sparkles,
-        image: PlaceHolderImages.find(p => p.id === 'service-renovation'),
-        benefits: [],
-        process: [],
-        pricing: []
-    },
-    {
-        slug: "vuon-san-thuong",
-        title: "Vườn Trên Sân Thượng",
-        description: "Biến không gian sân thượng tưởng chừng bỏ đi thành một khu vườn xanh mát, một nơi thư giãn lý tưởng hoặc một nông trại mini ngay tại nhà. Giải pháp chống thấm và chọn cây chuyên nghiệp.",
-        icon: Home,
-        image: PlaceHolderImages.find(p => p.id === 'service-rooftop'),
-        benefits: [],
-        process: [],
-        pricing: []
-    },
-    {
-        slug: "tuong-cay-xanh",
-        title: "Tường Cây Xanh Nghệ Thuật",
-        description: "Giải pháp tối ưu cho không gian nhỏ hoặc tạo điểm nhấn ấn tượng cho các mảng tường lớn. Chúng tôi thi công tường cây thật với hệ thống tưới nhỏ giọt tự động, dễ dàng chăm sóc.",
-        icon: Trees,
-        image: PlaceHolderImages.find(p => p.id === 'service-vertical-garden'),
-        benefits: [],
-        process: [],
-        pricing: []
-    },
-];
-
-const relatedProjects = PlaceHolderImages.filter(p => p.id.startsWith('gallery-')).slice(0, 4);
+const relatedProjects = projects.slice(0, 4);
 
 type Props = {
     params: { slug: string }
@@ -276,7 +172,7 @@ export default async function ServiceDetailPage({ params: { slug } }: Props) {
                                             <Link href={`/du-an/${project.id}`}>
                                                 <Image 
                                                     src={project.imageUrl} 
-                                                    alt={`Dự án ${project.id}`} 
+                                                    alt={project.title}
                                                     width={600}
                                                     height={450}
                                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
@@ -286,7 +182,7 @@ export default async function ServiceDetailPage({ params: { slug } }: Props) {
                                         </div>
                                         <div className="p-4 bg-white">
                                             <h3 className="font-bold text-lg text-primary capitalize mt-1">
-                                                <Link href={`/du-an/${project.id}`}>{project.imageHint.replace(/-/g, ' ')}</Link>
+                                                <Link href={`/du-an/${project.id}`}>{project.title}</Link>
                                             </h3>
                                         </div>
                                     </CardContent>

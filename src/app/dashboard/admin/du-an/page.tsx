@@ -42,11 +42,10 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { PlaceHolderImages } from "@/lib/placeholder-images"
+import { projects as allProjects } from "@/lib/data/projects"
 
 
 export default function DuAnAdminPage() {
-  const allProjects = PlaceHolderImages.filter(p => p.id.startsWith('gallery-'));
   const getCategory = (imageHint: string) => {
     if(imageHint.includes('koi')) return 'Hồ Koi';
     if(imageHint.includes('garden') || imageHint.includes('villa') || imageHint.includes('patio')) return 'Sân Vườn';
@@ -146,17 +145,17 @@ export default function DuAnAdminPage() {
                           />
                         </TableCell>
                         <TableCell className="font-medium capitalize">
-                          {project.imageHint.replace(/-/g, ' ')}
+                          {project.title}
                         </TableCell>
                         <TableCell>
                           <Badge variant="outline">Đã đăng</Badge>
                         </TableCell>
                         <TableCell className="hidden md:table-cell">
-                          {getCategory(project.imageHint)}
+                          {project.category}
                         </TableCell>
                         
                         <TableCell className="hidden md:table-cell">
-                          2024-07-25
+                          {project.date}
                         </TableCell>
                         <TableCell>
                           <DropdownMenu>

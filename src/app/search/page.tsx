@@ -3,11 +3,11 @@
 import { Header } from "@/components/app/Header";
 import { Footer } from "@/components/app/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from '@/components/ui/button';
 import { SearchX } from 'lucide-react';
+import { projects as allProjects } from "@/lib/data/projects";
 
 type Props = {
     searchParams: { [key: string]: string | string[] | undefined }
@@ -16,10 +16,8 @@ type Props = {
 export default async function SearchPage({ searchParams }: Props) {
     const query = typeof searchParams.q === 'string' ? searchParams.q : '';
 
-    const allProjects = PlaceHolderImages.filter(p => p.id.startsWith('gallery-'));
-    
     const filteredProjects = query 
-        ? allProjects.filter(p => p.imageHint.toLowerCase().includes(query.toLowerCase()))
+        ? allProjects.filter(p => p.title.toLowerCase().includes(query.toLowerCase()) || p.category.toLowerCase().includes(query.toLowerCase()))
         : [];
     
     return (
@@ -42,26 +40,26 @@ export default async function SearchPage({ searchParams }: Props) {
                     <div className="container mx-auto px-4">
                         {filteredProjects.length > 0 ? (
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                                {filteredProjects.map((image) => (
-                                    <Card key={image.id} className="overflow-hidden group border-none shadow-lg hover:shadow-2xl transition-all duration-300">
+                                {filteredProjects.map((project) => (
+                                    <Card key={project.id} className="overflow-hidden group border-none shadow-lg hover:shadow-2xl transition-all duration-300">
                                         <CardContent className="p-0">
                                             <div className="overflow-hidden aspect-[4/3]">
-                                                <Link href={`/du-an/${image.id}`}>
+                                                <Link href={`/du-an/${project.id}`}>
                                                     <Image 
-                                                        src={image.imageUrl} 
-                                                        alt={`Dự án ${image.id}`} 
+                                                        src={project.imageUrl} 
+                                                        alt={project.title}
                                                         width={600}
                                                         height={450}
                                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
-                                                        data-ai-hint={image.imageHint} 
+                                                        data-ai-hint={project.imageHint} 
                                                     />
                                                 </Link>
                                             </div>
                                             <div className="p-4 bg-white">
                                                 <h3 className="font-bold text-lg text-primary capitalize mt-1">
-                                                    <Link href={`/du-an/${image.id}`}>{image.imageHint.replace(/-/g, ' ')}</Link>
+                                                    <Link href={`/du-an/${project.id}`}>{project.title}</Link>
                                                 </h3>
-                                                <p className="text-sm text-muted-foreground mt-1">Hoàn thành: 2024</p>
+                                                <p className="text-sm text-muted-foreground mt-1">Hoàn thành: {project.date}</p>
                                             </div>
                                         </CardContent>
                                     </Card>

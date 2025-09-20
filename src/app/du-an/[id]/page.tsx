@@ -3,26 +3,26 @@
 import { Header } from "@/components/app/Header";
 import { Footer } from "@/components/app/Footer";
 import { Button } from "@/components/ui/button";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, Tag, Home, ArrowLeft, MapPin, DollarSign } from "lucide-react";
 import { Card, CardContent } from '@/components/ui/card';
 import { notFound } from "next/navigation";
+import { projects } from "@/lib/data/projects";
 
 type Props = {
     params: { id: string }
 }
 
 export default async function ProjectDetailPage({ params: { id } }: Props) {
-    const project = PlaceHolderImages.find(p => p.id === id);
+    const project = projects.find(p => p.id === id);
 
     if (!project) {
         notFound();
     }
     
     // Select some other projects as related
-    const relatedProjects = PlaceHolderImages.filter(p => p.id.startsWith('gallery-') && p.id !== id).slice(0, 4);
+    const relatedProjects = projects.filter(p => p.id !== id).slice(0, 4);
 
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
@@ -33,7 +33,7 @@ export default async function ProjectDetailPage({ params: { id } }: Props) {
                         <Button variant="ghost" asChild className="mb-4">
                             <Link href="/du-an" className="text-sm text-muted-foreground"><ArrowLeft className="mr-2 h-4 w-4"/> Quay lại danh sách dự án</Link>
                         </Button>
-                        <h1 className="text-4xl md:text-5xl font-bold text-primary capitalize">{project.imageHint.replace(/-/g, ' ')}</h1>
+                        <h1 className="text-4xl md:text-5xl font-bold text-primary capitalize">{project.title}</h1>
                     </div>
                 </section>
 
@@ -44,7 +44,7 @@ export default async function ProjectDetailPage({ params: { id } }: Props) {
                                 <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden shadow-2xl">
                                     <Image 
                                         src={project.imageUrl.replace('/600/450', '/1200/750')} 
-                                        alt={project.imageHint} 
+                                        alt={project.title} 
                                         fill
                                         className="object-cover"
                                         data-ai-hint={project.imageHint}
@@ -60,27 +60,27 @@ export default async function ProjectDetailPage({ params: { id } }: Props) {
                                             <li className="flex items-center gap-3">
                                                 <Home className="w-5 h-5 text-accent"/>
                                                 <span className='font-medium'>Hạng mục:</span> 
-                                                <span className='capitalize'>{project.imageHint.includes('koi') ? 'Hồ Koi' : 'Sân vườn'}</span>
+                                                <span className='capitalize'>{project.category}</span>
                                             </li>
                                              <li className="flex items-center gap-3">
                                                 <Tag className="w-5 h-5 text-accent"/>
                                                 <span className='font-medium'>Phong cách:</span> 
-                                                <span className='capitalize'>{project.imageHint.split(' ')[0].replace('-', ' ')}</span>
+                                                <span className='capitalize'>{project.style}</span>
                                             </li>
                                             <li className="flex items-center gap-3">
                                                 <MapPin className="w-5 h-5 text-accent"/>
                                                 <span className='font-medium'>Địa điểm:</span> 
-                                                <span className='capitalize'>Quận 2, TP.HCM</span>
+                                                <span className='capitalize'>{project.location}</span>
                                             </li>
                                             <li className="flex items-center gap-3">
                                                 <DollarSign className="w-5 h-5 text-accent"/>
                                                 <span className='font-medium'>Chi phí:</span> 
-                                                <span className='capitalize'>~ 150 triệu</span>
+                                                <span className='capitalize'>{project.cost}</span>
                                             </li>
                                             <li className="flex items-center gap-3">
                                                 <Calendar className="w-5 h-5 text-accent"/>
                                                 <span className='font-medium'>Hoàn thành:</span> 
-                                                <span>2024</span>
+                                                <span>{project.date}</span>
                                             </li>
                                         </ul>
                                     </CardContent>
@@ -92,8 +92,8 @@ export default async function ProjectDetailPage({ params: { id } }: Props) {
                         </div>
 
                          <div className="prose max-w-4xl mx-auto mt-20 text-lg">
-                            <h3 className="text-3xl font-bold text-primary mb-4">Về dự án "{project.imageHint.replace(/-/g, ' ')}"</h3>
-                            <p>Dự án "{project.imageHint.replace(/-/g, ' ')}" là một ví dụ điển hình cho sự kết hợp hài hòa giữa nghệ thuật cảnh quan và mong muốn của gia chủ, được đội ngũ kiến trúc sư của Cảnh Quan Kiến Trúc Xanh thực hiện với tất cả tâm huyết. Công trình này không chỉ đáp ứng yêu cầu khắt khe về thẩm mỹ mà còn tối ưu hóa công năng sử dụng, mang lại một không gian sống lý tưởng, nơi con người được hòa mình cùng thiên nhiên.</p>
+                            <h3 className="text-3xl font-bold text-primary mb-4">Về dự án "{project.title}"</h3>
+                            <p>Dự án "{project.title}" là một ví dụ điển hình cho sự kết hợp hài hòa giữa nghệ thuật cảnh quan và mong muốn của gia chủ, được đội ngũ kiến trúc sư của Cảnh Quan Kiến Trúc Xanh thực hiện với tất cả tâm huyết. Công trình này không chỉ đáp ứng yêu cầu khắt khe về thẩm mỹ mà còn tối ưu hóa công năng sử dụng, mang lại một không gian sống lý tưởng, nơi con người được hòa mình cùng thiên nhiên.</p>
                             <h4>Bối cảnh và Yêu cầu</h4>
                             <p>Gia chủ mong muốn biến khoảng sân trống thành một không gian thư giãn mang đậm phong cách nhiệt đới, vừa sang trọng, vừa gần gũi. Yêu cầu đặt ra là phải có hồ cá Koi làm trung tâm, kết hợp với các loại cây xanh phù hợp khí hậu miền Nam, tạo nên một tổng thể xanh mát và sinh động.</p>
                             <h4>Giải pháp của chúng tôi</h4>
@@ -126,7 +126,7 @@ export default async function ProjectDetailPage({ params: { id } }: Props) {
                                             </div>
                                             <div className="p-4 bg-white">
                                                 <h3 className="font-bold text-lg text-primary capitalize mt-1">
-                                                    <Link href={`/du-an/${p.id}`}>{p.imageHint.replace(/-/g, ' ')}</Link>
+                                                    <Link href={`/du-an/${p.id}`}>{p.title}</Link>
                                                 </h3>
                                             </div>
                                         </CardContent>
