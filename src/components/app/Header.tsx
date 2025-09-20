@@ -15,7 +15,7 @@ export function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const navItems = [
-    { name: "Trang Chủ", href: "/" },
+    { name: "Trang Chủ", href: "/dashboard" },
     { name: "Giới Thiệu", href: "/gioi-thieu" },
     { name: "Dịch Vụ", href: "/dich-vu" },
     { name: "Dự Án", href: "/du-an" },
@@ -36,9 +36,9 @@ export function Header() {
   return (
     <header className={cn(
       "sticky top-0 z-50 flex h-20 items-center justify-between border-b px-4 transition-all duration-300 md:px-8",
-      isScrolled ? "border-border bg-background/80 backdrop-blur-sm shadow-sm" : "border-transparent bg-transparent"
+      isScrolled ? "border-border bg-background/80 backdrop-blur-sm shadow-sm" : "border-transparent bg-background"
     )}>
-      <Link href="/" className="flex items-center gap-2">
+      <Link href="/dashboard" className="flex items-center gap-2">
         <Mountain className="h-6 w-6 text-primary" />
         <span className="font-bold text-lg">Kiến Trúc Xanh</span>
       </Link>

@@ -38,7 +38,7 @@ const servicesData = [
             "Dịch vụ bảo dưỡng, chăm sóc hồ định kỳ.",
         ]
     },
-    {
+     {
         slug: "da-phong-thuy",
         title: "Đá Phong Thủy & Tiểu Cảnh",
         description: "Mang năng lượng của đất trời vào không gian sống của bạn với các sản phẩm đá phong thủy tự nhiên, non bộ, thác nước. Chúng tôi giúp bạn lựa chọn và bài trí để tăng vượng khí, tạo điểm nhấn độc đáo cho cảnh quan.",
