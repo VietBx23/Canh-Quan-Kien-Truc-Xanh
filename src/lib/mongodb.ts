@@ -19,9 +19,7 @@ let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
 const options: MongoClientOptions = {
-    tls: true,
-    tlsVersion: 'TLSv1.2',
-    tlsAllowInvalidCertificates: true, // Not ideal, but helps in restricted environments
+    // No specific TLS options here by default, let the driver handle it initially.
 };
 
 if (process.env.NODE_ENV === 'development') {
