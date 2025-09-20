@@ -25,19 +25,23 @@ export default function ProjectsPage() {
                   <Card key={image.id} className="overflow-hidden group border-none shadow-lg hover:shadow-2xl transition-all duration-300">
                       <CardContent className="p-0">
                           <div className="overflow-hidden aspect-[4/3]">
-                              <Image 
-                                  src={image.imageUrl} 
-                                  alt={`Dự án ${image.id}`} 
-                                  width={600}
-                                  height={450}
-                                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
-                                  data-ai-hint={image.imageHint} 
-                              />
+                              <Link href={`/du-an/${image.id}`}>
+                                <Image 
+                                    src={image.imageUrl} 
+                                    alt={`Dự án ${image.id}`} 
+                                    width={600}
+                                    height={450}
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                                    data-ai-hint={image.imageHint} 
+                                />
+                               </Link>
                           </div>
                           <div className="p-4 bg-white">
                               <p className="text-xs text-accent font-semibold uppercase">{image.imageHint.includes('koi') ? 'Hồ Koi' : gardenProjects.includes(image) ? 'Sân vườn' : 'Tiểu Cảnh'}</p>
-                              <h3 className="font-bold text-lg text-primary capitalize mt-1">{image.imageHint.replace(/-/g, ' ')}</h3>
-                              <p className="text-sm text-muted-foreground mt-1">Hoàn thành: 2023</p>
+                              <h3 className="font-bold text-lg text-primary capitalize mt-1">
+                                <Link href={`/du-an/${image.id}`}>{image.imageHint.replace(/-/g, ' ')}</Link>
+                               </h3>
+                              <p className="text-sm text-muted-foreground mt-1">Hoàn thành: 2024</p>
                           </div>
                       </CardContent>
                   </Card>
@@ -68,16 +72,16 @@ export default function ProjectsPage() {
                                 <TabsTrigger value="koi">Hồ Koi</TabsTrigger>
                                 <TabsTrigger value="other">Tiểu Cảnh</TabsTrigger>
                             </TabsList>
-                            <TabsContent value="all">
+                            <TabsContent value="all" className="animate-fade-in-up">
                                 {renderProjectList(allProjects)}
                             </TabsContent>
-                            <TabsContent value="garden">
+                            <TabsContent value="garden" className="animate-fade-in-up">
                                 {renderProjectList(gardenProjects)}
                             </TabsContent>
-                             <TabsContent value="koi">
+                             <TabsContent value="koi" className="animate-fade-in-up">
                                 {renderProjectList(koiProjects)}
                             </TabsContent>
-                             <TabsContent value="other">
+                             <TabsContent value="other" className="animate-fade-in-up">
                                 {renderProjectList(otherProjects)}
                             </TabsContent>
                         </Tabs>

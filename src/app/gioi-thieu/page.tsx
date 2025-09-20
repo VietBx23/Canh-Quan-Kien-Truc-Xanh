@@ -29,7 +29,7 @@ export default function AboutPage() {
             <Header />
             <main className="flex-1">
                 <section className="py-20 md:py-28 bg-muted">
-                    <div className="container mx-auto px-4 text-center">
+                    <div className="container mx-auto px-4 text-center animate-fade-in-up">
                         <h1 className="text-4xl md:text-5xl font-bold text-primary">Về Cảnh Quan Kiến Trúc Xanh</h1>
                         <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
                             Hành trình kiến tạo những không gian sống xanh, đẳng cấp và bền vững cùng thiên nhiên.
@@ -40,7 +40,7 @@ export default function AboutPage() {
                 <section className="py-20 md:py-28 bg-white">
                     <div className="container mx-auto px-4">
                         <div className="grid md:grid-cols-2 gap-16 items-center">
-                            <div className="transition-transform duration-500 hover:scale-105">
+                            <div className="transition-transform duration-500 hover:scale-105 animate-fade-in-up">
                                 {teamImage && (
                                     <Image 
                                         src={teamImage.imageUrl} 
@@ -52,7 +52,7 @@ export default function AboutPage() {
                                     />
                                 )}
                             </div>
-                            <div>
+                            <div className="animate-fade-in-up animation-delay-300">
                                 <h2 className="text-3xl font-bold text-primary mb-4">Câu Chuyện Của Chúng Tôi</h2>
                                 <p className="text-muted-foreground mb-4 leading-relaxed">
                                     Được thành lập từ niềm đam mê mãnh liệt với thiên nhiên và kiến trúc, Cảnh Quan Kiến Trúc Xanh khởi đầu với một mục tiêu duy nhất: mang màu xanh vào từng không gian sống, biến những ngôi nhà không chỉ là nơi để ở mà còn là nơi để tận hưởng và tái tạo năng lượng.
@@ -67,12 +67,12 @@ export default function AboutPage() {
                 
                 <section className="py-20 md:py-28 bg-muted">
                     <div className="container mx-auto px-4">
-                        <div className="text-center mb-16">
+                        <div className="text-center mb-16 animate-fade-in-up">
                             <h2 className="text-3xl md:text-4xl font-bold text-primary">Quá Trình Hình Thành & Phát Triển</h2>
                         </div>
                         <div className="relative max-w-4xl mx-auto before:absolute before:inset-0 before:ml-5 before:h-full before:w-0.5 before:bg-primary/20 md:before:mx-auto md:before:left-1/2 md:before:-translate-x-1/2">
                             {timeline.map((item, index) => (
-                                <div key={index} className="relative pl-8 md:pl-0">
+                                <div key={index} className="relative pl-8 md:pl-0 animate-fade-in-up" style={{animationDelay: `${index * 200}ms`}}>
                                     <div className="md:flex md:items-center md:flex-row-reverse">
                                         <div className={`flex md:w-1/2 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} justify-start md:justify-center`}>
                                             <div className="absolute left-5 top-1 h-5 w-5 rounded-full border-4 border-primary bg-background md:relative md:left-0 md:transform-none"></div>
@@ -96,13 +96,13 @@ export default function AboutPage() {
 
                  <section className="py-20 md:py-28 bg-white">
                     <div className="container mx-auto px-4 text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Tại Sao Chọn Chúng Tôi?</h2>
-                        <p className="text-muted-foreground mt-3 max-w-2xl mx-auto mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4 animate-fade-in-up">Tại Sao Chọn Chúng Tôi?</h2>
+                        <p className="text-muted-foreground mt-3 max-w-2xl mx-auto mb-16 animate-fade-in-up animation-delay-300">
                             Sự khác biệt của chúng tôi đến từ đội ngũ chuyên gia tâm huyết, quy trình làm việc minh bạch và cam kết chất lượng trên từng công trình.
                         </p>
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto text-left">
                             {coreValues.map((value, index) => (
-                                <div key={index} className="text-center p-6 bg-muted rounded-lg transition-transform hover:-translate-y-2 hover:shadow-xl">
+                                <div key={index} className="text-center p-6 bg-muted rounded-lg transition-transform hover:-translate-y-2 hover:shadow-xl animate-fade-in-up" style={{animationDelay: `${index * 200 + 400}ms`}}>
                                     <div className="inline-block p-4 bg-primary/10 rounded-full mb-4">
                                         <value.icon className="h-8 w-8 text-primary"/>
                                     </div>
@@ -116,9 +116,9 @@ export default function AboutPage() {
 
                 <section className="py-20 md:py-28 bg-primary/95 text-white">
                     <div className="container mx-auto px-4 text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold">Hãy Cùng Chúng Tôi Kiến Tạo Nên Tác Phẩm Của Riêng Bạn</h2>
-                        <p className="mt-4 max-w-2xl mx-auto text-white/80">Chúng tôi tin rằng mỗi không gian đều có thể trở thành một tác phẩm nghệ thuật. Liên hệ ngay để bắt đầu hành trình biến ước mơ của bạn thành hiện thực.</p>
-                        <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105" asChild>
+                        <h2 className="text-3xl md:text-4xl font-bold animate-fade-in-up">Hãy Cùng Chúng Tôi Kiến Tạo Nên Tác Phẩm Của Riêng Bạn</h2>
+                        <p className="mt-4 max-w-2xl mx-auto text-white/80 animate-fade-in-up animation-delay-300">Chúng tôi tin rằng mỗi không gian đều có thể trở thành một tác phẩm nghệ thuật. Liên hệ ngay để bắt đầu hành trình biến ước mơ của bạn thành hiện thực.</p>
+                        <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 animate-fade-in-up animation-delay-600" asChild>
                             <Link href="/lien-he">Bắt đầu dự án</Link>
                         </Button>
                     </div>

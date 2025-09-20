@@ -1,9 +1,19 @@
+
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Mountain, Phone, MessageSquare } from "lucide-react";
+import { Menu, Mountain, Phone, MessageSquare, Search, Globe, X } from "lucide-react";
 import Link from 'next/link';
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
+import { Input } from "../ui/input";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 export function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   const navItems = [
     { name: "Trang Chủ", href: "/" },
     { name: "Giới Thiệu", href: "/gioi-thieu" },
@@ -15,13 +25,26 @@ export function Header() {
     { name: "Liên Hệ", href: "/lien-he" },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 flex h-20 items-center justify-between border-b bg-background/80 px-4 backdrop-blur-sm transition-all duration-300 md:px-8">
+    <header className={cn(
+      "sticky top-0 z-50 flex h-20 items-center justify-between border-b px-4 transition-all duration-300 md:px-8",
+      isScrolled ? "border-border bg-background/80 backdrop-blur-sm shadow-sm" : "border-transparent bg-transparent"
+    )}>
       <Link href="/" className="flex items-center gap-2">
         <Mountain className="h-6 w-6 text-primary" />
         <span className="font-bold text-lg">Kiến Trúc Xanh</span>
       </Link>
-      <nav className="hidden lg:flex items-center gap-6 text-sm font-medium">
+
+      {/* Desktop Navigation */}
+      <nav className={cn("hidden lg:flex items-center gap-6 text-sm font-medium transition-all", isSearchOpen && 'opacity-0 pointer-events-none')}>
         {navItems.map((item) => (
           <Link
             key={item.name}
@@ -32,13 +55,32 @@ export function Header() {
           </Link>
         ))}
       </nav>
-      <div className="hidden lg:flex items-center gap-2">
-          <Button variant="ghost" size="sm" asChild>
-            <a href="tel:0933741779" className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-primary"/>
-                <span>0933 741 779</span>
-            </a>
+
+      {/* Desktop Search Bar */}
+      <div className={cn("hidden lg:flex absolute left-1/2 -translate-x-1/2 w-full max-w-md items-center transition-all", isSearchOpen ? 'opacity-100' : 'opacity-0 pointer-events-none')}>
+        <Input type="search" placeholder="Tìm kiếm dịch vụ, dự án, bài viết..." className="pr-10" />
+        <Button size="icon" variant="ghost" className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8" onClick={() => setIsSearchOpen(false)}>
+            <X className="h-5 w-5 text-muted-foreground"/>
+        </Button>
+      </div>
+
+      <div className="hidden lg:flex items-center gap-1">
+          <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(!isSearchOpen)}>
+            <Search className="h-5 w-5"/>
+            <span className="sr-only">Tìm kiếm</span>
           </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Globe className="h-5 w-5"/>
+                <span className="sr-only">Ngôn ngữ</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem>Tiếng Việt (VN)</DropdownMenuItem>
+              <DropdownMenuItem>English (US)</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
            <Button asChild>
             <a href="https://zalo.me/0933741779" target="_blank" className="flex items-center gap-2">
                 <MessageSquare className="h-4 w-4"/>
@@ -46,6 +88,8 @@ export function Header() {
             </a>
           </Button>
       </div>
+      
+      {/* Mobile Menu */}
       <div className="lg:hidden">
         <Sheet>
           <SheetTrigger asChild>
@@ -54,31 +98,37 @@ export function Header() {
               <span className="sr-only">Mở menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="left">
-            <div className="grid gap-4 py-6">
-              <Link href="/" className="flex items-center gap-2 mb-4">
-                <Mountain className="h-6 w-6 text-primary" />
-                <span className="font-bold text-lg">Kiến Trúc Xanh</span>
-              </Link>
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="block text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
-                >
-                  {item.name}
+          <SheetContent side="left" className="w-[85%] max-w-sm">
+            <div className="flex h-full flex-col">
+              <div className="grid gap-4 py-6">
+                <Link href="/" className="flex items-center gap-2 mb-4">
+                  <Mountain className="h-6 w-6 text-primary" />
+                  <span className="font-bold text-lg">Kiến Trúc Xanh</span>
                 </Link>
-              ))}
-               <div className="border-t pt-4 mt-4 space-y-2">
+                <div className="relative">
+                    <Input type="search" placeholder="Tìm kiếm..." className="pr-10" />
+                     <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground"/>
+                </div>
+                {navItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="block text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+               <div className="border-t pt-4 mt-auto space-y-2">
                     <Button variant="ghost" size="sm" asChild className="w-full justify-start">
                         <a href="tel:0933741779" className="flex items-center gap-2 text-base">
-                            <Phone className="h-5 w-5"/>
+                            <Phone className="h-5 w-5 text-primary"/>
                             <span>0933 741 779</span>
                         </a>
                     </Button>
                     <Button variant="ghost" size="sm" asChild className="w-full justify-start">
                         <a href="https://zalo.me/0933741779" target="_blank" className="flex items-center gap-2 text-base">
-                            <MessageSquare className="h-5 w-5"/>
+                            <MessageSquare className="h-5 w-5 text-primary"/>
                             <span>Chat với Zalo</span>
                         </a>
                     </Button>

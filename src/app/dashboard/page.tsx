@@ -27,12 +27,12 @@ export default function DashboardPage() {
   const serviceVerticalGarden = PlaceHolderImages.find(p => p.id === 'service-vertical-garden');
   
   const services = [
-    { title: "Thiết kế Sân vườn", icon: Leaf, image: serviceGarden, link: "/dich-vu" },
-    { title: "Hồ Cá Koi Chuyên Nghiệp", icon: Fish, image: serviceKoi, link: "/dich-vu" },
-    { title: "Đá Phong Thủy & Tiểu Cảnh", icon: Sprout, image: serviceMaintenance, link: "/dich-vu" },
-    { title: "Cải Tạo & Nâng Cấp", icon: Lightbulb, image: serviceRenovation, link: "/dich-vu" },
-    { title: "Vườn Trên Sân Thượng", icon: Building, image: serviceRooftop, link: "/dich-vu" },
-    { title: "Tường Cây Xanh", icon: Leaf, image: serviceVerticalGarden, link: "/dich-vu" },
+    { title: "Thiết kế Sân vườn", icon: Leaf, image: serviceGarden, link: "/dich-vu/thiet-ke-san-vuon" },
+    { title: "Hồ Cá Koi Chuyên Nghiệp", icon: Fish, image: serviceKoi, link: "/dich-vu/ho-ca-koi" },
+    { title: "Đá Phong Thủy & Tiểu Cảnh", icon: Sprout, image: serviceMaintenance, link: "/dich-vu/da-phong-thuy" },
+    { title: "Cải Tạo & Nâng Cấp", icon: Lightbulb, image: serviceRenovation, link: "/dich-vu/cai-tao-nang-cap" },
+    { title: "Vườn Trên Sân Thượng", icon: Building, image: serviceRooftop, link: "/dich-vu/vuon-san-thuong" },
+    { title: "Tường Cây Xanh", icon: Leaf, image: serviceVerticalGarden, link: "/dich-vu/tuong-cay-xanh" },
   ];
 
   const galleryImages = PlaceHolderImages.filter(p => p.id.startsWith('gallery-')).slice(0, 8);
@@ -356,9 +356,3 @@ export default function DashboardPage() {
     </div>
   );
 }
-
-    
-
-
-
-    
