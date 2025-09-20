@@ -9,6 +9,7 @@ export function Header() {
     { name: "Giới Thiệu", href: "/gioi-thieu" },
     { name: "Dịch Vụ", href: "/dich-vu" },
     { name: "Dự Án", href: "/du-an" },
+    { name: "Khách Hàng", href: "/khach-hang" },
     { name: "Tin Tức", href: "/blog" },
     { name: "FAQ", href: "/faq" },
     { name: "Liên Hệ", href: "/lien-he" },
@@ -89,3 +90,5 @@ export function Header() {
     </header>
   );
 }
+
+    
