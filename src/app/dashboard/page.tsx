@@ -1,4 +1,5 @@
 
+"use client";
 
 import { Header } from "@/components/app/Header";
 import { Footer } from "@/components/app/Footer";
@@ -8,6 +9,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Leaf, Fish, Sprout, ArrowRight, Building, Award, ShieldCheck, Star, Users, Briefcase, Smile, Lightbulb } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 import {
   Carousel,
   CarouselContent,
@@ -16,9 +18,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import { HeroSlider } from "@/components/app/HeroSlider";
+import Autoplay from "embla-carousel-autoplay"
 
 
-export default async function DashboardPage() {
+export default function DashboardPage() {
   const serviceGarden = PlaceHolderImages.find(p => p.id === 'service-garden');
   const serviceKoi = PlaceHolderImages.find(p => p.id === 'service-koi');
   const serviceMaintenance = PlaceHolderImages.find(p => p.id === 'service-maintenance');
@@ -35,7 +38,7 @@ export default async function DashboardPage() {
     { title: "Tường Cây Xanh", icon: Leaf, image: serviceVerticalGarden, link: "/dich-vu/tuong-cay-xanh" },
   ];
 
-  const galleryImages = PlaceHolderImages.filter(p => p.id.startsWith('gallery-')).slice(0, 8);
+  const galleryImages = PlaceHolderImages.filter(p => p.id.startsWith('gallery-')).slice(0, 12);
   const testimonialAvatar1 = PlaceHolderImages.find(p => p.id === 'testimonial-1');
   const testimonialAvatar2 = PlaceHolderImages.find(p => p.id === 'testimonial-2');
   const statsBgImage = PlaceHolderImages.find(p => p.id === 'stats-background');
@@ -76,6 +79,7 @@ export default async function DashboardPage() {
             </div>
             <Carousel
               opts={{ align: "start", loop: true }}
+              plugins={[Autoplay({ delay: 4000, stopOnInteraction: true })]}
               className="w-full max-w-7xl mx-auto animate-fade-in-up animation-delay-300"
             >
               <CarouselContent>
@@ -152,23 +156,36 @@ export default async function DashboardPage() {
                   Nơi mỗi công trình là một tác phẩm nghệ thuật đầy tâm huyết.
                 </p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 animate-fade-in-up animation-delay-300">
-                  {galleryImages.map((image, index) => (
-                      <div key={index} className="group relative overflow-hidden rounded-lg shadow-lg">
-                          <Image 
-                              src={image.imageUrl} 
-                              alt={`Project ${index + 1}`} 
-                              width={400} 
-                              height={400} 
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
-                              data-ai-hint={image.imageHint} 
-                            />
-                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
-                                <p className="text-white text-center font-semibold capitalize">{image.imageHint.replace(/-/g, ' ')}</p>
+              <Carousel
+                  opts={{ align: "start", loop: true }}
+                  plugins={[Autoplay({ delay: 3000, stopOnInteraction: true })]}
+                  className="w-full max-w-7xl mx-auto animate-fade-in-up animation-delay-300"
+              >
+                  <CarouselContent>
+                      {galleryImages.map((image, index) => (
+                          <CarouselItem key={index} className="sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                            <div className="p-2">
+                              <div className="group relative overflow-hidden rounded-lg shadow-lg aspect-square">
+                                <Link href={`/du-an/${image.id}`}>
+                                  <Image 
+                                      src={image.imageUrl} 
+                                      alt={image.imageHint} 
+                                      fill
+                                      className="object-cover transition-transform duration-500 group-hover:scale-110" 
+                                      data-ai-hint={image.imageHint} 
+                                    />
+                                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-4">
+                                        <p className="text-white text-lg font-semibold capitalize text-shadow">{image.imageHint.replace(/-/g, ' ')}</p>
+                                    </div>
+                                </Link>
+                              </div>
                             </div>
-                      </div>
-                  ))}
-              </div>
+                          </CarouselItem>
+                      ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="-left-4 md:-left-8" />
+                  <CarouselNext className="-right-4 md:-right-8" />
+              </Carousel>
               <div className="text-center mt-12 animate-fade-in-up animation-delay-600">
                   <Button asChild>
                       <Link href="/du-an">Xem Tất Cả Dự Án</Link>
@@ -291,3 +308,5 @@ export default async function DashboardPage() {
     </div>
   );
 }
+
+    

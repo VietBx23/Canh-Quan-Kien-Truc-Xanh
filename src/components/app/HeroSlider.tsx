@@ -3,6 +3,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import React from "react"
 import {
   Carousel,
   CarouselContent,
@@ -15,6 +16,10 @@ import { PlaceHolderImages } from "@/lib/placeholder-images"
 import { Button } from "@/components/ui/button"
 
 export function HeroSlider() {
+    const plugin = React.useRef(
+        Autoplay({ delay: 5000, stopOnInteraction: true })
+    )
+
     const heroSlides = [
         {
           id: 'hero-1',
@@ -45,9 +50,11 @@ export function HeroSlider() {
   return (
     <section className="w-full text-white">
       <Carousel
-        plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
+        plugins={[plugin.current]}
         className="w-full"
         opts={{ loop: true }}
+        onMouseEnter={plugin.current.stop}
+        onMouseLeave={plugin.current.reset}
       >
         <CarouselContent>
           {heroSlides.map((slide) => (
