@@ -78,7 +78,7 @@ export function ContentEditor({ isConnected, addActivity }: ContentEditorProps) 
             });
             addActivity(`Scheduled post: "${title}" for ${format(date!, "PPP")}`, Timer);
         } else {
-            const fakeLink = `https://sites.google.com/view/mysite/${title.toLowerCase().replace(/\s+/g, "-")}`;
+            const fakeLink = `https://sites.google.com/view/mysite/${encodeURIComponent(title.toLowerCase().replace(/\s+/g, "-"))}`;
             toast({
                 title: "Published!",
                 description: `Your post "${title}" is now live.`,
