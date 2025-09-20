@@ -178,7 +178,7 @@ export function ContentEditor({ isConnected, addActivity }: ContentEditorProps) 
               id="custom-prefix"
               placeholder="e.g. my-awesome-post"
               value={customPrefix}
-              onChange={(e) => setCustomPrefix(e.targe.value)}
+              onChange={(e) => setCustomPrefix(e.target.value)}
               disabled={isPublishing}
             />
           </div>
