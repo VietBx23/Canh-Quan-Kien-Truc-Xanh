@@ -1,7 +1,5 @@
 
-'use client'
 
-import { useSearchParams } from 'next/navigation'
 import { Header } from "@/components/app/Header";
 import { Footer } from "@/components/app/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,24 +8,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from 'i18n-config';
-import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { SearchX } from 'lucide-react';
 
-type Dictionary = Awaited<ReturnType<typeof getDictionary>>
+type Props = {
+    params: { lang: Locale },
+    searchParams: { [key: string]: string | string[] | undefined }
+}
 
-export default function SearchPage({ params: { lang } }: { params: { lang: Locale }}) {
-    const searchParams = useSearchParams();
-    const query = searchParams.get('q');
-    const [dictionary, setDictionary] = useState<Dictionary | null>(null);
-
-     useEffect(() => {
-        const fetchDict = async () => {
-            const dict = await getDictionary(lang);
-            setDictionary(dict);
-        };
-        fetchDict();
-    }, [lang]);
+export default async function SearchPage({ params: { lang }, searchParams }: Props) {
+    const dictionary = await getDictionary(lang);
+    const query = typeof searchParams.q === 'string' ? searchParams.q : '';
 
     const allProjects = PlaceHolderImages.filter(p => p.id.startsWith('gallery-'));
     
@@ -35,10 +26,6 @@ export default function SearchPage({ params: { lang } }: { params: { lang: Local
         ? allProjects.filter(p => p.imageHint.toLowerCase().includes(query.toLowerCase()))
         : [];
     
-    if (!dictionary) {
-        return <div>Loading...</div>; // Or a proper loading skeleton
-    }
-
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
             <Header lang={lang} dictionary={dictionary} />
@@ -97,7 +84,7 @@ export default function SearchPage({ params: { lang } }: { params: { lang: Local
                     </div>
                 </section>
             </main>
-            <Footer dictionary={dictionary} />
+            <Footer lang={lang} dictionary={dictionary} />
         </div>
     );
 }

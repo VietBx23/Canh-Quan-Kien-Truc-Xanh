@@ -1,9 +1,11 @@
+
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { Inter } from 'next/font/google';
 import { FloatingButtons } from '@/components/app/FloatingButtons';
 import { i18n, type Locale } from '../../i18n-config';
+import { getDictionary } from '@/get-dictionary';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 

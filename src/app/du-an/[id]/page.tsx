@@ -1,8 +1,5 @@
 
 
-'use client'
-
-import { useParams, useRouter } from 'next/navigation'
 import { Header } from "@/components/app/Header";
 import { Footer } from "@/components/app/Footer";
 import { Button } from "@/components/ui/button";
@@ -13,50 +10,22 @@ import { Calendar, Tag, Home, ArrowLeft } from "lucide-react";
 import { Card, CardContent } from '@/components/ui/card';
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from 'i18n-config';
-import { useEffect, useState } from 'react';
+import { notFound } from "next/navigation";
 
-type Dictionary = Awaited<ReturnType<typeof getDictionary>>
+type Props = {
+    params: { lang: Locale, id: string }
+}
 
-export default function ProjectDetailPage() {
-    const params = useParams();
-    const router = useRouter();
-    const lang = params.lang as Locale;
-    const id = params.id as string;
+export default async function ProjectDetailPage({ params: { lang, id } }: Props) {
+    const dictionary = await getDictionary(lang);
     const project = PlaceHolderImages.find(p => p.id === id);
-    const [dictionary, setDictionary] = useState<Dictionary | null>(null);
-
-    useEffect(() => {
-        const fetchDict = async () => {
-            const dict = await getDictionary(lang);
-            setDictionary(dict);
-        };
-        fetchDict();
-    }, [lang]);
 
     if (!project) {
-        // We need to wait for dictionary to be loaded before rendering 404
-        if (!dictionary) return <div>Loading...</div>;
-        return (
-            <div className="flex min-h-screen w-full flex-col bg-background font-body">
-                <Header lang={lang} dictionary={dictionary} />
-                <main className="flex-1 flex items-center justify-center text-center">
-                    <div>
-                        <h1 className="text-4xl font-bold text-primary">Dự án không tồn tại</h1>
-                        <p className="mt-4 text-lg text-muted-foreground">Dự án bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.</p>
-                        <Button asChild className="mt-8">
-                            <Link href={`/${lang}/du-an`}>Quay lại trang dự án</Link>
-                        </Button>
-                    </div>
-                </main>
-                <Footer lang={lang} dictionary={dictionary} />
-            </div>
-        );
+        notFound();
     }
     
     // Select some other projects as related
     const relatedProjects = PlaceHolderImages.filter(p => p.id.startsWith('gallery-') && p.id !== id).slice(0, 4);
-
-    if (!dictionary) return <div>Loading...</div>;
 
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
