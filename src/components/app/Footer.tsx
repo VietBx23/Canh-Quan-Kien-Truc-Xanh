@@ -2,10 +2,8 @@ import { Phone, Mail, MapPin, Briefcase } from "lucide-react";
 import Link from "next/link";
 import { Mountain, Facebook, Youtube, Instagram, Linkedin } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import { getDictionary } from "@/get-dictionary";
-import { Locale } from "i18n-config";
 
-export function Footer({ dictionary, lang }: { dictionary: Awaited<ReturnType<typeof getDictionary>>, lang: Locale }) {
+export function Footer() {
   const socialLinks = [
     { name: "Facebook", href: "#", icon: Facebook },
     { name: "Instagram", href: "#", icon: Instagram },
@@ -19,12 +17,12 @@ export function Footer({ dictionary, lang }: { dictionary: Awaited<ReturnType<ty
             
             {/* Logo & Description */}
             <div className="lg:col-span-4">
-              <Link href={`/${lang}/dashboard`} className="flex items-center gap-3 mb-4">
+              <Link href="/dashboard" className="flex items-center gap-3 mb-4">
                 <Mountain className="h-8 w-8 text-accent" />
                 <span className="font-bold text-2xl text-white">Kiến Trúc Xanh</span>
               </Link>
               <p className="text-sm text-primary-foreground/70 leading-relaxed pr-8">
-                {dictionary.footer.description}
+                Kiến tạo không gian sống đẳng cấp, hài hòa với thiên nhiên. Chuyên thiết kế sân vườn, thi công hồ cá Koi và các giải pháp cảnh quan toàn diện.
               </p>
               <div className="mt-6 flex gap-3">
                 {socialLinks.map(link => (
@@ -40,30 +38,30 @@ export function Footer({ dictionary, lang }: { dictionary: Awaited<ReturnType<ty
 
             {/* Quick Links */}
             <div className="lg:col-span-2">
-              <h4 className="font-bold text-lg tracking-wider uppercase text-white mb-4">{dictionary.footer.menu}</h4>
+              <h4 className="font-bold text-lg tracking-wider uppercase text-white mb-4">Menu</h4>
               <ul className="space-y-3 text-sm">
-                  <li><Link href={`/${lang}/gioi-thieu`} className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">{dictionary.header.about}</Link></li>
-                  <li><Link href={`/${lang}/dich-vu`} className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">{dictionary.header.services}</Link></li>
-                  <li><Link href={`/${lang}/du-an`} className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">{dictionary.header.projects}</Link></li>
-                  <li><Link href={`/${lang}/blog`} className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">{dictionary.header.blog}</Link></li>
-                  <li><Link href={`/${lang}/lien-he`} className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">{dictionary.header.contact}</Link></li>
+                  <li><Link href="/gioi-thieu" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">Giới Thiệu</Link></li>
+                  <li><Link href="/dich-vu" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">Dịch Vụ</Link></li>
+                  <li><Link href="/du-an" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">Dự Án</Link></li>
+                  <li><Link href="/blog" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">Tin Tức</Link></li>
+                  <li><Link href="/lien-he" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">Liên Hệ</Link></li>
               </ul>
             </div>
             
             {/* Main Services */}
             <div className="lg:col-span-3">
-              <h4 className="font-bold text-lg tracking-wider uppercase text-white mb-4">{dictionary.footer.main_services}</h4>
+              <h4 className="font-bold text-lg tracking-wider uppercase text-white mb-4">Dịch vụ chính</h4>
               <ul className="space-y-3 text-sm">
-                  <li><Link href={`/${lang}/dich-vu`} className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors duration-300"><Briefcase className="w-4 h-4 text-accent/80"/>{dictionary.footer.service_villa}</Link></li>
-                  <li><Link href={`/${lang}/dich-vu`} className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors duration-300"><Briefcase className="w-4 h-4 text-accent/80"/>{dictionary.footer.service_koi}</Link></li>
-                  <li><Link href={`/${lang}/dich-vu`} className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors duration-300"><Briefcase className="w-4 h-4 text-accent/80"/>{dictionary.footer.service_fengshui}</Link></li>
-                  <li><Link href={`/${lang}/dich-vu`} className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors duration-300"><Briefcase className="w-4 h-4 text-accent/80"/>{dictionary.footer.service_maintenance}</Link></li>
+                  <li><Link href="/dich-vu" className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors duration-300"><Briefcase className="w-4 h-4 text-accent/80"/>Thiết kế Sân vườn Biệt thự</Link></li>
+                  <li><Link href="/dich-vu" className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors duration-300"><Briefcase className="w-4 h-4 text-accent/80"/>Thi công Hồ Cá Koi</Link></li>
+                  <li><Link href="/dich-vu" className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors duration-300"><Briefcase className="w-4 h-4 text-accent/80"/>Cung cấp Đá Phong Thủy</Link></li>
+                  <li><Link href="/dich-vu" className="flex items-center gap-2 text-primary-foreground/70 hover:text-accent transition-colors duration-300"><Briefcase className="w-4 h-4 text-accent/80"/>Bảo trì, chăm sóc cảnh quan</Link></li>
               </ul>
             </div>
 
             {/* Contact Info */}
             <div className="lg:col-span-3">
-               <h4 className="font-bold text-lg tracking-wider uppercase text-white mb-4">{dictionary.footer.contact_info}</h4>
+               <h4 className="font-bold text-lg tracking-wider uppercase text-white mb-4">Thông tin liên hệ</h4>
               <ul className="space-y-4 text-sm">
                   <li className="flex items-start gap-3">
                       <MapPin className="w-5 h-5 mt-1 shrink-0 text-accent"/>
@@ -75,7 +73,7 @@ export function Footer({ dictionary, lang }: { dictionary: Awaited<ReturnType<ty
                   </li>
                   <li className="flex items-start gap-3">
                       <Phone className="w-5 h-5 mt-1 shrink-0 text-accent"/>
-                      <a href="tel:0933741779" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">{dictionary.footer.hotline}: 0933 741 779</a>
+                      <a href="tel:0933741779" className="text-primary-foreground/70 hover:text-accent transition-colors duration-300">Hotline: 0933 741 779</a>
                   </li>
               </ul>
             </div>
@@ -84,7 +82,7 @@ export function Footer({ dictionary, lang }: { dictionary: Awaited<ReturnType<ty
         </div>
         <div className="border-t border-white/10 mt-8">
             <div className="container mx-auto px-4 py-6 text-center text-xs text-primary-foreground/60">
-                <p>&copy; {new Date().getFullYear()} {dictionary.footer.copyright}</p>
+                <p>&copy; {new Date().getFullYear()} Cảnh Quan Kiến Trúc Xanh. Bản quyền thuộc về chúng tôi. Được thiết kế với tất cả đam mê.</p>
             </div>
         </div>
       </footer>

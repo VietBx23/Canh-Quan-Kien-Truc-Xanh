@@ -6,11 +6,9 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Leaf, Fish, Sprout, CheckCircle, Wind, Droplets, Sun, Sparkles, Truck, Home, ShoppingCart, Trees } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { getDictionary } from "@/get-dictionary";
-import { Locale } from "i18n-config";
 
-export default async function ServicesPage({ params: { lang } }: { params: { lang: Locale }}) {
-    const dictionary = await getDictionary(lang);
+
+export default async function ServicesPage() {
     const services = [
         {
             slug: "thiet-ke-san-vuon",
@@ -186,7 +184,7 @@ export default async function ServicesPage({ params: { lang } }: { params: { lan
 
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
-            <Header lang={lang} dictionary={dictionary} />
+            <Header />
             <main className="flex-1">
                 <section className="py-20 md:py-28 bg-muted">
                     <div className="container mx-auto px-4 text-center">
@@ -226,7 +224,7 @@ export default async function ServicesPage({ params: { lang } }: { params: { lan
                                         ))}
                                     </ul>
                                     <Button asChild size="lg">
-                                        <Link href={`/${lang}/dich-vu/${service.slug}`}>Xem Chi Tiết</Link>
+                                        <Link href={`/dich-vu/${service.slug}`}>Xem Chi Tiết</Link>
                                     </Button>
                                 </div>
                             </div>
@@ -234,7 +232,7 @@ export default async function ServicesPage({ params: { lang } }: { params: { lan
                     </div>
                 </section>
             </main>
-            <Footer lang={lang} dictionary={dictionary} />
+            <Footer />
         </div>
     );
 }

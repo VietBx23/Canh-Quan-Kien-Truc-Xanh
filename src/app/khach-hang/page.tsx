@@ -7,11 +7,8 @@ import Image from "next/image";
 import { Star } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { getDictionary } from "@/get-dictionary";
-import { Locale } from "i18n-config";
 
-export default async function TestimonialsPage({ params: { lang } }: { params: { lang: Locale }}) {
-    const dictionary = await getDictionary(lang);
+export default async function TestimonialsPage() {
     const testimonialAvatars = PlaceHolderImages.filter(p => p.id.startsWith('testimonial-'));
     const testimonials = [
         { id: 1, quote: "Đội ngũ làm việc rất chuyên nghiệp và có tâm. Khu vườn nhà tôi giờ đây thật sự là một nơi thư giãn tuyệt vời sau những giờ làm việc căng thẳng. Cảm ơn Kiến Trúc Xanh!", author: "Anh Hoàng Minh", location: "Chủ biệt thự, Quận 2", avatarId: "testimonial-1" },
@@ -46,7 +43,7 @@ export default async function TestimonialsPage({ params: { lang } }: { params: {
 
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
-            <Header lang={lang} dictionary={dictionary} />
+            <Header />
             <main className="flex-1">
                  <section className="py-20 md:py-28 bg-muted">
                     <div className="container mx-auto px-4 text-center animate-fade-in-up">
@@ -98,12 +95,12 @@ export default async function TestimonialsPage({ params: { lang } }: { params: {
                          <h2 className="text-2xl font-bold text-primary">Bạn đã sẵn sàng để trở thành khách hàng tiếp theo?</h2>
                         <p className="text-muted-foreground mt-2 max-w-xl mx-auto">Hãy để chúng tôi mang đến cho bạn một không gian sống xanh và đẳng cấp.</p>
                         <Button size="lg" asChild className="mt-6">
-                            <Link href={`/${lang}/lien-he`}>Liên Hệ Tư Vấn Ngay</Link>
+                            <Link href="/lien-he">Liên Hệ Tư Vấn Ngay</Link>
                         </Button>
                     </div>
                 </section>
             </main>
-            <Footer lang={lang} dictionary={dictionary} />
+            <Footer />
         </div>
     );
 }

@@ -8,16 +8,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar, Tag, Home, ArrowLeft } from "lucide-react";
 import { Card, CardContent } from '@/components/ui/card';
-import { getDictionary } from '@/get-dictionary';
-import { Locale } from 'i18n-config';
 import { notFound } from "next/navigation";
 
 type Props = {
-    params: { lang: Locale, id: string }
+    params: { id: string }
 }
 
-export default async function ProjectDetailPage({ params: { lang, id } }: Props) {
-    const dictionary = await getDictionary(lang);
+export default async function ProjectDetailPage({ params: { id } }: Props) {
     const project = PlaceHolderImages.find(p => p.id === id);
 
     if (!project) {
@@ -29,12 +26,12 @@ export default async function ProjectDetailPage({ params: { lang, id } }: Props)
 
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
-            <Header lang={lang} dictionary={dictionary} />
+            <Header />
             <main className="flex-1">
                 <section className="py-20 md:py-28 bg-muted">
                     <div className="container mx-auto px-4 text-center animate-fade-in-up">
                         <Button variant="ghost" asChild className="mb-4">
-                            <Link href={`/${lang}/du-an`} className="text-sm text-muted-foreground"><ArrowLeft className="mr-2 h-4 w-4"/> Quay lại danh sách dự án</Link>
+                            <Link href="/du-an" className="text-sm text-muted-foreground"><ArrowLeft className="mr-2 h-4 w-4"/> Quay lại danh sách dự án</Link>
                         </Button>
                         <h1 className="text-4xl md:text-5xl font-bold text-primary capitalize">{project.imageHint.replace(/-/g, ' ')}</h1>
                     </div>
@@ -79,7 +76,7 @@ export default async function ProjectDetailPage({ params: { lang, id } }: Props)
                                     </CardContent>
                                 </Card>
                                 <Button asChild size="lg" className="w-full mt-8">
-                                    <Link href={`/${lang}/lien-he`}>Yêu Cầu Báo Giá</Link>
+                                    <Link href="/lien-he">Yêu Cầu Báo Giá</Link>
                                 </Button>
                             </div>
                         </div>
@@ -101,7 +98,7 @@ export default async function ProjectDetailPage({ params: { lang, id } }: Props)
                                     <Card className="overflow-hidden group border-none shadow-lg hover:shadow-2xl transition-all duration-300">
                                         <CardContent className="p-0">
                                             <div className="overflow-hidden aspect-[4/3]">
-                                                <Link href={`/${lang}/du-an/${p.id}`}>
+                                                <Link href={`/du-an/${p.id}`}>
                                                     <Image 
                                                         src={p.imageUrl} 
                                                         alt={`Dự án ${p.id}`} 
@@ -114,7 +111,7 @@ export default async function ProjectDetailPage({ params: { lang, id } }: Props)
                                             </div>
                                             <div className="p-4 bg-white">
                                                 <h3 className="font-bold text-lg text-primary capitalize mt-1">
-                                                    <Link href={`/${lang}/du-an/${p.id}`}>{p.imageHint.replace(/-/g, ' ')}</Link>
+                                                    <Link href={`/du-an/${p.id}`}>{p.imageHint.replace(/-/g, ' ')}</Link>
                                                 </h3>
                                             </div>
                                         </CardContent>
@@ -126,7 +123,7 @@ export default async function ProjectDetailPage({ params: { lang, id } }: Props)
                 </section>
 
             </main>
-            <Footer lang={lang} dictionary={dictionary} />
+            <Footer />
         </div>
     );
 }

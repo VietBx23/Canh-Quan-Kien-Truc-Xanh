@@ -8,8 +8,6 @@ import { Leaf, Fish, Sprout, CheckCircle, Wind, Droplets, Sun, Sparkles, Truck, 
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { getDictionary } from '@/get-dictionary';
-import { Locale } from 'i18n-config';
 import { notFound } from "next/navigation";
 
 const servicesData = [
@@ -96,11 +94,10 @@ const servicesData = [
 const relatedProjects = PlaceHolderImages.filter(p => p.id.startsWith('gallery-')).slice(0, 4);
 
 type Props = {
-    params: { lang: Locale, slug: string }
+    params: { slug: string }
 }
 
-export default async function ServiceDetailPage({ params: { lang, slug } }: Props) {
-    const dictionary = await getDictionary(lang);
+export default async function ServiceDetailPage({ params: { slug } }: Props) {
     const service = servicesData.find(s => s.slug === slug);
 
     if (!service) {
@@ -111,7 +108,7 @@ export default async function ServiceDetailPage({ params: { lang, slug } }: Prop
 
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
-            <Header lang={lang} dictionary={dictionary} />
+            <Header />
             <main className="flex-1">
                 <section className="relative py-32 md:py-48 text-white bg-black">
                      {service.image && (
@@ -150,7 +147,7 @@ export default async function ServiceDetailPage({ params: { lang, slug } }: Prop
                             </div>
                              <div className="mt-12">
                                 <Button size="lg" asChild>
-                                    <Link href={`/${lang}/lien-he`}>Nhận Tư Vấn Miễn Phí</Link>
+                                    <Link href="/lien-he">Nhận Tư Vấn Miễn Phí</Link>
                                 </Button>
                             </div>
                         </div>
@@ -160,7 +157,7 @@ export default async function ServiceDetailPage({ params: { lang, slug } }: Prop
                                 <h3 className="text-2xl font-bold text-primary mb-6">Dịch vụ khác</h3>
                                 <div className="space-y-6">
                                     {otherServices.map(other => (
-                                        <Link key={other.slug} href={`/${lang}/dich-vu/${other.slug}`} className="group flex items-center gap-4 p-4 rounded-lg bg-muted hover:bg-primary hover:text-white transition-colors duration-300">
+                                        <Link key={other.slug} href={`/dich-vu/${other.slug}`} className="group flex items-center gap-4 p-4 rounded-lg bg-muted hover:bg-primary hover:text-white transition-colors duration-300">
                                              {other.image && <Image src={other.image.imageUrl} alt={other.title} width={80} height={60} className="rounded-md object-cover" data-ai-hint={other.image.imageHint}/>}
                                             <span className="font-semibold text-primary group-hover:text-white">{other.title}</span>
                                         </Link>
@@ -179,7 +176,7 @@ export default async function ServiceDetailPage({ params: { lang, slug } }: Prop
                                 <Card key={project.id} className="overflow-hidden group border-none shadow-lg hover:shadow-2xl transition-all duration-300">
                                     <CardContent className="p-0">
                                         <div className="overflow-hidden aspect-[4/3]">
-                                            <Link href={`/${lang}/du-an/${project.id}`}>
+                                            <Link href={`/du-an/${project.id}`}>
                                                 <Image 
                                                     src={project.imageUrl} 
                                                     alt={`Dự án ${project.id}`} 
@@ -192,7 +189,7 @@ export default async function ServiceDetailPage({ params: { lang, slug } }: Prop
                                         </div>
                                         <div className="p-4 bg-white">
                                             <h3 className="font-bold text-lg text-primary capitalize mt-1">
-                                                <Link href={`/${lang}/du-an/${project.id}`}>{project.imageHint.replace(/-/g, ' ')}</Link>
+                                                <Link href={`/du-an/${project.id}`}>{project.imageHint.replace(/-/g, ' ')}</Link>
                                             </h3>
                                         </div>
                                     </CardContent>
@@ -201,13 +198,13 @@ export default async function ServiceDetailPage({ params: { lang, slug } }: Prop
                         </div>
                         <div className="text-center mt-12">
                             <Button asChild>
-                                <Link href={`/${lang}/du-an`}>Xem Thêm Dự Án</Link>
+                                <Link href="/du-an">Xem Thêm Dự Án</Link>
                             </Button>
                         </div>
                     </div>
                 </section>
             </main>
-            <Footer lang={lang} dictionary={dictionary} />
+            <Footer />
         </div>
     );
 }

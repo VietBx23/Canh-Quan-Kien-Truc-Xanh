@@ -8,41 +8,31 @@ import Link from 'next/link';
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Input } from "../ui/input";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
-import { usePathname, useRouter } from "next/navigation";
-import { i18n, type Locale } from "../../../i18n-config";
+import { useRouter } from "next/navigation";
 
-export function Header({ lang, dictionary }: { lang: Locale, dictionary: any }) {
+export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
-  const pathname = usePathname();
 
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      const searchPath = `/${lang}/search?q=${encodeURIComponent(searchQuery.trim())}`;
+      const searchPath = `/search?q=${encodeURIComponent(searchQuery.trim())}`;
       router.push(searchPath);
     }
   };
 
-  const redirectedPathName = (locale: Locale) => {
-    if (!pathname) return '/';
-    const segments = pathname.split('/');
-    segments[1] = locale;
-    return segments.join('/');
-  };
-
   const navItems = [
-    { name: dictionary.header.home, href: "/dashboard" },
-    { name: dictionary.header.about, href: "/gioi-thieu" },
-    { name: dictionary.header.services, href: "/dich-vu" },
-    { name: dictionary.header.projects, href: "/du-an" },
-    { name: dictionary.header.clients, href: "/khach-hang" },
-    { name: dictionary.header.blog, href: "/blog" },
-    { name: dictionary.header.faq, href: "/faq" },
-    { name: dictionary.header.contact, href: "/lien-he" },
+    { name: "Trang Chủ", href: "/dashboard" },
+    { name: "Giới Thiệu", href: "/gioi-thieu" },
+    { name: "Dịch Vụ", href: "/dich-vu" },
+    { name: "Dự Án", href: "/du-an" },
+    { name: "Khách Hàng", href: "/khach-hang" },
+    { name: "Tin Tức", href: "/blog" },
+    { name: "FAQ", href: "/faq" },
+    { name: "Liên Hệ", href: "/lien-he" },
   ];
 
   useEffect(() => {
@@ -53,14 +43,12 @@ export function Header({ lang, dictionary }: { lang: Locale, dictionary: any }) 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const currentLang = lang;
-
   return (
     <header className={cn(
       "sticky top-0 z-50 flex h-20 items-center justify-between border-b px-4 transition-all duration-300 md:px-8",
       isScrolled ? "border-border bg-background/80 backdrop-blur-sm shadow-sm" : "border-transparent bg-background"
     )}>
-      <Link href={`/${currentLang}/dashboard`} className="flex items-center gap-2">
+      <Link href="/dashboard" className="flex items-center gap-2">
         <Mountain className="h-6 w-6 text-primary" />
         <span className="font-bold text-lg">Kiến Trúc Xanh</span>
       </Link>
@@ -70,7 +58,7 @@ export function Header({ lang, dictionary }: { lang: Locale, dictionary: any }) 
         {navItems.map((item) => (
           <Link
             key={item.name}
-            href={`/${currentLang}${item.href}`}
+            href={item.href}
             className="text-foreground/80 transition-colors hover:text-primary font-medium"
           >
             {item.name}
@@ -83,7 +71,7 @@ export function Header({ lang, dictionary }: { lang: Locale, dictionary: any }) 
         <form onSubmit={handleSearchSubmit} className="w-full">
           <Input 
             type="search" 
-            placeholder={dictionary.header.search_placeholder} 
+            placeholder="Tìm kiếm dịch vụ, dự án, bài viết..." 
             className="pr-10"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -97,28 +85,12 @@ export function Header({ lang, dictionary }: { lang: Locale, dictionary: any }) 
       <div className="hidden lg:flex items-center gap-1">
           <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(!isSearchOpen)}>
             <Search className="h-5 w-5"/>
-            <span className="sr-only">{dictionary.header.search_button}</span>
+            <span className="sr-only">Tìm kiếm</span>
           </Button>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Globe className="h-5 w-5"/>
-                <span className="sr-only">{dictionary.header.language_button}</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem asChild>
-                <Link href={redirectedPathName('vi')}>Tiếng Việt (VN)</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href={redirectedPathName('en')}>English (US)</Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
            <Button asChild>
             <a href="https://zalo.me/0933741779" target="_blank" className="flex items-center gap-2">
                 <MessageSquare className="h-4 w-4"/>
-                <span>{dictionary.header.zalo_chat}</span>
+                <span>Tư Vấn Zalo</span>
             </a>
           </Button>
       </div>
@@ -129,13 +101,13 @@ export function Header({ lang, dictionary }: { lang: Locale, dictionary: any }) 
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon">
               <Menu className="h-6 w-6" />
-              <span className="sr-only">{dictionary.header.open_menu}</span>
+              <span className="sr-only">Mở menu</span>
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-[85%] max-w-sm">
             <div className="flex h-full flex-col">
               <div className="grid gap-4 py-6">
-                <Link href={`/${currentLang}/dashboard`} className="flex items-center gap-2 mb-4">
+                <Link href="/dashboard" className="flex items-center gap-2 mb-4">
                   <Mountain className="h-6 w-6 text-primary" />
                   <span className="font-bold text-lg">Kiến Trúc Xanh</span>
                 </Link>
@@ -143,7 +115,7 @@ export function Header({ lang, dictionary }: { lang: Locale, dictionary: any }) 
                     <div className="relative">
                         <Input 
                           type="search" 
-                          placeholder={dictionary.header.search_placeholder_mobile}
+                          placeholder="Tìm kiếm..."
                           className="pr-10" 
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
@@ -156,7 +128,7 @@ export function Header({ lang, dictionary }: { lang: Locale, dictionary: any }) 
                 {navItems.map((item) => (
                   <Link
                     key={item.name}
-                    href={`/${currentLang}${item.href}`}
+                    href={item.href}
                     className="block text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
                   >
                     {item.name}
@@ -173,7 +145,7 @@ export function Header({ lang, dictionary }: { lang: Locale, dictionary: any }) 
                     <Button variant="ghost" size="sm" asChild className="w-full justify-start">
                         <a href="https://zalo.me/0933741779" target="_blank" className="flex items-center gap-2 text-base">
                             <MessageSquare className="h-5 w-5 text-primary"/>
-                            <span>{dictionary.header.zalo_chat}</span>
+                            <span>Tư Vấn Zalo</span>
                         </a>
                     </Button>
                 </div>

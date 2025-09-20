@@ -7,14 +7,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, MessageSquare } from 'lucide-react';
-import { getDictionary } from "@/get-dictionary";
-import { Locale } from "i18n-config";
 
-export default async function ContactPage({ params: { lang } }: { params: { lang: Locale }}) {
-    const dictionary = await getDictionary(lang);
+export default async function ContactPage() {
     return (
         <div className="flex min-h-screen w-full flex-col bg-background font-body">
-            <Header lang={lang} dictionary={dictionary} />
+            <Header />
             <main className="flex-1">
                 <section className="py-20 md:py-28 bg-muted">
                     <div className="container mx-auto px-4 text-center">
@@ -104,7 +101,7 @@ export default async function ContactPage({ params: { lang } }: { params: { lang
                     </div>
                 </section>
             </main>
-            <Footer lang={lang} dictionary={dictionary} />
+            <Footer />
         </div>
     );
 }
