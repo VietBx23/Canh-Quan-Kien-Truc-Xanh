@@ -8,13 +8,14 @@ import Link from 'next/link';
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Input } from "../ui/input";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -59,7 +60,10 @@ export function Header() {
           <Link
             key={item.name}
             href={item.href}
-            className="text-foreground/80 transition-colors hover:text-primary font-medium"
+            className={cn(
+              "transition-colors hover:text-primary font-medium",
+              pathname === item.href ? "text-primary" : "text-foreground/80"
+            )}
           >
             {item.name}
           </Link>
@@ -129,7 +133,10 @@ export function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="block text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
+                    className={cn(
+                      "block text-lg font-medium transition-colors hover:text-primary",
+                       pathname === item.href ? "text-primary" : "text-foreground/80"
+                    )}
                   >
                     {item.name}
                   </Link>
