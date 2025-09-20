@@ -7,4 +7,7 @@ export type ImagePlaceholder = {
   imageHint: string;
 };
 
+// Add other data types here
+export type ProjectPlaceholder = ImagePlaceholder;
+
 export const PlaceHolderImages: ImagePlaceholder[] = data.placeholderImages;
