@@ -6,7 +6,7 @@ import { Footer } from "@/components/app/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Leaf, Fish, Sprout, ArrowRight, Building, Award, ShieldCheck, Star, Users, Briefcase, Smile } from "lucide-react";
+import { Leaf, Fish, Sprout, ArrowRight, Building, Award, ShieldCheck, Star, Users, Briefcase, Smile, Lightbulb } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -25,6 +25,9 @@ export default function DashboardPage() {
   const galleryImages = PlaceHolderImages.filter(p => p.id.startsWith('gallery-')).slice(0, 5);
   const testimonialAvatar1 = PlaceHolderImages.find(p => p.id === 'testimonial-1');
   const testimonialAvatar2 = PlaceHolderImages.find(p => p.id === 'testimonial-2');
+  const statsBgImage = PlaceHolderImages.find(p => p.id === 'stats-background');
+  const ctaBgImage = PlaceHolderImages.find(p => p.id === 'cta-background');
+
 
   const workingProcess = [
     { step: "01", title: "Tư Vấn & Khảo Sát", description: "Lắng nghe yêu cầu, khảo sát thực tế và đưa ra tư vấn sơ bộ miễn phí." },
@@ -38,13 +41,13 @@ export default function DashboardPage() {
   const coreValues = [
     { icon: Award, title: "Chất Lượng Vượt Trội", description: "Sử dụng vật liệu tốt nhất, thi công tỉ mỉ trong từng chi tiết." },
     { icon: Leaf, title: "Bền Vững & Tự Nhiên", description: "Giải pháp thiết kế hài hòa, tôn trọng và gần gũi với thiên nhiên." },
-    { icon: Star, title: "Thiết Kế Độc Quyền", description: "Mỗi công trình là một tác phẩm nghệ thuật duy nhất, đậm dấu ấn gia chủ." },
+    { icon: Lightbulb, title: "Thiết Kế Sáng Tạo", description: "Mỗi công trình là một tác phẩm nghệ thuật duy nhất, đậm dấu ấn gia chủ." },
     { icon: ShieldCheck, title: "Bảo Hành Dài Hạn", description: "Cam kết đồng hành cùng khách hàng với chính sách bảo hành rõ ràng." },
   ];
 
 
   return (
-    <div className="flex min-h-screen w-full flex-col bg-background font-body">
+    <div className="flex min-h-screen w-full flex-col bg-white font-body">
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
@@ -126,10 +129,12 @@ export default function DashboardPage() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {workingProcess.map((item, index) => (
-                        <Card key={index} className="bg-white border-t-4 border-accent shadow-lg text-center p-6 transform transition-transform hover:-translate-y-2">
-                            <h3 className="text-5xl font-bold text-accent opacity-50 mb-2">{item.step}</h3>
-                            <h4 className="text-xl font-bold text-primary mb-2">{item.title}</h4>
-                            <p className="text-muted-foreground text-sm">{item.description}</p>
+                        <Card key={index} className="bg-white border-t-4 border-accent shadow-lg text-center p-6 transform transition-transform hover:-translate-y-2 relative overflow-hidden">
+                           <div className="absolute -top-4 -right-4 text-8xl font-bold text-muted opacity-80">{item.step}</div>
+                           <div className="relative z-10">
+                              <h4 className="text-xl font-bold text-primary mb-2 mt-8">{item.title}</h4>
+                              <p className="text-muted-foreground text-sm">{item.description}</p>
+                           </div>
                         </Card>
                     ))}
                 </div>
@@ -184,32 +189,34 @@ export default function DashboardPage() {
         </section>
 
         {/* Stats Section */}
-        <section className="py-20 bg-primary text-primary-foreground">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              <div className="flex flex-col items-center">
-                <Users className="w-10 h-10 mb-2 text-accent"/>
-                <p className="text-4xl font-bold">10+</p>
-                <p className="text-sm uppercase tracking-wider">Năm Kinh Nghiệm</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <Briefcase className="w-10 h-10 mb-2 text-accent"/>
-                <p className="text-4xl font-bold">500+</p>
-                <p className="text-sm uppercase tracking-wider">Công Trình Hoàn Thiện</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <Building className="w-10 h-10 mb-2 text-accent"/>
-                <p className="text-4xl font-bold">100+</p>
-                <p className="text-sm uppercase tracking-wider">Khách Hàng Doanh Nghiệp</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <Smile className="w-10 h-10 mb-2 text-accent"/>
-                <p className="text-4xl font-bold">95%</p>
-                <p className="text-sm uppercase tracking-wider">Khách Hàng Hài Lòng</p>
+        {statsBgImage && (
+          <section className="py-20 bg-parallax bg-overlay text-primary-foreground" style={{backgroundImage: `url(${statsBgImage.imageUrl})`}}>
+            <div className="container mx-auto px-4 content-overlay">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div className="flex flex-col items-center">
+                  <Users className="w-10 h-10 mb-2 text-accent"/>
+                  <p className="text-4xl font-bold">10+</p>
+                  <p className="text-sm uppercase tracking-wider">Năm Kinh Nghiệm</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <Briefcase className="w-10 h-10 mb-2 text-accent"/>
+                  <p className="text-4xl font-bold">500+</p>
+                  <p className="text-sm uppercase tracking-wider">Công Trình Hoàn Thiện</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <Building className="w-10 h-10 mb-2 text-accent"/>
+                  <p className="text-4xl font-bold">100+</p>
+                  <p className="text-sm uppercase tracking-wider">Khách Hàng Doanh Nghiệp</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <Smile className="w-10 h-10 mb-2 text-accent"/>
+                  <p className="text-4xl font-bold">95%</p>
+                  <p className="text-sm uppercase tracking-wider">Khách Hàng Hài Lòng</p>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Why Choose Us Section */}
         <section className="py-20 md:py-28 bg-white">
@@ -220,8 +227,10 @@ export default function DashboardPage() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {coreValues.map((value, index) => (
-                <div key={index} className="text-center p-6 border-l-4 border-accent bg-muted rounded-r-lg">
-                  <value.icon className="h-10 w-10 text-primary mb-4 mx-auto"/>
+                <div key={index} className="text-center p-6 bg-muted rounded-lg transition-transform hover:-translate-y-2 hover:shadow-xl">
+                  <div className="inline-block p-4 bg-primary/10 rounded-full mb-4">
+                    <value.icon className="h-8 w-8 text-primary"/>
+                  </div>
                   <h3 className="font-bold text-xl mb-2 text-primary">{value.title}</h3>
                   <p className="text-sm text-muted-foreground">{value.description}</p>
                 </div>
@@ -270,15 +279,17 @@ export default function DashboardPage() {
         </section>
 
         {/* Call to Action Section */}
-        <section className="py-20 md:py-28 bg-primary/95 text-white text-center">
-            <div className="container mx-auto px-4">
-                <h2 className="text-3xl md:text-4xl font-bold">Sẵn Sàng Biến Ước Mơ Cảnh Quan Của Bạn Thành Hiện Thực?</h2>
-                <p className="text-white/80 mt-4 max-w-2xl mx-auto">Chỉ một bước nữa để sở hữu không gian sống đẳng cấp. Hãy để lại thông tin, chuyên gia của chúng tôi sẽ liên hệ với bạn ngay!</p>
-                <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg" asChild>
-                    <Link href="/lien-he">Yêu Cầu Tư Vấn Ngay</Link>
-                </Button>
-            </div>
-        </section>
+        {ctaBgImage && (
+          <section className="py-20 md:py-28 bg-parallax bg-overlay text-white text-center" style={{backgroundImage: `url(${ctaBgImage.imageUrl})`}}>
+              <div className="container mx-auto px-4 content-overlay">
+                  <h2 className="text-3xl md:text-4xl font-bold">Sẵn Sàng Biến Ước Mơ Cảnh Quan Của Bạn Thành Hiện Thực?</h2>
+                  <p className="text-white/80 mt-4 max-w-2xl mx-auto">Chỉ một bước nữa để sở hữu không gian sống đẳng cấp. Hãy để lại thông tin, chuyên gia của chúng tôi sẽ liên hệ với bạn ngay!</p>
+                  <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg" asChild>
+                      <Link href="/lien-he">Yêu Cầu Tư Vấn Ngay</Link>
+                  </Button>
+              </div>
+          </section>
+        )}
       </main>
 
       <Footer />

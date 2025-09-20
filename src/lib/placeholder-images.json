@@ -26,6 +26,18 @@
       "imageHint": "zen rock garden"
     },
     {
+      "id": "stats-background",
+      "description": "Background for the stats section, a beautiful landscape.",
+      "imageUrl": "https://picsum.photos/seed/stats-bg/1200/400",
+      "imageHint": "garden panorama"
+    },
+     {
+      "id": "cta-background",
+      "description": "Background for the call-to-action section.",
+      "imageUrl": "https://picsum.photos/seed/cta-bg/1200/600",
+      "imageHint": "pathway night"
+    },
+    {
       "id": "gallery-1",
       "description": "Project gallery image 1: A modern backyard with a swimming pool and lush garden.",
       "imageUrl": "https://picsum.photos/seed/gallery-villa-garden/600/450",

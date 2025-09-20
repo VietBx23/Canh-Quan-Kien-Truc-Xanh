@@ -75,4 +75,27 @@
   .text-shadow-lg {
     text-shadow: 0 4px 8px rgba(0,0,0,0.5);
   }
+  .bg-parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .bg-overlay {
+    position: relative;
+  }
+  .bg-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+  }
+  .content-overlay {
+    position: relative;
+    z-index: 2;
+  }
 }

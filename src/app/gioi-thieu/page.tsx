@@ -2,7 +2,7 @@
 import { Header } from "@/components/app/Header";
 import { Footer } from "@/components/app/Footer";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Award, Target, Users, Leaf, ShieldCheck, Star, Lightbulb, Briefcase, Building, Smile } from "lucide-react";
+import { Award, Target, Users, Leaf, ShieldCheck, Star, Lightbulb, Briefcase, Building, Smile, Fish } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,13 @@ export default function AboutPage() {
         { year: "2017", event: "Mở rộng thi công hồ cá Koi chuyên nghiệp, trở thành một trong những đơn vị tiên phong.", icon: Fish },
         { year: "2020", event: "Trở thành đối tác tin cậy của nhiều khu đô thị, resort và các dự án lớn.", icon: Building },
         { year: "2024", event: "Hoàn thiện hơn 500+ công trình và tiếp tục hành trình kiến tạo không gian xanh.", icon: Star },
+    ];
+
+    const coreValues = [
+        { icon: Users, title: "Đội Ngũ Chuyên Gia", description: "Kiến trúc sư và nghệ nhân giàu kinh nghiệm, am hiểu sâu sắc về cây cối, phong thủy." },
+        { icon: Lightbulb, title: "Thiết Kế Sáng Tạo", description: "Luôn cập nhật xu hướng mới, tạo ra những thiết kế độc đáo, mang đậm dấu ấn cá nhân." },
+        { icon: Star, title: "Quy Trình Chuyên Nghiệp", description: "Từ khảo sát, thiết kế 3D đến thi công và bảo dưỡng, tất cả đều được thực hiện bài bản." },
+        { icon: ShieldCheck, title: "Bảo Hành Dài Hạn", description: "Cam kết chất lượng công trình với chính sách bảo hành, bảo dưỡng rõ ràng, minh bạch." },
     ];
 
     return (
@@ -63,19 +70,22 @@ export default function AboutPage() {
                         <div className="text-center mb-16">
                             <h2 className="text-3xl md:text-4xl font-bold text-primary">Quá Trình Hình Thành & Phát Triển</h2>
                         </div>
-                        <div className="relative max-w-4xl mx-auto">
-                            <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2"></div>
+                        <div className="relative max-w-4xl mx-auto before:absolute before:inset-0 before:ml-5 before:h-full before:w-0.5 before:bg-primary/20 md:before:mx-auto">
                             {timeline.map((item, index) => (
-                                <div key={index} className={`flex items-center mb-12 ${index % 2 === 0 ? 'flex-row-reverse' : ''}`}>
-                                    <div className="flex-1"></div>
-                                    <div className="relative z-10 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white">
-                                        <item.icon className="w-6 h-6" />
-                                    </div>
-                                    <div className="flex-1">
-                                        <div className={`p-6 bg-white rounded-lg shadow-lg mx-8 ${index % 2 === 0 ? 'text-right' : ''}`}>
-                                            <h3 className="text-3xl font-bold text-accent">{item.year}</h3>
-                                            <p className="mt-2 text-muted-foreground">{item.event}</p>
+                                <div key={index} className="relative pl-8 md:pl-0">
+                                    <div className="md:flex items-center">
+                                        <div className={`flex md:w-1/2 ${index % 2 === 0 ? 'justify-start' : 'md:justify-end'}`}>
+                                           <div className="absolute left-5 top-1 h-5 w-5 rounded-full border-4 border-primary bg-white md:relative md:left-0"></div>
                                         </div>
+                                        <div className="md:w-1/2">
+                                            <div className={`p-6 bg-white rounded-lg shadow-xl mb-8 md:max-w-sm ${index % 2 === 0 ? 'md:ml-auto' : 'md:mr-auto'}`}>
+                                                <h3 className="text-3xl font-bold text-accent">{item.year}</h3>
+                                                <p className="mt-2 text-muted-foreground">{item.event}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="absolute -left-1.5 top-2 h-10 w-10 bg-primary rounded-full flex items-center justify-center text-white md:left-1/2 md:-translate-x-1/2">
+                                        <item.icon className="w-5 h-5" />
                                     </div>
                                 </div>
                             ))}
@@ -91,26 +101,15 @@ export default function AboutPage() {
                             Sự khác biệt của chúng tôi đến từ đội ngũ chuyên gia tâm huyết, quy trình làm việc minh bạch và cam kết chất lượng trên từng công trình.
                         </p>
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto text-left">
-                            <div className="p-6 border-l-4 border-accent bg-muted rounded-r-lg">
-                                <Users className="h-10 w-10 text-primary mb-3"/>
-                                <h3 className="font-bold text-xl mb-2 text-primary">Đội Ngũ Chuyên Gia</h3>
-                                <p className="text-sm text-muted-foreground">Kiến trúc sư và nghệ nhân giàu kinh nghiệm, am hiểu sâu sắc về cây cối, phong thủy.</p>
-                            </div>
-                            <div className="p-6 border-l-4 border-accent bg-muted rounded-r-lg">
-                                <Lightbulb className="h-10 w-10 text-primary mb-3"/>
-                                <h3 className="font-bold text-xl mb-2 text-primary">Thiết Kế Sáng Tạo</h3>
-                                <p className="text-sm text-muted-foreground">Luôn cập nhật xu hướng mới, tạo ra những thiết kế độc đáo, mang đậm dấu ấn cá nhân.</p>
-                            </div>
-                            <div className="p-6 border-l-4 border-accent bg-muted rounded-r-lg">
-                                <Star className="h-10 w-10 text-primary mb-3"/>
-                                <h3 className="font-bold text-xl mb-2 text-primary">Quy Trình Chuyên Nghiệp</h3>
-                                <p className="text-sm text-muted-foreground">Từ khảo sát, thiết kế 3D đến thi công và bảo dưỡng, tất cả đều được thực hiện bài bản.</p>
-                            </div>
-                             <div className="p-6 border-l-4 border-accent bg-muted rounded-r-lg">
-                                 <ShieldCheck className="h-10 w-10 text-primary mb-3"/>
-                                <h3 className="font-bold text-xl mb-2 text-primary">Bảo Hành Dài Hạn</h3>
-                                <p className="text-sm text-muted-foreground">Cam kết chất lượng công trình với chính sách bảo hành, bảo dưỡng rõ ràng, minh bạch.</p>
-                            </div>
+                            {coreValues.map((value, index) => (
+                                <div key={index} className="text-center p-6 bg-muted rounded-lg transition-transform hover:-translate-y-2 hover:shadow-xl">
+                                    <div className="inline-block p-4 bg-primary/10 rounded-full mb-4">
+                                        <value.icon className="h-8 w-8 text-primary"/>
+                                    </div>
+                                    <h3 className="font-bold text-xl mb-2 text-primary">{value.title}</h3>
+                                    <p className="text-sm text-muted-foreground">{value.description}</p>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>
