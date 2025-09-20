@@ -1,14 +1,11 @@
 
+
 import Link from "next/link"
 import {
   Activity,
   ArrowUpRight,
-  CircleUser,
   CreditCard,
   DollarSign,
-  Menu,
-  Package2,
-  Search,
   Users,
 } from "lucide-react"
 
@@ -27,16 +24,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import {
   Table,
   TableBody,
   TableCell,
@@ -44,9 +31,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { projects } from "@/lib/data/projects"
+import { testimonials } from "@/lib/data/testimonials"
 
 
 export default function AdminDashboard() {
+  const recentProjects = projects.slice(0, 3);
+  const recentCustomers = testimonials.slice(0, 5);
+
   return (
     <>
       <div className="flex items-center">
@@ -56,7 +48,7 @@ export default function AdminDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Tổng Doanh Thu
+              Tổng Doanh Thu (demo)
             </CardTitle>
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
@@ -70,40 +62,40 @@ export default function AdminDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Khách hàng mới
+              Khách hàng
             </CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">+235</div>
+            <div className="text-2xl font-bold">+{testimonials.length}</div>
             <p className="text-xs text-muted-foreground">
-              +180.1% so với tháng trước
+              Tổng số khách hàng
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Dự án mới</CardTitle>
+            <CardTitle className="text-sm font-medium">Dự án</CardTitle>
             <CreditCard className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">+12</div>
+            <div className="text-2xl font-bold">+{projects.length}</div>
             <p className="text-xs text-muted-foreground">
-              +19% so với tháng trước
+              Tổng số dự án
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Liên hệ mới
+              Liên hệ mới (demo)
             </CardTitle>
             <Activity className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">+57</div>
             <p className="text-xs text-muted-foreground">
-              +20 since last hour
+              +20 trong tháng này
             </p>
           </CardContent>
         </Card>
@@ -112,13 +104,13 @@ export default function AdminDashboard() {
         <Card className="xl:col-span-2">
           <CardHeader className="flex flex-row items-center">
             <div className="grid gap-2">
-              <CardTitle>Khách hàng tiềm năng</CardTitle>
+              <CardTitle>Khách hàng gần đây</CardTitle>
               <CardDescription>
-                Danh sách khách hàng gần đây đã liên hệ.
+                Những khách hàng đã để lại đánh giá.
               </CardDescription>
             </div>
             <Button asChild size="sm" className="ml-auto gap-1">
-              <Link href="#">
+              <Link href="/dashboard/admin/khach-hang">
                 Xem tất cả
                 <ArrowUpRight className="h-4 w-4" />
               </Link>
@@ -130,78 +122,29 @@ export default function AdminDashboard() {
                 <TableRow>
                   <TableHead>Khách hàng</TableHead>
                   <TableHead className="hidden xl:table-column">
-                    Dịch vụ quan tâm
+                    Địa điểm
                   </TableHead>
-                  <TableHead className="hidden xl:table-column">
-                    Trạng thái
+                   <TableHead className="hidden md:table-cell lg:hidden xl:table-column">
+                    Ngày đánh giá
                   </TableHead>
-                  <TableHead className="hidden md:table-cell lg:hidden xl:table-column">
-                    Ngày liên hệ
-                  </TableHead>
-                  <TableHead className="text-right">Số điện thoại</TableHead>
+                  <TableHead className="text-right">Trích dẫn</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow>
-                  <TableCell>
-                    <div className="font-medium">Anh Trần Văn A</div>
-                    <div className="hidden text-sm text-muted-foreground md:inline">
-                      tran.a@email.com
-                    </div>
-                  </TableCell>
-                  <TableCell className="hidden xl:table-column">
-                    Hồ cá Koi
-                  </TableCell>
-                  <TableCell className="hidden xl:table-column">
-                    <Badge className="text-xs" variant="outline">
-                      Chờ tư vấn
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                    2024-07-25
-                  </TableCell>
-                  <TableCell className="text-right">090xxxx123</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <div className="font-medium">Chị Nguyễn Thị B</div>
-                    <div className="hidden text-sm text-muted-foreground md:inline">
-                      nguyen.b@email.com
-                    </div>
-                  </TableCell>
-                  <TableCell className="hidden xl:table-column">
-                    Thiết kế sân vườn
-                  </TableCell>
-                  <TableCell className="hidden xl:table-column">
-                      <Badge className="text-xs" variant="secondary">
-                      Đã báo giá
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                    2024-07-24
-                  </TableCell>
-                  <TableCell className="text-right">091xxxx456</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <div className="font-medium">Anh Lê Văn C</div>
-                    <div className="hidden text-sm text-muted-foreground md:inline">
-                      le.c@email.com
-                    </div>
-                  </TableCell>
-                  <TableCell className="hidden xl:table-column">
-                    Bảo trì cảnh quan
-                  </TableCell>
-                  <TableCell className="hidden xl:table-column">
-                    <Badge className="text-xs" variant="outline">
-                      Chờ tư vấn
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                      2024-07-23
-                  </TableCell>
-                  <TableCell className="text-right">098xxxx789</TableCell>
-                </TableRow>
+                {recentCustomers.map(customer => (
+                  <TableRow key={customer.id}>
+                    <TableCell>
+                      <div className="font-medium">{customer.author}</div>
+                    </TableCell>
+                    <TableCell className="hidden xl:table-column">
+                      {customer.location}
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
+                      2024-07-28
+                    </TableCell>
+                    <TableCell className="text-right text-xs text-muted-foreground italic truncate max-w-xs">"{customer.quote}"</TableCell>
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </CardContent>
@@ -211,51 +154,23 @@ export default function AdminDashboard() {
             <CardTitle>Dự án gần đây</CardTitle>
           </CardHeader>
           <CardContent className="grid gap-8">
-            <div className="flex items-center gap-4">
-              <Avatar className="hidden h-9 w-9 sm:flex">
-                <AvatarImage src="/images/gallery-1.jpg" alt="Avatar" />
-                <AvatarFallback>DA</AvatarFallback>
-              </Avatar>
-              <div className="grid gap-1">
-                <p className="text-sm font-medium leading-none">
-                  Biệt thự Quận 2
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Hoàn thành
-                </p>
+            {recentProjects.map(project => (
+               <div key={project.id} className="flex items-center gap-4">
+                <Avatar className="hidden h-11 w-11 sm:flex">
+                  <AvatarImage src={project.imageUrl} alt={project.title} data-ai-hint={project.imageHint} />
+                  <AvatarFallback>{project.title.charAt(0)}</AvatarFallback>
+                </Avatar>
+                <div className="grid gap-1">
+                  <p className="text-sm font-medium leading-none capitalize">
+                    {project.title}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {project.category}
+                  </p>
+                </div>
+                <div className="ml-auto font-medium text-sm text-muted-foreground">{project.cost}</div>
               </div>
-              <div className="ml-auto font-medium">+150,000,000đ</div>
-            </div>
-            <div className="flex items-center gap-4">
-              <Avatar className="hidden h-9 w-9 sm:flex">
-                <AvatarImage src="/images/gallery-2.jpg" alt="Avatar" />
-                <AvatarFallback>DA</AvatarFallback>
-              </Avatar>
-              <div className="grid gap-1">
-                <p className="text-sm font-medium leading-none">
-                  Cafe Sân Vườn Gò Vấp
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Đang thi công
-                </p>
-              </div>
-              <div className="ml-auto font-medium">+250,000,000đ</div>
-            </div>
-              <div className="flex items-center gap-4">
-              <Avatar className="hidden h-9 w-9 sm:flex">
-                <AvatarImage src="/images/gallery-3.jpg" alt="Avatar" />
-                <AvatarFallback>DA</AvatarFallback>
-              </Avatar>
-              <div className="grid gap-1">
-                <p className="text-sm font-medium leading-none">
-                  Hồ Koi Bình Chánh
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Hoàn thành
-                </p>
-              </div>
-              <div className="ml-auto font-medium">+80,000,000đ</div>
-            </div>
+            ))}
           </CardContent>
         </Card>
       </div>
