@@ -18,7 +18,6 @@ import {
 } from "@/components/ui/carousel"
 
 export default function DashboardPage() {
-  const heroImage = PlaceHolderImages.find(p => p.id === 'hero-garden');
   const serviceGarden = PlaceHolderImages.find(p => p.id === 'service-garden');
   const serviceKoi = PlaceHolderImages.find(p => p.id === 'service-koi');
   const serviceMaintenance = PlaceHolderImages.find(p => p.id === 'service-maintenance');
@@ -50,18 +49,16 @@ export default function DashboardPage() {
     <div className="flex min-h-screen w-full flex-col bg-white font-body">
       <Header />
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative h-[70vh] w-full text-white">
-          {heroImage && (
-            <Image
-              src={heroImage.imageUrl}
-              alt="Beautiful garden landscape"
-              fill
-              className="object-cover brightness-[0.6]"
-              data-ai-hint={heroImage.imageHint}
-              priority
+        {/* Hero Section with Video */}
+        <section className="relative h-[70vh] w-full text-white overflow-hidden">
+            <video
+              src="https://videos.pexels.com/video-files/3253443/3253443-hd_1920_1080_25fps.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute top-1/2 left-1/2 w-full h-full min-w-full min-h-full object-cover transform -translate-x-1/2 -translate-y-1/2 brightness-[0.5]"
             />
-          )}
           <div className="relative z-10 flex h-full flex-col items-center justify-center text-center p-4">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-shadow-lg animate-fade-in-up">Kiến Tạo Không Gian Sống Đẳng Cấp</h1>
             <p className="mt-4 max-w-3xl text-lg md:text-xl text-shadow animate-fade-in-up animation-delay-300">
@@ -76,46 +73,52 @@ export default function DashboardPage() {
         {/* Services Section */}
         <section id="services" className="py-20 md:py-28 bg-white">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
+            <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-3xl md:text-4xl font-bold text-primary">Dịch Vụ Của Chúng Tôi</h2>
               <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
                 Chúng tôi cung cấp các giải pháp cảnh quan toàn diện, biến ý tưởng của bạn thành hiện thực.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2 bg-white">
-                {serviceGarden && <Image src={serviceGarden.imageUrl} alt="Thiết kế sân vườn" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceGarden.imageHint} />}
-                <CardHeader>
-                  <Leaf className="w-10 h-10 text-primary mb-3" />
-                  <CardTitle className="text-xl font-bold">Thiết kế Sân vườn</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4 text-sm">Tư vấn, thiết kế cảnh quan sân vườn biệt thự, nhà phố, resort theo phong cách độc đáo và hợp phong thủy.</p>
-                   <Button variant="link" className="p-0 text-sm" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
-                </CardContent>
-              </Card>
-              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2 bg-white">
-                {serviceKoi && <Image src={serviceKoi.imageUrl} alt="Thi công hồ cá Koi" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceKoi.imageHint} />}
-                <CardHeader>
-                  <Fish className="w-10 h-10 text-primary mb-3" />
-                  <CardTitle className="text-xl font-bold">Hồ Cá Koi Chuyên Nghiệp</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4 text-sm">Xây dựng hồ cá Koi với hệ thống lọc chuẩn quốc tế, đảm bảo môi trường sống lý tưởng và thẩm mỹ cao.</p>
-                   <Button variant="link" className="p-0 text-sm" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
-                </CardContent>
-              </Card>
-              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2 bg-white">
-                {serviceMaintenance && <Image src={serviceMaintenance.imageUrl} alt="Đá phong thủy & Tiểu cảnh" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceMaintenance.imageHint} />}
-                <CardHeader>
-                  <Sprout className="w-10 h-10 text-primary mb-3" />
-                  <CardTitle className="text-xl font-bold">Đá Phong Thủy & Tiểu Cảnh</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4 text-sm">Cung cấp và bài trí đá phong thủy, thác nước, non bộ, mang lại vượng khí và nét đẹp cho không gian.</p>
-                  <Button variant="link" className="p-0 text-sm" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
-                </CardContent>
-              </Card>
+              <div className="animate-fade-in-up animation-delay-300">
+                <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2 bg-white">
+                  {serviceGarden && <Image src={serviceGarden.imageUrl} alt="Thiết kế sân vườn" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceGarden.imageHint} />}
+                  <CardHeader>
+                    <Leaf className="w-10 h-10 text-primary mb-3" />
+                    <CardTitle className="text-xl font-bold">Thiết kế Sân vườn</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground mb-4 text-sm">Tư vấn, thiết kế cảnh quan sân vườn biệt thự, nhà phố, resort theo phong cách độc đáo và hợp phong thủy.</p>
+                     <Button variant="link" className="p-0 text-sm" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
+                  </CardContent>
+                </Card>
+              </div>
+              <div className="animate-fade-in-up animation-delay-600">
+                <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2 bg-white">
+                  {serviceKoi && <Image src={serviceKoi.imageUrl} alt="Thi công hồ cá Koi" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceKoi.imageHint} />}
+                  <CardHeader>
+                    <Fish className="w-10 h-10 text-primary mb-3" />
+                    <CardTitle className="text-xl font-bold">Hồ Cá Koi Chuyên Nghiệp</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground mb-4 text-sm">Xây dựng hồ cá Koi với hệ thống lọc chuẩn quốc tế, đảm bảo môi trường sống lý tưởng và thẩm mỹ cao.</p>
+                     <Button variant="link" className="p-0 text-sm" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
+                  </CardContent>
+                </Card>
+              </div>
+              <div className="animate-fade-in-up animation-delay-900">
+                <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2 bg-white">
+                  {serviceMaintenance && <Image src={serviceMaintenance.imageUrl} alt="Đá phong thủy & Tiểu cảnh" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceMaintenance.imageHint} />}
+                  <CardHeader>
+                    <Sprout className="w-10 h-10 text-primary mb-3" />
+                    <CardTitle className="text-xl font-bold">Đá Phong Thủy & Tiểu Cảnh</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground mb-4 text-sm">Cung cấp và bài trí đá phong thủy, thác nước, non bộ, mang lại vượng khí và nét đẹp cho không gian.</p>
+                    <Button variant="link" className="p-0 text-sm" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
         </section>
@@ -123,19 +126,21 @@ export default function DashboardPage() {
         {/* Working Process Section */}
         <section className="py-20 md:py-28 bg-muted">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-16">
+                <div className="text-center mb-16 animate-fade-in-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-primary">Quy Trình Làm Việc Chuyên Nghiệp</h2>
                     <p className="text-muted-foreground mt-3 max-w-xl mx-auto">Minh bạch trong từng bước để mang lại sự an tâm và hài lòng tuyệt đối cho khách hàng.</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {workingProcess.map((item, index) => (
-                        <Card key={index} className="bg-white border-t-4 border-accent shadow-lg text-center p-6 transform transition-transform hover:-translate-y-2 relative overflow-hidden">
-                           <div className="absolute -top-4 -right-4 text-8xl font-bold text-muted opacity-80">{item.step}</div>
-                           <div className="relative z-10">
-                              <h4 className="text-xl font-bold text-primary mb-2 mt-8">{item.title}</h4>
-                              <p className="text-muted-foreground text-sm">{item.description}</p>
-                           </div>
-                        </Card>
+                         <div key={index} className="animate-fade-in-up" style={{animationDelay: `${index * 200}ms`}}>
+                            <Card className="bg-white border-t-4 border-accent shadow-lg text-center p-6 transform transition-transform hover:-translate-y-2 relative overflow-hidden h-full">
+                               <div className="absolute -top-4 -right-4 text-8xl font-bold text-muted opacity-80">{item.step}</div>
+                               <div className="relative z-10">
+                                  <h4 className="text-xl font-bold text-primary mb-2 mt-8">{item.title}</h4>
+                                  <p className="text-muted-foreground text-sm">{item.description}</p>
+                               </div>
+                            </Card>
+                        </div>
                     ))}
                 </div>
             </div>
@@ -144,7 +149,7 @@ export default function DashboardPage() {
         {/* Gallery Section */}
         <section id="gallery" className="py-20 md:py-28 bg-white">
            <div className="container mx-auto px-4">
-              <div className="text-center mb-16">
+              <div className="text-center mb-16 animate-fade-in-up">
                 <h2 className="text-3xl md:text-4xl font-bold text-primary">Dự Án Tiêu Biểu</h2>
                 <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
                   Nơi mỗi công trình là một tác phẩm nghệ thuật đầy tâm huyết.
@@ -155,7 +160,7 @@ export default function DashboardPage() {
                   align: "start",
                   loop: true,
                 }}
-                className="w-full max-w-6xl mx-auto"
+                className="w-full max-w-6xl mx-auto animate-fade-in-up animation-delay-300"
               >
                 <CarouselContent>
                   {galleryImages.map((image, index) => (
@@ -180,7 +185,7 @@ export default function DashboardPage() {
                 <CarouselPrevious />
                 <CarouselNext />
               </Carousel>
-              <div className="text-center mt-12">
+              <div className="text-center mt-12 animate-fade-in-up animation-delay-600">
                   <Button asChild>
                       <Link href="/du-an">Xem Tất Cả Dự Án</Link>
                   </Button>
@@ -193,22 +198,22 @@ export default function DashboardPage() {
           <section className="py-20 bg-parallax bg-overlay text-primary-foreground" style={{backgroundImage: `url(${statsBgImage.imageUrl})`}}>
             <div className="container mx-auto px-4 content-overlay">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center animate-fade-in-up">
                   <Users className="w-10 h-10 mb-2 text-accent"/>
                   <p className="text-4xl font-bold">10+</p>
                   <p className="text-sm uppercase tracking-wider">Năm Kinh Nghiệm</p>
                 </div>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center animate-fade-in-up animation-delay-300">
                   <Briefcase className="w-10 h-10 mb-2 text-accent"/>
                   <p className="text-4xl font-bold">500+</p>
                   <p className="text-sm uppercase tracking-wider">Công Trình Hoàn Thiện</p>
                 </div>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center animate-fade-in-up animation-delay-600">
                   <Building className="w-10 h-10 mb-2 text-accent"/>
                   <p className="text-4xl font-bold">100+</p>
                   <p className="text-sm uppercase tracking-wider">Khách Hàng Doanh Nghiệp</p>
                 </div>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center animate-fade-in-up animation-delay-900">
                   <Smile className="w-10 h-10 mb-2 text-accent"/>
                   <p className="text-4xl font-bold">95%</p>
                   <p className="text-sm uppercase tracking-wider">Khách Hàng Hài Lòng</p>
@@ -221,19 +226,21 @@ export default function DashboardPage() {
         {/* Why Choose Us Section */}
         <section className="py-20 md:py-28 bg-white">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
+            <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-3xl md:text-4xl font-bold text-primary">Tại Sao Chọn Kiến Trúc Xanh?</h2>
               <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">Chúng tôi không chỉ xây dựng cảnh quan, chúng tôi kiến tạo không gian sống và mang lại giá trị bền vững.</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {coreValues.map((value, index) => (
-                <div key={index} className="text-center p-6 bg-muted rounded-lg transition-transform hover:-translate-y-2 hover:shadow-xl">
-                  <div className="inline-block p-4 bg-primary/10 rounded-full mb-4">
-                    <value.icon className="h-8 w-8 text-primary"/>
-                  </div>
-                  <h3 className="font-bold text-xl mb-2 text-primary">{value.title}</h3>
-                  <p className="text-sm text-muted-foreground">{value.description}</p>
-                </div>
+                 <div key={index} className="animate-fade-in-up" style={{animationDelay: `${index * 200}ms`}}>
+                    <div className="text-center p-6 bg-muted rounded-lg transition-transform hover:-translate-y-2 hover:shadow-xl h-full">
+                      <div className="inline-block p-4 bg-primary/10 rounded-full mb-4">
+                        <value.icon className="h-8 w-8 text-primary"/>
+                      </div>
+                      <h3 className="font-bold text-xl mb-2 text-primary">{value.title}</h3>
+                      <p className="text-sm text-muted-foreground">{value.description}</p>
+                    </div>
+                 </div>
               ))}
             </div>
           </div>
@@ -243,37 +250,41 @@ export default function DashboardPage() {
         {/* Testimonials Section */}
         <section id="testimonials" className="py-20 md:py-28 bg-muted">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
+            <div className="text-center mb-16 animate-fade-in-up">
               <h2 className="text-3xl md:text-4xl font-bold text-primary">Khách Hàng Nói Về Chúng Tôi</h2>
                <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
                   Sự hài lòng của khách hàng là minh chứng rõ nhất cho chất lượng dịch vụ.
                 </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              <Card className="border-none shadow-lg bg-white transform transition-all hover:scale-[1.02]">
-                <CardContent className="p-8">
-                  <p className="text-muted-foreground italic mb-6">"Đội ngũ làm việc rất chuyên nghiệp và có tâm. Khu vườn nhà tôi giờ đây thật sự là một nơi thư giãn tuyệt vời. Cảm ơn Kiến Trúc Xanh!"</p>
-                  <div className="flex items-center gap-4">
-                     {testimonialAvatar1 && <Image src={testimonialAvatar1.imageUrl} alt="Avatar khách hàng 1" width={56} height={56} className="rounded-full object-cover" data-ai-hint={testimonialAvatar1.imageHint}/>}
-                    <div>
-                      <p className="font-bold text-primary">Anh Hoàng Minh</p>
-                      <p className="text-sm text-muted-foreground">Chủ biệt thự, Quận 2</p>
+              <div className="animate-fade-in-up animation-delay-300">
+                <Card className="border-none shadow-lg bg-white transform transition-all hover:scale-[1.02] h-full">
+                  <CardContent className="p-8">
+                    <p className="text-muted-foreground italic mb-6">"Đội ngũ làm việc rất chuyên nghiệp và có tâm. Khu vườn nhà tôi giờ đây thật sự là một nơi thư giãn tuyệt vời. Cảm ơn Kiến Trúc Xanh!"</p>
+                    <div className="flex items-center gap-4">
+                       {testimonialAvatar1 && <Image src={testimonialAvatar1.imageUrl} alt="Avatar khách hàng 1" width={56} height={56} className="rounded-full object-cover" data-ai-hint={testimonialAvatar1.imageHint}/>}
+                      <div>
+                        <p className="font-bold text-primary">Anh Hoàng Minh</p>
+                        <p className="text-sm text-muted-foreground">Chủ biệt thự, Quận 2</p>
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className="border-none shadow-lg bg-white transform transition-all hover:scale-[1.02]">
-                 <CardContent className="p-8">
-                  <p className="text-muted-foreground italic mb-6">"Hồ cá Koi đã trở thành điểm nhấn thu hút khách cho quán của tôi. Dịch vụ và chất lượng thi công vượt xa mong đợi của tôi. Sẽ tiếp tục hợp tác."</p>
-                  <div className="flex items-center gap-4">
-                     {testimonialAvatar2 && <Image src={testimonialAvatar2.imageUrl} alt="Avatar khách hàng 2" width={56} height={56} className="rounded-full object-cover" data-ai-hint={testimonialAvatar2.imageHint}/>}
-                     <div>
-                      <p className="font-bold text-primary">Chị Lan Anh</p>
-                      <p className="text-sm text-muted-foreground">Chủ quán cafe sân vườn</p>
+                  </CardContent>
+                </Card>
+              </div>
+              <div className="animate-fade-in-up animation-delay-600">
+                <Card className="border-none shadow-lg bg-white transform transition-all hover:scale-[1.02] h-full">
+                   <CardContent className="p-8">
+                    <p className="text-muted-foreground italic mb-6">"Hồ cá Koi đã trở thành điểm nhấn thu hút khách cho quán của tôi. Dịch vụ và chất lượng thi công vượt xa mong đợi của tôi. Sẽ tiếp tục hợp tác."</p>
+                    <div className="flex items-center gap-4">
+                       {testimonialAvatar2 && <Image src={testimonialAvatar2.imageUrl} alt="Avatar khách hàng 2" width={56} height={56} className="rounded-full object-cover" data-ai-hint={testimonialAvatar2.imageHint}/>}
+                       <div>
+                        <p className="font-bold text-primary">Chị Lan Anh</p>
+                        <p className="text-sm text-muted-foreground">Chủ quán cafe sân vườn</p>
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
         </section>
@@ -282,9 +293,9 @@ export default function DashboardPage() {
         {ctaBgImage && (
           <section className="py-20 md:py-28 bg-parallax bg-overlay text-white text-center" style={{backgroundImage: `url(${ctaBgImage.imageUrl})`}}>
               <div className="container mx-auto px-4 content-overlay">
-                  <h2 className="text-3xl md:text-4xl font-bold">Sẵn Sàng Biến Ước Mơ Cảnh Quan Của Bạn Thành Hiện Thực?</h2>
-                  <p className="text-white/80 mt-4 max-w-2xl mx-auto">Chỉ một bước nữa để sở hữu không gian sống đẳng cấp. Hãy để lại thông tin, chuyên gia của chúng tôi sẽ liên hệ với bạn ngay!</p>
-                  <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg" asChild>
+                  <h2 className="text-3xl md:text-4xl font-bold animate-fade-in-up">Sẵn Sàng Biến Ước Mơ Cảnh Quan Của Bạn Thành Hiện Thực?</h2>
+                  <p className="text-white/80 mt-4 max-w-2xl mx-auto animate-fade-in-up animation-delay-300">Chỉ một bước nữa để sở hữu không gian sống đẳng cấp. Hãy để lại thông tin, chuyên gia của chúng tôi sẽ liên hệ với bạn ngay!</p>
+                  <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg animate-fade-in-up animation-delay-600" asChild>
                       <Link href="/lien-he">Yêu Cầu Tư Vấn Ngay</Link>
                   </Button>
               </div>
@@ -296,3 +307,5 @@ export default function DashboardPage() {
     </div>
   );
 }
+
+    
