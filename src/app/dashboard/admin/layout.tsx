@@ -46,13 +46,13 @@ export default function AdminLayout({
 }) {
   const navItems = [
       { href: "/dashboard/admin", icon: Home, label: "Tổng quan" },
-      { href: "#", icon: ImageIcon, label: "Slide Banner" },
-      { href: "#", icon: LayoutTemplate, label: "Dịch vụ" },
+      { href: "/dashboard/admin/slides", icon: ImageIcon, label: "Slide Banner" },
+      { href: "/dashboard/admin/dich-vu", icon: LayoutTemplate, label: "Dịch vụ" },
       { href: "/dashboard/admin/du-an", icon: PenSquare, label: "Dự án" },
-      { href: "#", icon: Newspaper, label: "Bài viết" },
-      { href: "#", icon: Star, label: "Khách hàng" },
-      { href: "#", icon: LineChart, label: "Thống kê" },
-      { href: "#", icon: Settings, label: "Cài đặt" },
+      { href: "/dashboard/admin/bai-viet", icon: Newspaper, label: "Bài viết" },
+      { href: "/dashboard/admin/khach-hang", icon: Star, label: "Khách hàng" },
+      { href: "/dashboard/admin/thong-ke", icon: LineChart, label: "Thống kê" },
+      { href: "/dashboard/admin/cai-dat", icon: Settings, label: "Cài đặt" },
   ];
   
   return (
@@ -79,7 +79,6 @@ export default function AdminLayout({
                   >
                     <item.icon className="h-4 w-4" />
                     {item.label}
-                    {item.badge && <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">{item.badge}</Badge>}
                   </Link>
               ))}
             </nav>
@@ -131,7 +130,6 @@ export default function AdminLayout({
                     >
                       <item.icon className="h-5 w-5" />
                       {item.label}
-                       {item.badge && <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">{item.badge}</Badge>}
                     </Link>
                 ))}
               </nav>

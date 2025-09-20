@@ -1,6 +1,8 @@
 
+"use client";
+
 import Image from "next/image"
-import Link from "next/link"
+import { useState } from "react"
 import {
   File,
   ListFilter,
@@ -42,16 +44,29 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { projects as allProjects } from "@/lib/data/projects"
+import { projects as allProjects, Project } from "@/lib/data/projects"
 
+type Category = 'Sân Vườn' | 'Hồ Koi' | 'Tiểu Cảnh';
 
 export default function DuAnAdminPage() {
-  const getCategory = (imageHint: string) => {
-    if(imageHint.includes('koi')) return 'Hồ Koi';
-    if(imageHint.includes('garden') || imageHint.includes('villa') || imageHint.includes('patio')) return 'Sân Vườn';
-    return 'Tiểu Cảnh';
-  }
+  const [filteredProjects, setFilteredProjects] = useState<Project[]>(allProjects);
+  const [selectedCategories, setSelectedCategories] = useState<Category[]>(['Sân Vườn', 'Hồ Koi', 'Tiểu Cảnh']);
 
+  const handleCategoryFilterChange = (category: Category) => {
+    const newSelectedCategories = selectedCategories.includes(category)
+      ? selectedCategories.filter(c => c !== category)
+      : [...selectedCategories, category];
+    
+    setSelectedCategories(newSelectedCategories);
+
+    if (newSelectedCategories.length === 0) {
+      setFilteredProjects([]);
+    } else {
+      const filtered = allProjects.filter(p => newSelectedCategories.includes(p.category));
+      setFilteredProjects(filtered);
+    }
+  };
+  
   return (
     <>
       <div className="flex items-center">
@@ -78,13 +93,24 @@ export default function DuAnAdminPage() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Lọc theo</DropdownMenuLabel>
+                  <DropdownMenuLabel>Lọc theo hạng mục</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuCheckboxItem checked>
+                  <DropdownMenuCheckboxItem
+                    checked={selectedCategories.includes('Sân Vườn')}
+                    onCheckedChange={() => handleCategoryFilterChange('Sân Vườn')}
+                  >
                     Sân Vườn
                   </DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem>Hồ Koi</DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    checked={selectedCategories.includes('Hồ Koi')}
+                    onCheckedChange={() => handleCategoryFilterChange('Hồ Koi')}
+                  >
+                    Hồ Koi
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    checked={selectedCategories.includes('Tiểu Cảnh')}
+                    onCheckedChange={() => handleCategoryFilterChange('Tiểu Cảnh')}
+                  >
                     Tiểu Cảnh
                   </DropdownMenuCheckboxItem>
                 </DropdownMenuContent>
@@ -123,8 +149,8 @@ export default function DuAnAdminPage() {
                       <TableHead className="hidden md:table-cell">
                         Hạng mục
                       </TableHead>
-                      <TableHead className="hidden md:table-cell">
-                        Ngày tạo
+                       <TableHead className="hidden md:table-cell">
+                        Địa điểm
                       </TableHead>
                       <TableHead>
                         <span className="sr-only">Hành động</span>
@@ -132,7 +158,7 @@ export default function DuAnAdminPage() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {allProjects.map(project => (
+                    {filteredProjects.map(project => (
                        <TableRow key={project.id}>
                         <TableCell className="hidden sm:table-cell">
                           <Image
@@ -153,9 +179,8 @@ export default function DuAnAdminPage() {
                         <TableCell className="hidden md:table-cell">
                           {project.category}
                         </TableCell>
-                        
-                        <TableCell className="hidden md:table-cell">
-                          {project.date}
+                         <TableCell className="hidden md:table-cell">
+                          {project.location}
                         </TableCell>
                         <TableCell>
                           <DropdownMenu>
@@ -185,7 +210,7 @@ export default function DuAnAdminPage() {
               </CardContent>
               <CardFooter>
                 <div className="text-xs text-muted-foreground">
-                  Hiển thị <strong>1-{allProjects.length > 10 ? 10 : allProjects.length}</strong> trên <strong>{allProjects.length}</strong>{" "}
+                  Hiển thị <strong>{filteredProjects.length}</strong> trên <strong>{allProjects.length}</strong>{" "}
                   dự án
                 </div>
               </CardFooter>
