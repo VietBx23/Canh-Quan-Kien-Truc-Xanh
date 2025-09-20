@@ -4,55 +4,55 @@
     {
       "id": "hero-slide-1",
       "description": "Hero slider image 1: A beautiful, lush villa garden with a modern design.",
-      "imageUrl": "/images/hero-slide-1.jpg",
+      "imageUrl": "https://picsum.photos/seed/hero-slide-1/1920/1080",
       "imageHint": "modern villa garden"
     },
      {
       "id": "hero-slide-2",
       "description": "Hero slider image 2: A stunning Koi pond with crystal clear water and vibrant fish.",
-      "imageUrl": "/images/hero-slide-2.jpg",
+      "imageUrl": "https://picsum.photos/seed/hero-slide-2/1920/1080",
       "imageHint": "crystal koi pond"
     },
      {
       "id": "hero-slide-3",
       "description": "Hero slider image 3: An artistic and creative garden landscape design.",
-      "imageUrl": "/images/hero-slide-3.jpg",
+      "imageUrl": "https://picsum.photos/seed/hero-slide-3/1920/1080",
       "imageHint": "artistic garden"
     },
     {
       "id": "service-garden",
       "description": "Image for the garden design service, showing a blueprint and a finished garden.",
-      "imageUrl": "/images/service-garden.jpg",
+      "imageUrl": "https://picsum.photos/seed/service-gardendesign/600/450",
       "imageHint": "landscape design"
     },
     {
       "id": "service-koi",
       "description": "Image for the Koi pond construction service, focusing on the clear water and healthy fish.",
-      "imageUrl": "/images/service-koi.jpg",
+      "imageUrl": "https://picsum.photos/seed/service-koipond/600/450",
       "imageHint": "clear koi pond"
     },
     {
       "id": "service-maintenance",
       "description": "Image for the feng shui rocks and miniature landscapes service.",
-      "imageUrl": "/images/service-maintenance.jpg",
+      "imageUrl": "https://picsum.photos/seed/service-fengshui/600/450",
       "imageHint": "zen rock garden"
     },
     {
       "id": "service-renovation",
       "description": "Image for landscape renovation service.",
-      "imageUrl": "/images/service-renovation.jpg",
+      "imageUrl": "https://picsum.photos/seed/service-renovation/600/450",
       "imageHint": "garden renovation"
     },
     {
       "id": "service-rooftop",
       "description": "Image for rooftop garden service.",
-      "imageUrl": "/images/service-rooftop.jpg",
+      "imageUrl": "https://picsum.photos/seed/service-rooftop/600/450",
       "imageHint": "rooftop garden"
     },
     {
       "id": "service-vertical-garden",
       "description": "Image for vertical garden service.",
-      "imageUrl": "/images/service-vertical-garden.jpg",
+      "imageUrl": "https://picsum.photos/seed/service-vertical/600/450",
       "imageHint": "vertical garden"
     },
     {
@@ -100,19 +100,19 @@
     {
       "id": "stats-background",
       "description": "Background for the stats section, a beautiful landscape.",
-      "imageUrl": "/images/stats-background.jpg",
+      "imageUrl": "https://picsum.photos/seed/stats-bg/1200/400",
       "imageHint": "garden panorama"
     },
      {
       "id": "cta-background",
       "description": "Background for the call-to-action section.",
-      "imageUrl": "/images/cta-background.jpg",
+      "imageUrl": "https://picsum.photos/seed/cta-bg/1200/600",
       "imageHint": "pathway night"
     },
     { "id": "gallery-1", "description": "Project gallery image 1", "imageUrl": "https://picsum.photos/seed/gallery-villa-garden/600/450", "imageHint": "villa garden" },
     { "id": "gallery-2", "description": "Project gallery image 2", "imageUrl": "https://picsum.photos/seed/gallery-koi-pond/600/450", "imageHint": "koi pond" },
     { "id": "gallery-3", "description": "Project gallery image 3", "imageUrl": "https://picsum.photos/seed/gallery-zen-garden/600/450", "imageHint": "zen garden" },
-    { "id": "gallery-4", "description": "Project gallery image 4", "imageUrl": "/images/gallery-4.jpg", "imageHint": "rooftop garden" },
+    { "id": "gallery-4", "description": "Project gallery image 4", "imageUrl": "https://picsum.photos/seed/gallery-rooftop/600/450", "imageHint": "rooftop garden" },
     { "id": "gallery-5", "description": "Project gallery image 5", "imageUrl": "https://picsum.photos/seed/gallery-pathway/600/450", "imageHint": "garden pathway" },
     { "id": "gallery-6", "description": "Project gallery image 6", "imageUrl": "https://picsum.photos/seed/gallery-waterfall/600/450", "imageHint": "garden waterfall" },
     { "id": "gallery-7", "description": "Project gallery image 7", "imageUrl": "https://picsum.photos/seed/gallery-vertical/600/450", "imageHint": "vertical garden" },
@@ -123,7 +123,7 @@
     { "id": "gallery-12", "description": "Project gallery image 12", "imageUrl": "https://picsum.photos/seed/gallery-night/600/450", "imageHint": "night garden" },
     { "id": "gallery-13", "description": "Project gallery image 13", "imageUrl": "https://picsum.photos/seed/gallery-resort/600/450", "imageHint": "resort landscape" },
     { "id": "gallery-14", "description": "Project gallery image 14", "imageUrl": "https://picsum.photos/seed/gallery-cafe/600/450", "imageHint": "cafe garden" },
-    { "id": "gallery-15", "description": "Project gallery image 15", "imageUrl": "/images/gallery-15.jpg", "imageHint": "office garden" },
+    { "id": "gallery-15", "description": "Project gallery image 15", "imageUrl": "https://picsum.photos/seed/gallery-office/600/450", "imageHint": "office garden" },
     { "id": "gallery-16", "description": "Project gallery image 16", "imageUrl": "https://picsum.photos/seed/gallery-balcony/600/450", "imageHint": "balcony garden" },
     { "id": "gallery-17", "description": "Project gallery image 17", "imageUrl": "https://picsum.photos/seed/gallery-koi-bridge/600/450", "imageHint": "koi bridge" },
     { "id": "gallery-18", "description": "Project gallery image 18", "imageUrl": "https://picsum.photos/seed/gallery-meditation/600/450", "imageHint": "meditation garden" },
@@ -148,10 +148,10 @@
     { "id": "gallery-37", "description": "Project gallery image 37", "imageUrl": "https://picsum.photos/seed/gallery-night-koi/600/450", "imageHint": "night koi pond" },
     { "id": "gallery-38", "description": "Project gallery image 38", "imageUrl": "https://picsum.photos/seed/gallery-resort-pool/600/450", "imageHint": "resort pool" },
     {
-      "id": "testimonial-1", "description": "Avatar for a testimonial.", "imageUrl": "/images/testimonial-1.jpg", "imageHint": "man portrait"
+      "id": "testimonial-1", "description": "Avatar for a testimonial.", "imageUrl": "https://picsum.photos/seed/avatar1/56/56", "imageHint": "man portrait"
     },
     {
-      "id": "testimonial-2", "description": "Avatar for a testimonial.", "imageUrl": "/images/testimonial-2.jpg", "imageHint": "woman portrait"
+      "id": "testimonial-2", "description": "Avatar for a testimonial.", "imageUrl": "https://picsum.photos/seed/avatar2/56/56", "imageHint": "woman portrait"
     },
     {
       "id": "testimonial-3", "description": "Avatar for a testimonial.", "imageUrl": "https://picsum.photos/seed/avatar3/56/56", "imageHint": "person portrait"
