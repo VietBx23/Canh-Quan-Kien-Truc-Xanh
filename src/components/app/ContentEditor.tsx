@@ -10,9 +10,9 @@ import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { CalendarIcon, ClipboardCopy, Loader2, Send, Sparkles, Timer } from "lucide-react";
+import { CalendarIcon, ClipboardCopy, Loader2, Send, Sparkles, Timer, Upload } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { useFormState } from "react-dom";
 import { format } from "date-fns";
 
@@ -32,6 +32,7 @@ export function ContentEditor({ isConnected, addActivity }: ContentEditorProps) 
   const [content, setContent] = useState("");
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [isPublishing, startPublishing] = useTransition();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [aiState, formAction] = useFormState(suggestHeadersAction, initialAIState);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -101,6 +102,31 @@ export function ContentEditor({ isConnected, addActivity }: ContentEditorProps) 
     toast({ description: "Header copied to clipboard!" });
   };
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const fileContent = e.target?.result as string;
+        const lines = fileContent.split('\n');
+        // Use file name (without extension) as title
+        const fileName = file.name.replace(/\.md$/, '');
+        setTitle(fileName);
+        setContent(fileContent);
+        toast({
+          title: "File Loaded",
+          description: `Loaded content from ${file.name}`,
+        });
+        addActivity(`Loaded content from file: ${file.name}`, Upload);
+      };
+      reader.readAsText(file);
+    }
+    // Reset file input to allow uploading the same file again
+    if(fileInputRef.current) {
+        fileInputRef.current.value = "";
+    }
+  };
+
   return (
     <>
       <Card className="flex h-full flex-col">
@@ -132,13 +158,26 @@ export function ContentEditor({ isConnected, addActivity }: ContentEditorProps) 
               disabled={isPublishing}
             />
           </div>
-          <form action={handleSuggestHeaders}>
-              <input type="hidden" name="articleContent" value={content} />
-              <Button type="submit" variant="outline" disabled={!content || isAISuggesting || isPublishing}>
-                {isAISuggesting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Sparkles className="mr-2 h-4 w-4 text-accent" />}
-                AI Suggest Headers
-              </Button>
-          </form>
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={() => fileInputRef.current?.click()} disabled={isPublishing}>
+              <Upload className="mr-2 h-4 w-4" />
+              Upload File
+            </Button>
+            <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                className="hidden"
+                accept=".md"
+            />
+            <form action={handleSuggestHeaders} className="contents">
+                <input type="hidden" name="articleContent" value={content} />
+                <Button type="submit" variant="outline" disabled={!content || isAISuggesting || isPublishing}>
+                  {isAISuggesting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Sparkles className="mr-2 h-4 w-4 text-accent" />}
+                  AI Suggest Headers
+                </Button>
+            </form>
+          </div>
         </CardContent>
         <CardFooter className="flex justify-end gap-2 border-t pt-6">
             <Popover>
