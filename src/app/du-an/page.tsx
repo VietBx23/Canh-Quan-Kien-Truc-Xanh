@@ -3,7 +3,8 @@ import { Header } from "@/components/app/Header";
 import { Footer } from "@/components/app/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { PlaceHolderImages }
+from "@/lib/placeholder-images";
 import Image from "next/image";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -37,8 +38,8 @@ export default async function ProjectsPage() {
                                </Link>
                           </div>
                           <div className="p-4 bg-white">
-                              <p className="text-xs text-accent font-semibold uppercase">{image.imageHint.includes('koi') ? 'Hồ Koi' : gardenProjects.includes(image) ? 'Sân vườn' : 'Tiểu Cảnh'}</p>
-                              <h3 className="font-bold text-lg text-primary capitalize mt-1">
+                               <p className="text-xs text-accent font-semibold uppercase">{image.imageHint.includes('koi') ? 'Hồ Koi' : gardenProjects.includes(image) ? 'Sân vườn' : 'Tiểu Cảnh'}</p>
+                               <h3 className="font-bold text-lg text-primary capitalize mt-1">
                                 <Link href={`/du-an/${image.id}`}>{image.imageHint.replace(/-/g, ' ')}</Link>
                                </h3>
                               <p className="text-sm text-muted-foreground mt-1">Hoàn thành: 2024</p>
@@ -90,7 +91,8 @@ export default async function ProjectsPage() {
                             <h2 className="text-2xl font-bold text-primary">Bạn muốn có một không gian như thế này?</h2>
                             <p className="text-muted-foreground mt-2 max-w-xl mx-auto">Hãy để các chuyên gia của chúng tôi giúp bạn hiện thực hóa ước mơ.</p>
                             <Button size="lg" asChild className="mt-6">
-                                <Link href="/lien-he">Bắt Đầu Dự Án Của Bạn</Link>                            </Button>
+                                <Link href="/lien-he">Bắt Đầu Dự Án Của Bạn</Link>
+                            </Button>
                         </div>
                     </div>
                 </section>
