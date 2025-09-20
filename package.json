@@ -45,7 +45,7 @@
     "firebase-admin": "^12.2.0",
     "genkit": "^1.14.1",
     "lucide-react": "^0.475.0",
-    "mysql2": "^3.10.1",
+    "mongodb": "^6.8.0",
     "negotiator": "^0.6.3",
     "next": "15.3.3",
     "patch-package": "^8.0.0",
@@ -61,6 +61,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",
     "@types/axios": "^0.14.0",
+    "@types/mongodb": "^4.0.7",
     "@types/negotiator": "^0.6.3",
     "@types/node": "^20",
     "@types/react": "^18",
