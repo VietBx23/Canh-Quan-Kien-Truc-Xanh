@@ -75,14 +75,14 @@ export function ContentEditor({ isConnected, addActivity }: ContentEditorProps) 
     startPublishing(() => {
       setTimeout(() => {
         publishCounter++;
-        const slug = [customPrefix.trim(), publishCounter]
-          .filter(Boolean)
-          .join("-")
-          .toLowerCase()
-          .replace(/[^a-z0-9-]+/g, "")
-          .replace(/^-+|-+$/g, "");
-          
-        const fakeLink = `https://sites.google.com/view/mysite/${slug || `post-${publishCounter}`}`;
+        const safePrefix = customPrefix.trim().toLowerCase().replace(/[^a-z0-9-]+/g, "");
+        const fallbackSlug = title.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        
+        const slug = safePrefix 
+          ? `${safePrefix}-${publishCounter}`
+          : `${fallbackSlug || 'post'}-${publishCounter}`;
+
+        const fakeLink = `https://sites.google.com/view/mysite/${slug}`;
 
         if (isScheduling) {
             toast({
