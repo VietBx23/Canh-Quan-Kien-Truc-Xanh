@@ -1,6 +1,6 @@
 'use server';
 
-import { adminDb } from '@/lib/firebase/admin';
+import { adminDb } from './admin';
 import { projects as staticProjects } from '@/lib/data/projects';
 import { Project } from '@/lib/data/projects';
 
