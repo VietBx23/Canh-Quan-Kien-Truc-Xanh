@@ -1,5 +1,4 @@
 import type {Config} from 'tailwindcss';
-const plugin = require('tailwindcss/plugin');
 
 export default {
   darkMode: ['class'],
@@ -104,20 +103,5 @@ export default {
   },
   plugins: [
     require('tailwindcss-animate'),
-    plugin(function({ addUtilities }) {
-      addUtilities({
-        '.animation-delay-300': {
-          'animation-delay': '300ms',
-        },
-        '.animation-delay-600': {
-          'animation-delay': '600ms',
-        },
-        '.animation-delay-900': {
-          'animation-delay': '900ms',
-        },
-      })
-    })
   ],
 } satisfies Config;
-
-    
