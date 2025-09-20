@@ -1,6 +1,5 @@
 import {genkit} from 'genkit';
 import {googleAI} from '@genkit-ai/googleai';
-import {geminiPro} from 'genkitx-googleai';
 
 export const ai = genkit({
   plugins: [
@@ -9,5 +8,3 @@ export const ai = genkit({
     }),
   ],
 });
-
-export const model = geminiPro;
