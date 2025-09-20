@@ -45,11 +45,13 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 import { projects as allProjects, Project } from "@/lib/data/projects"
+import { EditProjectForm } from "@/components/app/admin/EditProjectForm"
+
 
 type Category = 'Sân Vườn' | 'Hồ Koi' | 'Tiểu Cảnh';
 
 export default function DuAnAdminPage() {
-  const [filteredProjects, setFilteredProjects] = useState<Project[]>(allProjects);
+  const [projects, setProjects] = useState<Project[]>(allProjects);
   const [selectedCategories, setSelectedCategories] = useState<Category[]>(['Sân Vườn', 'Hồ Koi', 'Tiểu Cảnh']);
 
   const handleCategoryFilterChange = (category: Category) => {
@@ -59,14 +61,23 @@ export default function DuAnAdminPage() {
     
     setSelectedCategories(newSelectedCategories);
 
-    if (newSelectedCategories.length === 0) {
-      setFilteredProjects([]);
+    if (newSelectedCategories.length === 0 || newSelectedCategories.length === 3) {
+      setProjects(allProjects);
     } else {
       const filtered = allProjects.filter(p => newSelectedCategories.includes(p.category));
-      setFilteredProjects(filtered);
+      setProjects(filtered);
     }
   };
   
+  // Placeholder function for handling updates
+  const handleUpdateProject = (updatedProject: Project) => {
+    console.log("Updating project (simulation):", updatedProject);
+    // In a real app with a database, you would update the state here.
+    // For now, we just log it as we cannot write to the .ts file.
+    const newProjects = projects.map(p => p.id === updatedProject.id ? updatedProject : p);
+    setProjects(newProjects);
+  };
+
   return (
     <>
       <div className="flex items-center">
@@ -115,12 +126,6 @@ export default function DuAnAdminPage() {
                   </DropdownMenuCheckboxItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <Button size="sm" variant="outline" className="h-8 gap-1">
-                <File className="h-3.5 w-3.5" />
-                <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                  Xuất file
-                </span>
-              </Button>
               <Button size="sm" className="h-8 gap-1">
                 <PlusCircle className="h-3.5 w-3.5" />
                 <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
@@ -158,7 +163,7 @@ export default function DuAnAdminPage() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {filteredProjects.map(project => (
+                    {projects.map(project => (
                        <TableRow key={project.id}>
                         <TableCell className="hidden sm:table-cell">
                           <Image
@@ -196,7 +201,7 @@ export default function DuAnAdminPage() {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
                               <DropdownMenuLabel>Hành động</DropdownMenuLabel>
-                              <DropdownMenuItem>Sửa</DropdownMenuItem>
+                               <EditProjectForm project={project} onSave={handleUpdateProject} />
                               <DropdownMenuItem>Sao chép</DropdownMenuItem>
                               <DropdownMenuSeparator/>
                               <DropdownMenuItem className="text-destructive">Xóa</DropdownMenuItem>
@@ -210,7 +215,7 @@ export default function DuAnAdminPage() {
               </CardContent>
               <CardFooter>
                 <div className="text-xs text-muted-foreground">
-                  Hiển thị <strong>{filteredProjects.length}</strong> trên <strong>{allProjects.length}</strong>{" "}
+                  Hiển thị <strong>{projects.length}</strong> trên <strong>{allProjects.length}</strong>{" "}
                   dự án
                 </div>
               </CardFooter>
