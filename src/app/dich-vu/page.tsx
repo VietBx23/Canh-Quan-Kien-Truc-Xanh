@@ -3,7 +3,7 @@ import { Footer } from "@/components/app/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Leaf, Fish, Sprout, ArrowRight } from "lucide-react";
+import { Leaf, Fish, Sprout, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -64,11 +64,11 @@ export default function ServicesPage() {
                     </div>
                 </section>
 
-                <section className="py-20 md:py-28">
+                <section className="py-20 md:py-28 bg-white">
                     <div className="container mx-auto px-4 space-y-24">
                         {services.map((service, index) => (
                             <div key={index} className="grid md:grid-cols-2 gap-12 items-center">
-                                <div className={index % 2 === 1 ? 'md:order-last' : ''}>
+                                <div className={`transition-transform duration-500 hover:scale-105 ${index % 2 === 1 ? 'md:order-last' : ''}`}>
                                     {service.image && (
                                         <Image
                                             src={service.image.imageUrl}
@@ -81,18 +81,18 @@ export default function ServicesPage() {
                                     )}
                                 </div>
                                 <div>
-                                    <service.icon className="w-12 h-12 text-primary mb-4" />
+                                    <service.icon className="w-12 h-12 text-accent mb-4" />
                                     <h2 className="text-3xl font-bold text-primary mb-4">{service.title}</h2>
                                     <p className="text-muted-foreground mb-6">{service.description}</p>
-                                    <ul className="space-y-2 mb-8">
+                                    <ul className="space-y-3 mb-8">
                                         {service.details.map((detail, i) => (
-                                            <li key={i} className="flex items-center gap-3">
-                                                <ArrowRight className="w-4 h-4 text-accent shrink-0"/>
+                                            <li key={i} className="flex items-start gap-3">
+                                                <CheckCircle className="w-5 h-5 text-primary mt-0.5 shrink-0"/>
                                                 <span className="text-muted-foreground">{detail}</span>
                                             </li>
                                         ))}
                                     </ul>
-                                    <Button asChild>
+                                    <Button asChild size="lg">
                                         <Link href="/lien-he">Yêu Cầu Tư Vấn</Link>
                                     </Button>
                                 </div>

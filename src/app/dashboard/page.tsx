@@ -55,7 +55,7 @@ export default function DashboardPage() {
         </section>
 
         {/* About Us Section */}
-        <section className="py-20 md:py-28 text-center">
+        <section className="py-20 md:py-28 text-center bg-white">
           <div className="container mx-auto px-4">
               <h2 className="text-3xl md:text-4xl font-bold text-primary">Về Chúng Tôi</h2>
               <p className="text-muted-foreground mt-4 max-w-3xl mx-auto">
@@ -77,37 +77,37 @@ export default function DashboardPage() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2">
+              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2 bg-white">
                 {serviceGarden && <Image src={serviceGarden.imageUrl} alt="Thiết kế sân vườn" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceGarden.imageHint} />}
                 <CardHeader>
                   <Leaf className="w-10 h-10 text-primary mb-3" />
-                  <CardTitle className="text-2xl">Thiết kế Sân vườn</CardTitle>
+                  <CardTitle className="text-xl font-bold">Thiết kế Sân vườn</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground mb-4">Tư vấn, thiết kế cảnh quan sân vườn biệt thự, nhà phố, resort theo phong cách độc đáo và hợp phong thủy.</p>
-                   <Button variant="link" className="p-0" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
+                  <p className="text-muted-foreground mb-4 text-sm">Tư vấn, thiết kế cảnh quan sân vườn biệt thự, nhà phố, resort theo phong cách độc đáo và hợp phong thủy.</p>
+                   <Button variant="link" className="p-0 text-sm" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
                 </CardContent>
               </Card>
-              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2">
+              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2 bg-white">
                 {serviceKoi && <Image src={serviceKoi.imageUrl} alt="Thi công hồ cá Koi" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceKoi.imageHint} />}
                 <CardHeader>
                   <Fish className="w-10 h-10 text-primary mb-3" />
-                  <CardTitle className="text-2xl">Hồ Cá Koi Chuyên Nghiệp</CardTitle>
+                  <CardTitle className="text-xl font-bold">Hồ Cá Koi Chuyên Nghiệp</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground mb-4">Xây dựng hồ cá Koi với hệ thống lọc chuẩn quốc tế, đảm bảo môi trường sống lý tưởng và thẩm mỹ cao.</p>
-                   <Button variant="link" className="p-0" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
+                  <p className="text-muted-foreground mb-4 text-sm">Xây dựng hồ cá Koi với hệ thống lọc chuẩn quốc tế, đảm bảo môi trường sống lý tưởng và thẩm mỹ cao.</p>
+                   <Button variant="link" className="p-0 text-sm" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
                 </CardContent>
               </Card>
-              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2">
+              <Card className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-none hover:-translate-y-2 bg-white">
                 {serviceMaintenance && <Image src={serviceMaintenance.imageUrl} alt="Đá phong thủy & Tiểu cảnh" width={600} height={400} className="w-full h-56 object-cover" data-ai-hint={serviceMaintenance.imageHint} />}
                 <CardHeader>
                   <Sprout className="w-10 h-10 text-primary mb-3" />
-                  <CardTitle className="text-2xl">Đá Phong Thủy & Tiểu Cảnh</CardTitle>
+                  <CardTitle className="text-xl font-bold">Đá Phong Thủy & Tiểu Cảnh</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground mb-4">Cung cấp và bài trí đá phong thủy, thác nước, non bộ, mang lại vượng khí và nét đẹp cho không gian.</p>
-                  <Button variant="link" className="p-0" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
+                  <p className="text-muted-foreground mb-4 text-sm">Cung cấp và bài trí đá phong thủy, thác nước, non bộ, mang lại vượng khí và nét đẹp cho không gian.</p>
+                  <Button variant="link" className="p-0 text-sm" asChild><Link href="/dich-vu">Xem chi tiết <ArrowRight className="ml-2 h-4 w-4"/></Link></Button>
                 </CardContent>
               </Card>
             </div>
@@ -134,7 +134,7 @@ export default function DashboardPage() {
                   {galleryImages.map((image, index) => (
                     <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                       <div className="p-1">
-                        <Card className="overflow-hidden">
+                        <Card className="overflow-hidden border-none shadow-lg">
                           <CardContent className="flex aspect-square items-center justify-center p-0">
                              <Image 
                                 src={image.imageUrl} 
@@ -171,7 +171,7 @@ export default function DashboardPage() {
                 </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              <Card className="border-none shadow-lg bg-white transform transition-all hover:scale-105">
+              <Card className="border-none shadow-lg bg-white transform transition-all hover:scale-[1.02]">
                 <CardContent className="p-8">
                   <p className="text-muted-foreground italic mb-6">"Đội ngũ làm việc rất chuyên nghiệp và có tâm. Khu vườn nhà tôi giờ đây thật sự là một nơi thư giãn tuyệt vời. Cảm ơn Kiến Trúc Xanh!"</p>
                   <div className="flex items-center gap-4">
@@ -183,7 +183,7 @@ export default function DashboardPage() {
                   </div>
                 </CardContent>
               </Card>
-              <Card className="border-none shadow-lg bg-white transform transition-all hover:scale-105">
+              <Card className="border-none shadow-lg bg-white transform transition-all hover:scale-[1.02]">
                  <CardContent className="p-8">
                   <p className="text-muted-foreground italic mb-6">"Hồ cá Koi đã trở thành điểm nhấn thu hút khách cho quán của tôi. Dịch vụ và chất lượng thi công vượt xa mong đợi của tôi. Sẽ tiếp tục hợp tác."</p>
                   <div className="flex items-center gap-4">
@@ -200,10 +200,10 @@ export default function DashboardPage() {
         </section>
 
         {/* Call to Action Section */}
-        <section className="py-20 md:py-28 bg-gray-800 text-white text-center">
+        <section className="py-20 md:py-28 bg-primary/90 text-white text-center">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl md:text-4xl font-bold">Sẵn Sàng Biến Ước Mơ Về Một Không Gian Xanh Thành Hiện Thực?</h2>
-                <p className="text-gray-300 mt-4 max-w-2xl mx-auto">Đừng ngần ngại liên hệ với chúng tôi. Các chuyên gia của Cảnh Quan Kiến Trúc Xanh luôn sẵn lòng lắng nghe và tư vấn giải pháp tốt nhất cho bạn.</p>
+                <p className="text-white/80 mt-4 max-w-2xl mx-auto">Đừng ngần ngại liên hệ với chúng tôi. Các chuyên gia của Cảnh Quan Kiến Trúc Xanh luôn sẵn lòng lắng nghe và tư vấn giải pháp tốt nhất cho bạn.</p>
                 <Button size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg" asChild>
                     <Link href="/lien-he">Liên Hệ Ngay</Link>
                 </Button>

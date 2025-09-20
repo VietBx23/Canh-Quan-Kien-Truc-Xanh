@@ -1,3 +1,4 @@
+
 {
   "placeholderImages": [
     {
@@ -9,67 +10,67 @@
     {
       "id": "service-garden",
       "description": "Image for the garden design service, showing a blueprint and a finished garden.",
-      "imageUrl": "https://picsum.photos/seed/service-gardendesign/600/400",
+      "imageUrl": "https://picsum.photos/seed/service-gardendesign/600/450",
       "imageHint": "landscape design"
     },
     {
       "id": "service-koi",
       "description": "Image for the Koi pond construction service, focusing on the clear water and healthy fish.",
-      "imageUrl": "https://picsum.photos/seed/service-koipond/600/400",
+      "imageUrl": "https://picsum.photos/seed/service-koipond/600/450",
       "imageHint": "clear koi pond"
     },
     {
       "id": "service-maintenance",
       "description": "Image for the feng shui rocks and miniature landscapes service.",
-      "imageUrl": "https://picsum.photos/seed/service-fengshui/600/400",
+      "imageUrl": "https://picsum.photos/seed/service-fengshui/600/450",
       "imageHint": "zen rock garden"
     },
     {
       "id": "gallery-1",
-      "description": "Project gallery image 1: A modern backyard with a swimming pool.",
-      "imageUrl": "https://picsum.photos/seed/gallery1/400/400",
-      "imageHint": "backyard pool"
+      "description": "Project gallery image 1: A modern backyard with a swimming pool and lush garden.",
+      "imageUrl": "https://picsum.photos/seed/gallery-villa-garden/600/450",
+      "imageHint": "villa garden"
     },
     {
       "id": "gallery-2",
-      "description": "Project gallery image 2: Close-up of colorful Koi fish in a pond.",
-      "imageUrl": "https://picsum.photos/seed/gallery2/400/400",
-      "imageHint": "colorful koi"
+      "description": "Project gallery image 2: Close-up of colorful Koi fish in a pristine pond.",
+      "imageUrl": "https://picsum.photos/seed/gallery-koi-pond/600/450",
+      "imageHint": "koi pond"
     },
     {
       "id": "gallery-3",
-      "description": "Project gallery image 3: A tranquil zen garden with raked sand.",
-      "imageUrl": "https://picsum.photos/seed/gallery3/400/400",
+      "description": "Project gallery image 3: A tranquil zen garden with raked sand and minimalist features.",
+      "imageUrl": "https://picsum.photos/seed/gallery-zen-garden/600/450",
       "imageHint": "zen garden"
     },
     {
       "id": "gallery-4",
-      "description": "Project gallery image 4: A rooftop garden oasis in the city.",
-      "imageUrl": "https://picsum.photos/seed/gallery4/400/400",
+      "description": "Project gallery image 4: A rooftop garden oasis in a dense city.",
+      "imageUrl": "https://picsum.photos/seed/gallery-rooftop/600/450",
       "imageHint": "rooftop garden"
     },
     {
       "id": "gallery-5",
-      "description": "Project gallery image 5: A natural stone pathway through a lush garden.",
-      "imageUrl": "https://picsum.photos/seed/gallery5/400/400",
-      "imageHint": "stone pathway"
+      "description": "Project gallery image 5: A natural stone pathway meandering through a lush garden.",
+      "imageUrl": "https://picsum.photos/seed/gallery-pathway/600/450",
+      "imageHint": "garden pathway"
     },
     {
       "id": "gallery-6",
-      "description": "Project gallery image 6: A small, elegant waterfall feature.",
-      "imageUrl": "https://picsum.photos/seed/gallery6/400/400",
-      "imageHint": "small waterfall"
+      "description": "Project gallery image 6: An elegant waterfall feature integrated into a garden.",
+      "imageUrl": "https://picsum.photos/seed/gallery-waterfall/600/450",
+      "imageHint": "garden waterfall"
     },
     {
       "id": "gallery-7",
-      "description": "Project gallery image 7: Vertical garden on a modern building.",
-      "imageUrl": "https://picsum.photos/seed/gallery7/400/400",
+      "description": "Project gallery image 7: Vertical garden on a modern building facade.",
+      "imageUrl": "https://picsum.photos/seed/gallery-vertical/600/450",
       "imageHint": "vertical garden"
     },
     {
       "id": "gallery-8",
-      "description": "Project gallery image 8: A garden illuminated with soft lights at night.",
-      "imageUrl": "https://picsum.photos/seed/gallery8/400/400",
+      "description": "Project gallery image 8: A luxurious garden illuminated with soft, warm lights at night.",
+      "imageUrl": "https://picsum.photos/seed/gallery-lighting/600/450",
       "imageHint": "garden lighting"
     },
     {
@@ -83,6 +84,30 @@
       "description": "Avatar for the second testimonial, a smiling woman.",
       "imageUrl": "https://picsum.photos/seed/avatar2/56/56",
       "imageHint": "woman portrait"
+    },
+    {
+      "id": "testimonial-3",
+      "description": "Avatar for a testimonial.",
+      "imageUrl": "https://picsum.photos/seed/avatar3/56/56",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "testimonial-4",
+      "description": "Avatar for a testimonial.",
+      "imageUrl": "https://picsum.photos/seed/avatar4/56/56",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "testimonial-5",
+      "description": "Avatar for a testimonial.",
+      "imageUrl": "https://picsum.photos/seed/avatar5/56/56",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "testimonial-6",
+      "description": "Avatar for a testimonial.",
+      "imageUrl": "https://picsum.photos/seed/avatar6/56/56",
+      "imageHint": "person portrait"
     }
   ]
 }
