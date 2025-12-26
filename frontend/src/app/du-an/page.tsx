@@ -1,0 +1,103 @@
+
+import { Header } from "@/components/app/Header";
+import { Footer } from "@/components/app/Footer";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
+import Link from "next/link";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Project } from "@/lib/data/projects";
+import { getAllProjects } from "@/lib/actions/projectActions";
+
+export default async function ProjectsPage() {
+    const allProjects = await getAllProjects();
+
+    const gardenProjects = allProjects.filter(p => p.category === 'Sân Vườn');
+    const koiProjects = allProjects.filter(p => p.category === 'Hồ Koi');
+    const otherProjects = allProjects.filter(p => p.category === 'Tiểu Cảnh');
+
+    const renderProjectList = (projects: Project[]) => {
+      if (projects.length === 0) {
+        return <p className="text-center text-muted-foreground col-span-full">Chưa có dự án nào trong mục này.</p>
+      }
+      return (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project) => (
+                  <Card key={project.id} className="overflow-hidden group border-none shadow-lg hover:shadow-2xl transition-all duration-300">
+                      <CardContent className="p-0">
+                          <div className="overflow-hidden aspect-[4/3]">
+                              <Link href={`/du-an/${project.id}`}>
+                                <Image 
+                                    src={project.imageUrl} 
+                                    alt={project.title}
+                                    width={600}
+                                    height={450}
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                                    data-ai-hint={project.imageHint} 
+                                />
+                               </Link>
+                          </div>
+                          <div className="p-4 bg-white">
+                               <p className="text-xs text-accent font-semibold uppercase">{project.category}</p>
+                               <h3 className="font-bold text-lg text-primary capitalize mt-1">
+                                <Link href={`/du-an/${project.id}`}>{project.title}</Link>
+                               </h3>
+                              <p className="text-sm text-muted-foreground mt-1">Hoàn thành: {project.date}</p>
+                          </div>
+                      </CardContent>
+                  </Card>
+              ))}
+          </div>
+      )
+    };
+
+    return (
+        <div className="flex min-h-screen w-full flex-col bg-background font-body">
+            <Header />
+            <main className="flex-1">
+                 <section className="py-20 md:py-28 bg-muted">
+                    <div className="container mx-auto px-4 text-center">
+                        <h1 className="text-4xl md:text-5xl font-bold text-primary">Dự Án Đã Thực Hiện</h1>
+                        <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
+                            Mỗi công trình là một tác phẩm nghệ thuật, kết tinh từ tâm huyết, sự sáng tạo và quy trình làm việc chuyên nghiệp của chúng tôi.
+                        </p>
+                    </div>
+                </section>
+                
+                <section className="py-20 md:py-28 bg-white">
+                    <div className="container mx-auto px-4">
+                        <Tabs defaultValue="all" className="w-full">
+                            <TabsList className="grid w-full max-w-md mx-auto grid-cols-4 mb-12">
+                                <TabsTrigger value="all">Tất Cả</TabsTrigger>
+                                <TabsTrigger value="garden">Sân Vườn</TabsTrigger>
+                                <TabsTrigger value="koi">Hồ Koi</TabsTrigger>
+                                <TabsTrigger value="other">Tiểu Cảnh</TabsTrigger>
+                            </TabsList>
+                            <TabsContent value="all" className="animate-fade-in-up">
+                                {renderProjectList(allProjects)}
+                            </TabsContent>
+                            <TabsContent value="garden" className="animate-fade-in-up">
+                                {renderProjectList(gardenProjects)}
+                            </TabsContent>
+                             <TabsContent value="koi" className="animate-fade-in-up">
+                                {renderProjectList(koiProjects)}
+                            </TabsContent>
+                             <TabsContent value="other" className="animate-fade-in-up">
+                                {renderProjectList(otherProjects)}
+                            </TabsContent>
+                        </Tabs>
+
+                         <div className="text-center mt-20">
+                            <h2 className="text-2xl font-bold text-primary">Bạn muốn có một không gian như thế này?</h2>
+                            <p className="text-muted-foreground mt-2 max-w-xl mx-auto">Hãy để các chuyên gia của chúng tôi giúp bạn hiện thực hóa ước mơ.</p>
+                            <Button size="lg" asChild className="mt-6">
+                                <Link href="/lien-he">Bắt Đầu Dự Án Của Bạn</Link>
+                            </Button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <Footer />
+        </div>
+    );
+}
